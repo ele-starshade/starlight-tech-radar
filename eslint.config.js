@@ -1,4 +1,4 @@
-import js from '@eslint/js'
+import neostandard from 'neostandard'
 import globals from 'globals'
 import pluginVue from 'eslint-plugin-vue'
 import pluginQuasar from '@quasar/app-vite/eslint'
@@ -17,8 +17,8 @@ export default defineConfigWithVueTs(
     // ignores: []
   },
 
+  ...neostandard(),
   pluginQuasar.configs.recommended(),
-  js.configs.recommended,
 
   /**
    * https://eslint.vuejs.org
@@ -32,7 +32,7 @@ export default defineConfigWithVueTs(
    * pluginVue.configs["flat/recommended"]
    *   -> Above, plus rules to enforce subjective community defaults to ensure consistency.
    */
-  pluginVue.configs[ 'flat/essential' ],
+  pluginVue.configs['flat/essential'],
 
   {
     files: ['**/*.ts', '**/*.vue'],
@@ -40,9 +40,10 @@ export default defineConfigWithVueTs(
       '@typescript-eslint/consistent-type-imports': [
         'error',
         { prefer: 'type-imports' }
-      ],
+      ]
     }
   },
+
   // https://github.com/vuejs/eslint-config-typescript
   vueTsConfigs.recommendedTypeChecked,
 
@@ -68,12 +69,25 @@ export default defineConfigWithVueTs(
       'prefer-promise-reject-errors': 'off',
 
       // allow debugger during development only
-      'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+      'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+
+      // padding-line-between-statements for clean coding
+      'padding-line-between-statements': [
+        'error',
+        { blankLine: 'always', prev: '*', next: ['block-like', 'return'] },
+        { blankLine: 'always', prev: 'block-like', next: '*' },
+        { blankLine: 'always', prev: ['const', 'let', 'var'], next: '*' },
+        { blankLine: 'any', prev: ['const', 'let', 'var'], next: ['const', 'let', 'var'] },
+        { blankLine: 'always', prev: 'import', next: '*' },
+        { blankLine: 'any', prev: 'import', next: 'import' },
+        { blankLine: 'always', prev: 'export', next: '*' },
+        { blankLine: 'any', prev: 'export', next: 'export' }
+      ]
     }
   },
 
   {
-    files: [ 'src-pwa/custom-service-worker.ts' ],
+    files: ['src-pwa/custom-service-worker.ts'],
     languageOptions: {
       globals: {
         ...globals.serviceworker

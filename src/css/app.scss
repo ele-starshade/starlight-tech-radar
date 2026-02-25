@@ -1,1 +1,10 @@
-// app global css in SCSS form
+@import "@fontsource/opendyslexic/index.css";
+
+.open-dyslexic {
+  font-family: 'OpenDyslexic', sans-serif !important;
+
+  // Apply to all children EXCEPT icons which need their own font-family
+  *:not(.q-icon):not(.material-icons):not(.notranslate):not([class*="fa-"]) {
+    font-family: 'OpenDyslexic', sans-serif !important;
+  }
+}

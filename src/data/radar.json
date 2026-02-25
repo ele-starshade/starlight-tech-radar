@@ -1,0 +1,52 @@
+{
+  "quadrants": [
+    "Techniques",
+    "Platforms",
+    "Tools",
+    "Languages & Frameworks"
+  ],
+  "rings": [
+    "Adopt",
+    "Trial",
+    "Assess",
+    "Hold"
+  ],
+  "blips": [
+    {
+      "name": "Vue.js",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "The Progressive JavaScript Framework.",
+      "repoUrl": "https://github.com/vuejs/core",
+      "guidanceLink": "https://vuejs.org/guide/introduction.html"
+    },
+    {
+      "name": "Quasar Framework",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Effortlessly create high-performance responsive website/app in record time.",
+      "repoUrl": "https://github.com/quasarframework/quasar",
+      "guidanceLink": "https://quasar.dev/introduction"
+    },
+    {
+      "name": "Zod",
+      "quadrant": "Tools",
+      "ring": "Adopt",
+      "isNew": true,
+      "description": "TypeScript-first schema validation with static type inference.",
+      "repoUrl": "https://github.com/colinhacks/zod",
+      "guidanceLink": "https://zod.dev/"
+    },
+    {
+      "name": "GitLab CI",
+      "quadrant": "Platforms",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "GitLab's built-in Continuous Integration, Continuous Deployment, and Continuous Delivery.",
+      "repoUrl": "https://gitlab.com/gitlab-org/gitlab",
+      "guidanceLink": "https://docs.gitlab.com/ee/ci/"
+    }
+  ]
+}

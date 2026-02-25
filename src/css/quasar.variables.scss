@@ -12,14 +12,28 @@
 // to match your app's branding.
 // Tip: Use the "Theme Builder" on Quasar's documentation website.
 
-$primary   : #1976D2;
-$secondary : #26A69A;
-$accent    : #9C27B0;
+// $primary   : #1976D2;
+// $secondary : #26A69A;
+// $accent    : #9C27B0;
 
-$dark      : #1D1D1D;
-$dark-page : #121212;
+// $dark      : #1D1D1D;
+// $dark-page : #121212;
 
-$positive  : #21BA45;
-$negative  : #C10015;
-$info      : #31CCEC;
-$warning   : #F2C037;
+// $positive  : #21BA45;
+// $negative  : #C10015;
+// $info      : #31CCEC;
+// $warning   : #F2C037;
+
+$primary   : #247ba0; // The glowing cyan from your radar rings and crosshairs
+$secondary : #A78BFA; // The purple blip color
+$accent    : #F472B6; // The vibrant pink blip color
+
+// Dark Mode Colors
+$dark      : #1E293B; // A slightly lighter slate/navy for elevated cards and modals
+$dark-page : #0B1121; // The absolute deep space background from your SVG
+
+// Status Colors
+$positive  : #34D399; // The emerald green blip color
+$negative  : #EF4444; // A complementary bright red for errors/deletions
+$info      : #0EA5E9; // A slightly deeper blue/cyan for informational alerts
+$warning   : #FACC15; // The golden yellow from your central star
