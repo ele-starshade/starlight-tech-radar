@@ -1,0 +1,11 @@
+services:
+  wiremock:
+    image: wiremock/wiremock:3.12.1
+    container_name: starlight-wiremock
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./test/wiremock:/home/wiremock
+    command:
+      - --verbose
+      - --global-response-templating
