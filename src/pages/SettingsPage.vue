@@ -115,12 +115,7 @@ const { locale } = useI18n({ useScope: 'global' })
 const accessibilityStore = useAccessibilityStore()
 
 const localeOptions = [
-  { value: 'en-US', label: 'English' },
-  { value: 'zh-CN', label: '中文 (Simplified)' },
-  { value: 'hi-IN', label: 'हिन्दी (Hindi)' },
-  { value: 'es-ES', label: 'Español' },
-  { value: 'fr-FR', label: 'Français' },
-  { value: 'ar-SA', label: 'العربية (Arabic)' }
+  { value: 'en-US', label: 'English' }
 ]
 
 function increaseFontSize () {

@@ -9,7 +9,10 @@ export default {
     settings: 'Settings',
     settings_caption: 'App preferences',
     created_by: 'Created by',
-    with_love: 'with Love'
+    with_love: 'with Love',
+    toggle_menu: 'Toggle navigation menu',
+    close_menu: 'Close navigation menu',
+    logo_alt: 'Starlight Tech Radar Logo'
   },
   accessibility: {
     title: 'Accessibility Settings',
