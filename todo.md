@@ -28,14 +28,14 @@ Based on the [ROADMAP.md](ROADMAP.md), here is the progress of the project.
 - [x] Implement dynamic font scaling (200% scaling support).
 - [x] Integrate OpenDyslexic typeface with global toggle.
 - [x] Configure Quasar Dark plugin support.
-- [ ] Add Dark/Light mode toggle in Settings page (Currently hardcoded to Dark).
+- [x] Add Dark/Light mode toggle in Settings page (Currently hardcoded to Dark).
 - [ ] Implement comprehensive ARIA labels and descriptions for SVG elements.
 - [x] Implement multi-language support (i18n).
 
 ## Phase 5: Quality Assurance and Documentation
 - [x] Set up Vitest for unit testing data transformations.
 - [x] Set up Playwright for E2E testing with WireMock mock server (docker composable).
-- [ ] Integrate `axe-core` and `axe-core/playwright` for automated accessibility audits.
+- [x] Integrate `axe-core` and `axe-core/playwright` for automated accessibility audits.
 - [ ] Author comprehensive README.md with deployment guides (K8s, GCP, AWS, Netlify).
 - [x] Assign permissive open-source license (MIT).
 - [x] Add husky for pre commit hooks for unit testing, linting, etc.

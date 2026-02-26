@@ -16,7 +16,9 @@ export default {
     font_size: 'Font Size',
     font_size_caption: 'Adjust base text size',
     open_dyslexic: 'Open Dyslexic',
-    open_dyslexic_caption: 'Use font for better readability'
+    open_dyslexic_caption: 'Use font for better readability',
+    dark_mode: 'Dark Mode',
+    dark_mode_caption: 'Toggle between dark and light themes'
   },
   radar: {
     title: 'Technology Radar',

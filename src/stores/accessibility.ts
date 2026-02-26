@@ -5,6 +5,7 @@ export const useAccessibilityStore = defineStore('accessibility', {
   state: () => ({
     fontSizeStep: LocalStorage.getItem('fontSizeStep') !== null ? Number(LocalStorage.getItem('fontSizeStep')) : 0,
     isDyslexicEnabled: LocalStorage.getItem('isDyslexicEnabled') !== null ? Boolean(LocalStorage.getItem('isDyslexicEnabled')) : false,
+    isDarkMode: LocalStorage.getItem('isDarkMode') !== null ? Boolean(LocalStorage.getItem('isDarkMode')) : true,
   }),
 
   actions: {
@@ -15,6 +16,10 @@ export const useAccessibilityStore = defineStore('accessibility', {
     setDyslexicEnabled (enabled: boolean) {
       this.isDyslexicEnabled = enabled
       LocalStorage.set('isDyslexicEnabled', enabled)
+    },
+    setDarkMode (enabled: boolean) {
+      this.isDarkMode = enabled
+      LocalStorage.set('isDarkMode', enabled)
     }
   },
 })

@@ -1,7 +1,7 @@
 <template>
   <q-layout view="hHh Lpr lff" class="shadow-2 rounded-borders">
     <!-- Top Bar -->
-    <q-header bordered :class="isDarkModeActive ? 'bg-primary' : 'bg-black'">
+    <q-header bordered :class="isDarkMode ? 'bg-primary' : 'bg-black'">
       <q-toolbar>
         <q-btn flat @click="toggleLeftDrawer" round dense icon="menu" />
 
@@ -21,7 +21,7 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
-      :class="isDarkModeActive ? 'bg-grey-9' : 'bg-grey-3'"
+      :class="isDarkMode ? 'bg-grey-9' : 'bg-grey-3'"
     >
       <q-scroll-area class="fit">
         <q-list>
@@ -74,7 +74,6 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useQuasar } from 'quasar'
 import { useAccessibilityStore } from 'src/stores/accessibility'
 import { mapState } from 'pinia'
 
@@ -83,13 +82,12 @@ export default defineComponent({
 
   data () {
     return {
-      leftDrawerOpen: false,
-      isDarkModeActive: false
+      leftDrawerOpen: false
     }
   },
 
   computed: {
-    ...mapState(useAccessibilityStore, ['fontSizeStep', 'isDyslexicEnabled'])
+    ...mapState(useAccessibilityStore, ['fontSizeStep', 'isDyslexicEnabled', 'isDarkMode'])
   },
 
   watch: {
@@ -121,12 +119,6 @@ export default defineComponent({
       // Also update html to scale rem correctly in some contexts
       document.documentElement.style.fontSize = `${newSize}px`
     }
-  },
-
-  created () {
-    const $q = useQuasar()
-
-    this.isDarkModeActive = $q.dark.isActive
   },
 
   mounted () {

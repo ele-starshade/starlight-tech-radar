@@ -80,8 +80,26 @@
               </q-item-section>
             </q-item>
           </q-card-section>
+
+          <q-separator inset />
+
+          <q-card-section>
+            <q-item tag="label" v-ripple class="q-px-none">
+              <q-item-section>
+                <q-item-label>{{ $t('accessibility.dark_mode') }}</q-item-label>
+                <q-item-label caption>{{ $t('accessibility.dark_mode_caption') }}</q-item-label>
+              </q-item-section>
+              <q-item-section side>
+                <q-toggle
+                  :model-value="accessibilityStore.isDarkMode"
+                  @update:model-value="accessibilityStore.setDarkMode"
+                />
+              </q-item-section>
+            </q-item>
+          </q-card-section>
         </q-card>
       </div>
+
     </div>
   </q-page>
 </template>

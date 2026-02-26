@@ -2,16 +2,19 @@
   <router-view />
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
 import { useQuasar } from 'quasar'
+import { watch, onMounted } from 'vue'
+import { useAccessibilityStore } from 'src/stores/accessibility'
 
-export default defineComponent({
-  name: 'App',
-  created () {
-    const $q = useQuasar()
+const $q = useQuasar()
+const accessibilityStore = useAccessibilityStore()
 
-    $q.dark.set(true)
-  },
+onMounted(() => {
+  $q.dark.set(accessibilityStore.isDarkMode)
+})
+
+watch(() => accessibilityStore.isDarkMode, (val) => {
+  $q.dark.set(val)
 })
 </script>
