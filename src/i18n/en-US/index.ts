@@ -48,6 +48,24 @@ export default {
       quadrant: 'Quadrant',
       ring: 'Ring',
       close: 'Close'
+    },
+    feedback: {
+      title: 'Feedback for',
+      give_feedback: 'Give Feedback',
+      type: 'Feedback Type',
+      type_placeholder: 'Select feedback type',
+      types: {
+        positive: 'Positive',
+        negative: 'Negative',
+        suggestion: 'Suggestion',
+        question: 'Question'
+      },
+      comment: 'Comment',
+      comment_placeholder: 'Share your thoughts...',
+      submit: 'Send Feedback',
+      cancel: 'Cancel',
+      success: 'Thank you for your feedback!',
+      error: 'Failed to send feedback. Please try again later.'
     }
   },
   settings: {

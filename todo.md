@@ -24,10 +24,11 @@ Based on the [ROADMAP.md](ROADMAP.md), here is the progress of the project.
 - [x] Integrate Blue Oak Council license ratings.
 
 ## Phase 4: Feedback Modal functionality
-- [ ] Implement Feedback modal (`<q-dialog>`).
-- [ ] Set up Microsoft Teams Webhook integration using Adaptive Cards.
+- [x] Implement Feedback modal (`<q-dialog>`).
+- [x] Set up Microsoft Teams Webhook integration using Adaptive Cards.
+- [x] Set up a Slack Webhook integration.
 
-## Phase 4: Accessibility and Theming
+## Phase 5: Accessibility and Theming
 - [x] Implement dynamic font scaling (200% scaling support).
 - [x] Integrate OpenDyslexic typeface with global toggle.
 - [x] Configure Quasar Dark plugin support.
@@ -35,13 +36,10 @@ Based on the [ROADMAP.md](ROADMAP.md), here is the progress of the project.
 - [ ] Implement comprehensive ARIA labels and descriptions for SVG elements.
 - [x] Implement multi-language support (i18n).
 
-## Phase 5: Quality Assurance and Documentation
+## Phase 6: Quality Assurance and Documentation
 - [x] Set up Vitest for unit testing data transformations.
 - [x] Set up Playwright for E2E testing with WireMock mock server (docker composable).
 - [x] Integrate `axe-core` and `axe-core/playwright` for automated accessibility audits.
 - [ ] Author comprehensive README.md with deployment guides (K8s, GCP, AWS, Netlify).
 - [x] Assign permissive open-source license (MIT).
 - [x] Add husky for pre commit hooks for unit testing, linting, etc.
-
-## Current Status Summary
-The project has a solid foundation with SSR, TypeScript, and Zod validation. Accessibility features like font scaling and OpenDyslexic are already implemented. The primary next steps involve the **Mathematical Visualization (Phase 2)** and **External API Integrations (Phase 3)**.

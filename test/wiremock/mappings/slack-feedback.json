@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/hooks/slack"
+  },
+  "response": {
+    "status": 200,
+    "body": "ok",
+    "headers": {
+      "Content-Type": "text/plain"
+    }
+  }
+}

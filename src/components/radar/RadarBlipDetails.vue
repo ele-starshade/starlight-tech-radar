@@ -45,19 +45,39 @@
         <div class="row items-center q-gutter-md q-mt-sm">
           <q-btn color="primary" text-color="dark" :label="$t('radar.blips.guidance')" :href="blip?.guidanceLink" target="_blank" icon="description" />
           <q-btn color="secondary" text-color="dark" :label="$t('radar.blips.repository')" :href="blip?.repoUrl" target="_blank" icon="book" />
+          <q-btn
+            v-if="isFeedbackEnabled"
+            color="deep-orange"
+            text-color="white"
+            :label="$t('radar.feedback.give_feedback')"
+            icon="feedback"
+            @click="showFeedbackDialog = true"
+          />
         </div>
       </q-card-section>
     </q-card>
   </q-dialog>
+
+  <RadarBlipFeedbackDialog
+    v-if="isFeedbackEnabled"
+    v-model="showFeedbackDialog"
+    :blip="blip"
+  />
 </template>
 
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue'
 import type { Blip } from 'src/models/radar'
 import { getQuadrantTranslationKey } from 'src/models/radar'
+import { appConfig } from 'src/config'
+import RadarBlipFeedbackDialog from './feedback/RadarBlipFeedbackDialog.vue'
 
 export default defineComponent({
   name: 'RadarBlipDetails',
+
+  components: {
+    RadarBlipFeedbackDialog
+  },
 
   props: {
     modelValue: {
@@ -72,6 +92,12 @@ export default defineComponent({
 
   emits: ['update:modelValue'],
 
+  data () {
+    return {
+      showFeedbackDialog: false
+    }
+  },
+
   computed: {
     show: {
       get (): boolean {
@@ -80,6 +106,13 @@ export default defineComponent({
       set (value: boolean) {
         this.$emit('update:modelValue', value)
       }
+    },
+    isFeedbackEnabled (): boolean {
+      console.log(process.env)
+      console.log(appConfig.teamsWebhook, appConfig.slackWebhook)
+      console.log(appConfig.isFeedbackEnabled)
+
+      return appConfig.isFeedbackEnabled
     }
   },
 

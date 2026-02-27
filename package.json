@@ -19,7 +19,7 @@
     "test:all": "npm run type-check && npm run test:unit && npm run test:e2e",
     "wiremock:up": "docker compose up -d",
     "wiremock:down": "docker compose down",
-    "dev": "cross-env GITHUB_API_BASE_URL=$GITHUB_API_BASE_URL GITLAB_API_BASE_URL=$GITLAB_API_BASE_URL quasar dev -m ssr",
+    "dev": "quasar dev -m ssr",
     "build": "quasar build -m ssr",
     "postinstall": "quasar prepare && npx playwright install",
     "prepare": "husky"
@@ -45,7 +45,7 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.11.1",
     "@eslint/js": "^9.14.0",
-    "@intlify/unplugin-vue-i18n": "^4.0.0",
+    "@intlify/unplugin-vue-i18n": "^11.0.7",
     "@playwright/test": "^1.58.2",
     "@quasar/app-vite": "^2.1.0",
     "@types/node": "^20.5.9",
@@ -54,7 +54,6 @@
     "@vue/eslint-config-typescript": "^14.4.0",
     "autoprefixer": "^10.4.2",
     "axe-core": "^4.11.1",
-    "cross-env": "^7.0.3",
     "eslint": "^9.14.0",
     "eslint-plugin-vue": "^10.4.0",
     "globals": "^16.4.0",

@@ -39,6 +39,8 @@ declare module '#q-app' {
 export const create = defineSsrCreate((/* { ... } */) => {
   const app = express()
 
+  app.use(express.json())
+
   // attackers can use this header to detect apps running Express
   // and then launch specifically-targeted attacks
   app.disable('x-powered-by')

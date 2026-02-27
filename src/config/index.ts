@@ -10,6 +10,9 @@ export interface AppConfig {
   githubApiBaseUrl: string;
   gitlabToken: string;
   gitlabApiBaseUrl: string;
+  teamsWebhook: string;
+  slackWebhook: string;
+  isFeedbackEnabled: boolean;
   locales: LocaleOption[];
   defaultLocale: string;
   accessibility: {
@@ -22,10 +25,13 @@ export interface AppConfig {
 export const appConfig: AppConfig = {
   title: 'Starlight Tech Radar',
   logo: '/icons/starlight-logo.png',
-  githubToken: process.env.VITE_GITHUB_TOKEN || '',
-  githubApiBaseUrl: process.env.VITE_GITHUB_API_BASE_URL || 'https://api.github.com',
-  gitlabToken: process.env.VITE_GITLAB_TOKEN || '',
-  gitlabApiBaseUrl: process.env.VITE_GITLAB_API_BASE_URL || 'https://gitlab.com',
+  githubToken: process.env.GITHUB_TOKEN || '',
+  githubApiBaseUrl: process.env.GITHUB_API_BASE_URL || 'https://api.github.com',
+  gitlabToken: process.env.GITLAB_TOKEN || '',
+  gitlabApiBaseUrl: process.env.GITLAB_API_BASE_URL || 'https://gitlab.com',
+  teamsWebhook: process.env.TEAMS_WEBHOOK || '',
+  slackWebhook: process.env.SLACK_WEBHOOK || '',
+  isFeedbackEnabled: !!(process.env.TEAMS_WEBHOOK || process.env.SLACK_WEBHOOK),
   locales: [
     { value: 'en-US', label: 'English' }
   ],
