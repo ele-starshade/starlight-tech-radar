@@ -1,11 +1,12 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
 import { LocalStorage, Cookies } from 'quasar'
+import { appConfig } from 'src/config'
 
 export const useAccessibilityStore = defineStore('accessibility', {
   state: () => ({
-    fontSizeStep: 0,
-    isDyslexicEnabled: false,
-    isDarkMode: true,
+    fontSizeStep: appConfig.accessibility.defaultFontSizeStep,
+    isDyslexicEnabled: appConfig.accessibility.defaultDyslexic,
+    isDarkMode: appConfig.accessibility.defaultDarkMode,
   }),
 
   actions: {

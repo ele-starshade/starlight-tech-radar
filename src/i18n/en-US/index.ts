@@ -25,7 +25,30 @@ export default {
   },
   radar: {
     title: 'Technology Radar',
-    welcome: 'Welcome to the Technology Radar. The primary visualization will be rendered here.'
+    welcome: 'Welcome to the Technology Radar.',
+    view_radar: 'Radar',
+    view_list: 'List',
+    quadrants: {
+      techniques: 'Techniques',
+      platforms: 'Platforms',
+      tools: 'Tools',
+      languages: 'Languages & Frameworks'
+    },
+    rings: {
+      adopt: 'Adopt',
+      trial: 'Trial',
+      assess: 'Assess',
+      hold: 'Hold'
+    },
+    blips: {
+      new: 'New',
+      stable: 'Stable',
+      guidance: 'Guidance',
+      repository: 'Repository',
+      quadrant: 'Quadrant',
+      ring: 'Ring',
+      close: 'Close'
+    }
   },
   settings: {
     title: 'Settings',

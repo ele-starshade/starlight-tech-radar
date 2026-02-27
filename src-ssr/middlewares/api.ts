@@ -7,10 +7,21 @@ import radarData from 'src/data/radar.json'
 import blueOak from '@blueoak/list' with { type: 'json' }
 
 export default defineSsrMiddleware(({ app }) => {
-  app.get('/api/radar', (async (_req: Request, res: Response) => {
+  app.get('/api/radar', (async (req: Request, res: Response) => {
     try {
-      // Validate the local radar data
-      const validatedData = RadarConfigurationSchema.parse(radarData)
+      let data = radarData
+
+      // Allow overriding data for E2E tests via query param
+      if (req.query.mock === 'true' && req.query.data) {
+        try {
+          data = JSON.parse(req.query.data as string)
+        } catch (e) {
+          console.error('Failed to parse mock data:', e)
+        }
+      }
+
+      // Validate the radar data
+      const validatedData = RadarConfigurationSchema.parse(data)
 
       // Use the enrichment utility
       const enrichedBlips = await enrichBlips(validatedData.blips, blueOak as unknown[])
@@ -25,5 +36,5 @@ export default defineSsrMiddleware(({ app }) => {
       return res.status(500).json({ error: 'Internal Server Error' })
     }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  }) as any) // Keep 'as any' only for the outer handler to satisfy Express/Quasar middleware signatures
+  }) as any)
 })

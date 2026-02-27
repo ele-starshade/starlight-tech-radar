@@ -10,12 +10,13 @@ Based on the [ROADMAP.md](ROADMAP.md), here is the progress of the project.
 - [x] Set up Pinia store for radar data management.
 
 ## Phase 2: Mathematical Visualization and UI Rendering
-- [ ] Implement polar-to-Cartesian coordinate translation logic.
-- [ ] Develop SVG canvas component for radar visualization.
-- [ ] Implement collision detection for blip placement.
-- [ ] Create interactive SVG blip nodes with hover states.
-- [ ] Integrate Quasar `<q-tooltip>` and `<q-card>` for blip metadata display.
-- [ ] Replace current card-based list on IndexPage with the SVG Radar.
+- [x] Implement polar-to-Cartesian coordinate translation logic.
+- [x] Develop SVG canvas component for radar visualization.
+- [x] Implement collision detection for blip placement.
+- [x] Create interactive SVG blip nodes with hover states.
+- [x] Integrate Quasar `<q-tooltip>` and `<q-card>` for blip metadata display.
+- [x] Replace current card-based list on IndexPage with the SVG Radar.
+- [x] Implement ability to click the blip that pops up a modal that allows for some interaction in future.
 
 ## Phase 3: External API Integrations and Interaction Design
 - [ ] Implement server-side middleware for GitHub REST API (License fetching).

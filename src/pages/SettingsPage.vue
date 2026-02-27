@@ -109,14 +109,13 @@ import { useI18n } from 'vue-i18n'
 import { useQuasar } from 'quasar'
 import { watch, onMounted } from 'vue'
 import { useAccessibilityStore } from 'src/stores/accessibility'
+import { appConfig } from 'src/config'
 
 const $q = useQuasar()
 const { locale } = useI18n({ useScope: 'global' })
 const accessibilityStore = useAccessibilityStore()
 
-const localeOptions = [
-  { value: 'en-US', label: 'English' }
-]
+const localeOptions = appConfig.locales
 
 function increaseFontSize () {
   if (accessibilityStore.fontSizeStep < 4) {
