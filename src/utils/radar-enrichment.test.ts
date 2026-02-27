@@ -1,9 +1,13 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { enrichBlip, clearEnrichmentCache } from './radar-enrichment'
 import { type Blip } from 'src/models/radar'
-import axios from 'axios'
+import { api } from 'src/boot/axios'
 
-vi.mock('axios')
+vi.mock('src/boot/axios', () => ({
+  api: {
+    get: vi.fn()
+  }
+}))
 
 describe('Radar Enrichment Utility', () => {
   const mockBlip: Blip = {
@@ -16,7 +20,7 @@ describe('Radar Enrichment Utility', () => {
     guidanceLink: 'https://test.com'
   }
 
-  const getSpy = vi.spyOn(axios, 'get')
+  const getSpy = vi.spyOn(api, 'get')
 
   beforeEach(() => {
     vi.clearAllMocks()

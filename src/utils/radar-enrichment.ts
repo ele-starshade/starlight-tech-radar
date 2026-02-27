@@ -1,4 +1,4 @@
-import axios from 'axios'
+import { api } from 'src/boot/axios'
 import { type Blip, type LicenseMetadata } from 'src/models/radar'
 
 // Simple in-memory cache
@@ -101,7 +101,7 @@ export async function enrichBlip (
 
         const url = `${githubApiBaseUrl}/repos/${githubInfo.owner}/${githubInfo.repo}/license`
 
-        const response = await axios.get(
+        const response = await api.get(
           url,
           { headers, timeout: 5000 }
         )
@@ -131,7 +131,7 @@ export async function enrichBlip (
 
         const url = `${gitlabApiBaseUrl}/api/v4/projects/${encodedPath}`
 
-        const response = await axios.get(
+        const response = await api.get(
           url,
           { headers, timeout: 5000 }
         )

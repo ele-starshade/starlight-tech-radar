@@ -22,10 +22,10 @@ export interface AppConfig {
 export const appConfig: AppConfig = {
   title: 'Starlight Tech Radar',
   logo: '/icons/starlight-logo.png',
-  githubToken: process.env.GITHUB_TOKEN || '',
-  githubApiBaseUrl: process.env.GITHUB_API_BASE_URL || 'https://api.github.com',
-  gitlabToken: process.env.GITLAB_TOKEN || '',
-  gitlabApiBaseUrl: process.env.GITLAB_API_BASE_URL || 'https://gitlab.com',
+  githubToken: process.env.VITE_GITHUB_TOKEN || '',
+  githubApiBaseUrl: process.env.VITE_GITHUB_API_BASE_URL || 'https://api.github.com',
+  gitlabToken: process.env.VITE_GITLAB_TOKEN || '',
+  gitlabApiBaseUrl: process.env.VITE_GITLAB_API_BASE_URL || 'https://gitlab.com',
   locales: [
     { value: 'en-US', label: 'English' }
   ],

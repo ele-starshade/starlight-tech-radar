@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import axios from 'axios'
+import { api } from 'src/boot/axios'
 import type { RadarConfiguration } from 'src/models/radar'
 
 export const useRadarStore = defineStore('radar', {
@@ -18,18 +18,18 @@ export const useRadarStore = defineStore('radar', {
       this.error = null
 
       try {
-        const isServer = typeof window === 'undefined'
-        let url = '/api/radar'
+        if (process.env.SERVER) {
+          const { getRadarData } = await import('src/services/radarService')
 
-        if (isServer) {
-          const port = process.env.SSR_PORT || process.env.PORT || 9100
+          this.radarData = await getRadarData({
+            mock: params?.mock === 'true',
+            data: params?.data
+          })
+        } else {
+          const response = await api.get('/api/radar', { params })
 
-          url = `http://127.0.0.1:${port}/api/radar`
+          this.radarData = response.data
         }
-
-        const response = await axios.get(url, { params })
-
-        this.radarData = response.data
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (err: any) {
         this.error = err.message || 'Failed to fetch radar data'
