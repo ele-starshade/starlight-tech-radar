@@ -1,7 +1,8 @@
 import { type Request, type Response } from 'express'
 import { defineSsrMiddleware } from '#q-app/wrappers'
 import { RadarConfigurationSchema } from 'src/models/radar'
-import { enrichBlips } from 'src/utils/radar-enrichment'
+import { enrichBlips, clearEnrichmentCache } from 'src/utils/radar-enrichment'
+import { appConfig } from 'src/config'
 import radarData from 'src/data/radar.json'
 // @ts-expect-error-error
 import blueOak from '@blueoak/list' with { type: 'json' }
@@ -9,6 +10,10 @@ import blueOak from '@blueoak/list' with { type: 'json' }
 export default defineSsrMiddleware(({ app }) => {
   app.get('/api/radar', (async (req: Request, res: Response) => {
     try {
+      if (req.query.clearCache === 'true') {
+        clearEnrichmentCache()
+      }
+
       let data = radarData
 
       // Allow overriding data for E2E tests via query param
@@ -24,7 +29,14 @@ export default defineSsrMiddleware(({ app }) => {
       const validatedData = RadarConfigurationSchema.parse(data)
 
       // Use the enrichment utility
-      const enrichedBlips = await enrichBlips(validatedData.blips, blueOak as unknown[])
+      const enrichedBlips = await enrichBlips(
+        validatedData.blips,
+        blueOak as unknown[],
+        appConfig.githubToken,
+        appConfig.gitlabToken,
+        appConfig.githubApiBaseUrl,
+        appConfig.gitlabApiBaseUrl
+      )
 
       return res.json({
         ...validatedData,

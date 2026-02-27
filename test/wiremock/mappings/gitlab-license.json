@@ -1,0 +1,20 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/api/v4/projects/.*"
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "license": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "nickname": "Apache-2.0"
+      },
+      "license_url": "https://gitlab.com/test/repo/-/blob/master/LICENSE"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

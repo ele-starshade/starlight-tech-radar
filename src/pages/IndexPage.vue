@@ -60,7 +60,16 @@
 
             <q-card-section>
               <div class="row items-center q-gutter-sm">
-                <q-chip outline color="primary" icon="description" dense>
+                <q-chip
+                  outline
+                  color="primary"
+                  icon="description"
+                  dense
+                  clickable
+                  tag="a"
+                  :href="blip.license?.url"
+                  target="_blank"
+                >
                   {{ blip.license?.spdx_id }}
                 </q-chip>
                 <q-chip outline :color="getRatingColor(blip.rating)" icon="verified" dense>

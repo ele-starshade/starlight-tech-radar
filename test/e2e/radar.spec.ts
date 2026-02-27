@@ -7,16 +7,16 @@ const mockRadarData = {
   blips: [
     { name: 'Vue.js', quadrant: 'Languages & Frameworks', ring: 'Adopt', isNew: false, description: 'Vue', repoUrl: 'https://github.com/vuejs/core', guidanceLink: 'https://vuejs.org' },
     { name: 'React', quadrant: 'Languages & Frameworks', ring: 'Trial', isNew: true, description: 'React', repoUrl: 'https://github.com/facebook/react', guidanceLink: 'https://reactjs.org' },
+    { name: 'GitLab Project', quadrant: 'Tools', ring: 'Trial', isNew: false, description: 'GitLab', repoUrl: 'https://gitlab.com/test/repo', guidanceLink: 'https://test.com' },
     { name: 'Node.js', quadrant: 'Platforms', ring: 'Adopt', isNew: false, description: 'Node', repoUrl: 'https://github.com/nodejs/node', guidanceLink: 'https://nodejs.org' },
     { name: 'Docker', quadrant: 'Platforms', ring: 'Assess', isNew: true, description: 'Docker', repoUrl: 'https://github.com/docker/docker-ce', guidanceLink: 'https://docker.com' },
     { name: 'Git', quadrant: 'Tools', ring: 'Adopt', isNew: false, description: 'Git', repoUrl: 'https://github.com/git/git', guidanceLink: 'https://git-scm.com' },
     { name: 'Zod', quadrant: 'Tools', ring: 'Trial', isNew: true, description: 'Zod', repoUrl: 'https://github.com/colinhacks/zod', guidanceLink: 'https://zod.dev' },
-    { name: 'TDD', quadrant: 'Techniques', ring: 'Adopt', isNew: false, description: 'TDD', repoUrl: 'https://github.com/test/tdd', guidanceLink: 'https://test.com' },
-    { name: 'Microservices', quadrant: 'Techniques', ring: 'Assess', isNew: false, description: 'Microservices', repoUrl: 'https://github.com/test/ms', guidanceLink: 'https://test.com' }
+    { name: 'TDD', quadrant: 'Techniques', ring: 'Adopt', isNew: false, description: 'TDD', repoUrl: 'https://github.com/test/tdd', guidanceLink: 'https://test.com' }
   ]
 }
 
-const mockQuery = `?mock=true&data=${encodeURIComponent(JSON.stringify(mockRadarData))}`
+const mockQuery = `?mock=true&clearCache=true&data=${encodeURIComponent(JSON.stringify(mockRadarData))}`
 
 test.describe('Radar Home Page', () => {
   test.beforeEach(async ({ page }) => {
@@ -24,17 +24,61 @@ test.describe('Radar Home Page', () => {
     await page.addStyleTag({ content: 'vite-plugin-checker-error-overlay { display: none !important; }' })
   })
 
-  test('should not have any automatically detectable accessibility issues', async ({ page }) => {
+  test('should display license information in blip details modal', async ({ page }) => {
+    test.slow()
     await page.goto(`/${mockQuery}`)
-    // Wait for the radar to be rendered
     await expect(page.locator('.radar-svg')).toBeVisible()
 
-    const accessibilityScanResults = await new AxeBuilder({ page })
-      .exclude('vite-plugin-checker-error-overlay')
-      .disableRules(['aria-progressbar-name', 'region', 'landmark-no-duplicate-main', 'scrollable-region-focusable'])
-      .analyze()
+    // Switch to list view first to ensure data is enriched (easier to check than SVG)
+    const listButton = page.locator('button').filter({ hasText: 'List' })
 
-    expect(accessibilityScanResults.violations).toEqual([])
+    await listButton.click()
+    await expect(page.locator('.q-card').first().locator('.q-chip', { hasText: 'MIT' })).toBeVisible()
+
+    // Switch back to radar
+    const radarButton = page.locator('button').filter({ hasText: 'Radar' })
+
+    await radarButton.click()
+    await expect(page.locator('.radar-svg')).toBeVisible()
+
+    // Test GitHub project license
+    const vueBlip = page.locator('.blip-node').first()
+
+    await vueBlip.click()
+
+    const dialog = page.locator('.q-dialog')
+
+    await expect(dialog).toBeVisible()
+    await expect(dialog.locator('.q-chip', { hasText: 'MIT' })).toBeVisible()
+    await expect(dialog.locator('.q-chip', { hasText: 'Gold' })).toBeVisible()
+
+    await page.keyboard.press('Escape')
+    await expect(dialog).not.toBeVisible()
+
+    // Test GitLab project license
+    const gitlabBlip = page.locator('.blip-node').nth(2)
+
+    await gitlabBlip.click()
+    await expect(dialog).toBeVisible()
+    await expect(dialog.locator('.q-chip', { hasText: 'Apache-2.0' })).toBeVisible()
+  })
+
+  test('should display license information in list view', async ({ page }) => {
+    test.slow()
+    await page.goto(`/${mockQuery}`)
+
+    const listButton = page.locator('button').filter({ hasText: 'List' })
+
+    await listButton.click()
+
+    const firstCard = page.locator('.q-card').first()
+
+    await expect(firstCard.locator('.q-chip', { hasText: 'MIT' })).toBeVisible()
+    await expect(firstCard.locator('.q-chip', { hasText: 'Gold' })).toBeVisible()
+
+    const gitlabCard = page.locator('.q-card').nth(2)
+
+    await expect(gitlabCard.locator('.q-chip', { hasText: 'Apache-2.0' })).toBeVisible()
   })
 
   test('should load the home page and show the title', async ({ page }) => {

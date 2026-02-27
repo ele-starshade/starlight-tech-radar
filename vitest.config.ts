@@ -12,6 +12,11 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
     },
+    env: {
+      GITHUB_API_BASE_URL: 'http://localhost:8080',
+      GITLAB_API_BASE_URL: 'http://localhost:8080',
+      NODE_ENV: 'test'
+    }
   },
   resolve: {
     alias: {

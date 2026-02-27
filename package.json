@@ -8,7 +8,7 @@
   "private": false,
   "license": "MIT",
   "scripts": {
-    "lint": "eslint -c ./eslint.config.js \"./src/**/*.{ts,js,cjs,mjs,vue}\"",
+    "lint": "eslint .",
     "test": "npm run test:unit",
     "test:unit": "vitest run",
     "test:unit:watch": "vitest",
@@ -19,7 +19,7 @@
     "test:all": "npm run type-check && npm run test:unit && npm run test:e2e",
     "wiremock:up": "docker compose up -d",
     "wiremock:down": "docker compose down",
-    "dev": "quasar dev -m ssr",
+    "dev": "cross-env GITHUB_API_BASE_URL=$GITHUB_API_BASE_URL GITLAB_API_BASE_URL=$GITLAB_API_BASE_URL quasar dev -m ssr",
     "build": "quasar build -m ssr",
     "postinstall": "quasar prepare && npx playwright install",
     "prepare": "husky"
@@ -54,6 +54,7 @@
     "@vue/eslint-config-typescript": "^14.4.0",
     "autoprefixer": "^10.4.2",
     "axe-core": "^4.11.1",
+    "cross-env": "^7.0.3",
     "eslint": "^9.14.0",
     "eslint-plugin-vue": "^10.4.0",
     "globals": "^16.4.0",

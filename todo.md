@@ -19,9 +19,11 @@ Based on the [ROADMAP.md](ROADMAP.md), here is the progress of the project.
 - [x] Implement ability to click the blip that pops up a modal that allows for some interaction in future.
 
 ## Phase 3: External API Integrations and Interaction Design
-- [ ] Implement server-side middleware for GitHub REST API (License fetching).
-- [ ] Implement server-side middleware for GitLab REST API (License fetching).
-- [ ] Integrate Blue Oak Council license ratings (Partially started).
+- [x] Implement server-side middleware for GitHub REST API (License fetching).
+- [x] Implement server-side middleware for GitLab REST API (License fetching).
+- [x] Integrate Blue Oak Council license ratings.
+
+## Phase 4: Feedback Modal functionality
 - [ ] Implement Feedback modal (`<q-dialog>`).
 - [ ] Set up Microsoft Teams Webhook integration using Adaptive Cards.
 

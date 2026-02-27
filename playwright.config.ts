@@ -46,7 +46,11 @@ export default defineConfig({
   webServer: {
     command: 'npm run dev',
     url: 'http://localhost:9100',
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: false,
     timeout: 120 * 1000,
+    env: {
+      GITHUB_API_BASE_URL: 'http://localhost:8080',
+      GITLAB_API_BASE_URL: 'http://localhost:8080'
+    }
   },
 })

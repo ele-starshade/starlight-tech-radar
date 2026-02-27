@@ -5,7 +5,15 @@
   },
   "response": {
     "status": 200,
-    "body": "{\"license\": {\"key\": \"mit\", \"name\": \"MIT License\", \"spdx_id\": \"MIT\", \"url\": \"https://api.github.com/licenses/mit\", \"node_id\": \"MDc6TGljZW5zZTEz\"}}",
+    "jsonBody": {
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit"
+      },
+      "html_url": "https://github.com/test/repo/blob/main/LICENSE"
+    },
     "headers": {
       "Content-Type": "application/json"
     }
