@@ -108,10 +108,6 @@ export default defineComponent({
       }
     },
     isFeedbackEnabled (): boolean {
-      console.log(process.env)
-      console.log(appConfig.teamsWebhook, appConfig.slackWebhook)
-      console.log(appConfig.isFeedbackEnabled)
-
       return appConfig.isFeedbackEnabled
     }
   },
