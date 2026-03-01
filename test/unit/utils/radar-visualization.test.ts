@@ -1,12 +1,12 @@
 import { describe, it, expect } from 'vitest'
 import type {
   Point
-} from './radar-visualization'
+} from 'src/utils/radar-visualization'
 import {
   polarToCartesian,
   getInitialBlipPosition,
   resolveBlipCollisions
-} from './radar-visualization'
+} from 'src/utils/radar-visualization'
 import { type Blip } from 'src/models/radar'
 
 describe('Radar Visualization Utility', () => {

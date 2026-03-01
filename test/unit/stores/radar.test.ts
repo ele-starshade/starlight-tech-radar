@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { setActivePinia, createPinia } from 'pinia'
-import { useRadarStore } from './radar'
+import { useRadarStore } from 'src/stores/radar'
 
 describe('Radar Store', () => {
   beforeEach(() => {

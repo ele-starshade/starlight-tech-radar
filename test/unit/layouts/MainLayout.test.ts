@@ -1,10 +1,10 @@
 import { describe, it, expect } from 'vitest'
 import { mountComponent } from 'test/utils/test-setup'
-import ErrorNotFound from './ErrorNotFound.vue'
+import MainLayout from 'src/layouts/MainLayout.vue'
 
-describe('ErrorNotFound.vue', () => {
+describe('MainLayout.vue', () => {
   it('matches snapshot', () => {
-    const wrapper = mountComponent(ErrorNotFound)
+    const wrapper = mountComponent(MainLayout)
 
     expect(wrapper.html()).toMatchSnapshot()
   })

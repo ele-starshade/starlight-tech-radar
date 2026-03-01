@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { enrichBlip, clearEnrichmentCache } from './radar-enrichment'
+import { enrichBlip, clearEnrichmentCache } from 'src/utils/radar-enrichment'
 import { type Blip } from 'src/models/radar'
 import { api } from 'src/boot/axios'
 

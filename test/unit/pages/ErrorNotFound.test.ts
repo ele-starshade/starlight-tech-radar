@@ -1,10 +1,10 @@
 import { describe, it, expect } from 'vitest'
 import { mountComponent } from 'test/utils/test-setup'
-import App from './App.vue'
+import ErrorNotFound from 'src/pages/ErrorNotFound.vue'
 
-describe('App.vue', () => {
+describe('ErrorNotFound.vue', () => {
   it('matches snapshot', () => {
-    const wrapper = mountComponent(App)
+    const wrapper = mountComponent(ErrorNotFound)
 
     expect(wrapper.html()).toMatchSnapshot()
   })

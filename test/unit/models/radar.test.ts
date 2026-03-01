@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { RadarConfigurationSchema } from './radar'
+import { RadarConfigurationSchema } from 'src/models/radar'
 
 describe('Radar Models (Zod Validation)', () => {
   it('should validate a correct radar configuration', () => {

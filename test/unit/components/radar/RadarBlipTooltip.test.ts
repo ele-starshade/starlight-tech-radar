@@ -1,14 +1,14 @@
 import { describe, it, expect } from 'vitest'
 import { mountComponent } from 'test/utils/test-setup'
-import RadarBlip from './RadarBlip.vue'
+import RadarBlipTooltip from 'src/components/radar/RadarBlipTooltip.vue'
 
-describe('RadarBlip.vue', () => {
+describe('RadarBlipTooltip.vue', () => {
   it('matches snapshot', () => {
-    const wrapper = mountComponent(RadarBlip, {
+    const wrapper = mountComponent(RadarBlipTooltip, {
       props: {
         blip: { name: 'Test Blip', ring: 'Adopt', quadrant: 'Tools', isNew: false, description: 'Test', repoUrl: '', guidanceLink: '' },
         position: { x: 100, y: 100 },
-        isActive: false,
+        visible: true,
         index: 1
       }
     })

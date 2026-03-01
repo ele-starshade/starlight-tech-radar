@@ -1,13 +1,12 @@
 import { describe, it, expect } from 'vitest'
 import { mountComponent } from 'test/utils/test-setup'
-import MainDrawer from './MainDrawer.vue'
+import RadarCanvas from 'src/components/RadarCanvas.vue'
 
-describe('MainDrawer.vue', () => {
+describe('RadarCanvas.vue', () => {
   it('matches snapshot', () => {
-    const wrapper = mountComponent(MainDrawer, {
+    const wrapper = mountComponent(RadarCanvas, {
       props: {
-        modelValue: true,
-        isDarkMode: false
+        blips: []
       }
     })
 

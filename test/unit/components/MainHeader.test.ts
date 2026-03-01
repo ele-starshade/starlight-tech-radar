@@ -1,13 +1,12 @@
 import { describe, it, expect } from 'vitest'
 import { mountComponent } from 'test/utils/test-setup'
-import RadarGrid from './RadarGrid.vue'
+import MainHeader from 'src/components/MainHeader.vue'
 
-describe('RadarGrid.vue', () => {
+describe('MainHeader.vue', () => {
   it('matches snapshot', () => {
-    const wrapper = mountComponent(RadarGrid, {
+    const wrapper = mountComponent(MainHeader, {
       props: {
-        quadrants: ['Q1', 'Q2', 'Q3', 'Q4'],
-        rings: ['R1', 'R2']
+        isDarkMode: false
       }
     })
 

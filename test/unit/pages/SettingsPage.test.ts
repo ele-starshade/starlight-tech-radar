@@ -1,16 +1,13 @@
 import { describe, it, expect, vi } from 'vitest'
 import { mountComponent } from 'test/utils/test-setup'
-import IndexPage from './IndexPage.vue'
+import SettingsPage from 'src/pages/SettingsPage.vue'
 import { createTestingPinia } from '@pinia/testing'
 
-describe('IndexPage.vue', () => {
+describe('SettingsPage.vue', () => {
   it('matches snapshot', () => {
-    const wrapper = mountComponent(IndexPage, {
+    const wrapper = mountComponent(SettingsPage, {
       global: {
-        plugins: [createTestingPinia({ createSpy: vi.fn })],
-        stubs: {
-          RadarCanvas: true
-        }
+        plugins: [createTestingPinia({ createSpy: vi.fn })]
       }
     })
 

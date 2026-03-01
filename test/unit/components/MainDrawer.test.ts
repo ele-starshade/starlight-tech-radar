@@ -1,11 +1,12 @@
 import { describe, it, expect } from 'vitest'
 import { mountComponent } from 'test/utils/test-setup'
-import MainHeader from './MainHeader.vue'
+import MainDrawer from 'src/components/MainDrawer.vue'
 
-describe('MainHeader.vue', () => {
+describe('MainDrawer.vue', () => {
   it('matches snapshot', () => {
-    const wrapper = mountComponent(MainHeader, {
+    const wrapper = mountComponent(MainDrawer, {
       props: {
+        modelValue: true,
         isDarkMode: false
       }
     })

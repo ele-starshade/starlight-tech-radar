@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mountComponent } from 'test/utils/test-setup'
-import RadarBlipFeedbackDialog from './RadarBlipFeedbackDialog.vue'
+import RadarBlipFeedbackDialog from 'src/components/radar/feedback/RadarBlipFeedbackDialog.vue'
 
 describe('RadarBlipFeedbackDialog.vue', () => {
   it('matches snapshot', () => {
