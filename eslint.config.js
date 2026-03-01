@@ -14,7 +14,32 @@ export default defineConfigWithVueTs(
      *
      * ESLint requires "ignores" key to be the only one in this object
      */
-    // ignores: []
+    ignores: [
+      '.DS_Store',
+      '.thumbs.db',
+      'node_modules',
+      '.quasar',
+      'dist',
+      'quasar.config.*.temporary.compiled*',
+      'src-cordova/node_modules',
+      'src-cordova/platforms',
+      'src-cordova/plugins',
+      'src-cordova/www',
+      'src-capacitor/www',
+      'src-capacitor/node_modules',
+      'npm-debug.log*',
+      'yarn-debug.log*',
+      'yarn-error.log*',
+      '.idea',
+      '*.suo',
+      '*.ntvs*',
+      '*.njsproj',
+      '*.sln',
+      '.env.local*',
+      'playwright-report',
+      'test-results',
+      '**/__snapshots__'
+    ]
   },
 
   ...neostandard(),
@@ -36,6 +61,7 @@ export default defineConfigWithVueTs(
 
   {
     files: ['**/*.ts', '**/*.vue'],
+    ignores: ['node_modules/**/*', 'test-results/**/*', 'dist/**/*', 'playwright-report/**/*', '.quasar/**/*', '**/__snapshots__/**/*'],
     rules: {
       '@typescript-eslint/consistent-type-imports': [
         'error',

@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RadarBlip.vue > matches snapshot 1`] = `
+"<g data-v-5f078297="" class="blip-node" position="[object Object]" isactive="false">
+  <circle data-v-5f078297="" id="blip-anchor-1" r="15" fill="var(--q-info)" class="blip-circle cursor-pointer"></circle><text data-v-5f078297="" y="5" text-anchor="middle" fill="#FFFFFF" font-size="14" font-weight="bold" class="cursor-pointer" pointer-events="none">2</text>
+</g>"
+`;

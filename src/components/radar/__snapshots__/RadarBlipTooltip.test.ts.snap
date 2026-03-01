@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RadarBlipTooltip.vue > matches snapshot 1`] = `
+"<q-tooltip target="#blip-anchor-1" anchor="top middle" self="bottom middle" offset="10,10" delay="0" transition-show="scale" transition-hide="scale" class="bg-dark" position="[object Object]" visible="true">
+  <div class="text-subtitle2">Test Blip</div>
+  <div class="text-caption">radar.quadrants.tools - radar.rings.adopt</div>
+  <!--v-if-->
+</q-tooltip>"
+`;

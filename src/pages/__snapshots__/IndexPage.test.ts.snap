@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`IndexPage.vue > matches snapshot 1`] = `
+"<q-page padding="" class="q-pa-md">
+  <h1 class="text-h4 q-mt-none q-mb-md">radar.title</h1>
+  <div>
+    <div class="row items-center q-mb-lg">
+      <div class="text-body1 col">radar.welcome</div>
+      <div class="col-auto">
+        <q-btn-toggle modelvalue="radar" flat="" stretch="" toggle-color="primary" options="[object Object],[object Object]"></q-btn-toggle>
+      </div>
+    </div>
+    <!--v-if-->
+  </div>
+</q-page>"
+`;

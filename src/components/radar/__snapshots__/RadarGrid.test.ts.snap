@@ -1,0 +1,21 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RadarGrid.vue > matches snapshot 1`] = `
+"<g data-v-aadb03b2="" class="radar-grid" quadrants="Q1,Q2,Q3,Q4" rings="R1,R2">
+  <!-- Background / Radar Rings -->
+  <circle data-v-aadb03b2="" cx="500" cy="500" r="160" class="radar-ring" fill="transparent" stroke="var(--q-primary)" stroke-width="1" opacity="0.2"></circle>
+  <circle data-v-aadb03b2="" cx="500" cy="500" r="270" class="radar-ring" fill="transparent" stroke="var(--q-primary)" stroke-width="1" opacity="0.2"></circle>
+  <circle data-v-aadb03b2="" cx="500" cy="500" r="370" class="radar-ring" fill="transparent" stroke="var(--q-primary)" stroke-width="1" opacity="0.2"></circle>
+  <circle data-v-aadb03b2="" cx="500" cy="500" r="470" class="radar-ring" fill="transparent" stroke="var(--q-primary)" stroke-width="1" opacity="0.2"></circle><!-- Quadrant Dividers -->
+  <line data-v-aadb03b2="" x1="30" y1="500" x2="970" y2="500" stroke="var(--q-primary)" stroke-width="1" opacity="0.3"></line>
+  <line data-v-aadb03b2="" x1="500" y1="30" x2="500" y2="970" stroke="var(--q-primary)" stroke-width="1" opacity="0.3"></line><!-- Ring Labels -->
+  <g data-v-aadb03b2=""><text data-v-aadb03b2="" x="510" y="490" class="ring-label" fill="var(--q-primary)" opacity="0.5" font-size="14">radar.rings.adopt</text></g>
+  <g data-v-aadb03b2=""><text data-v-aadb03b2="" x="510" y="330" class="ring-label" fill="var(--q-primary)" opacity="0.5" font-size="14">radar.rings.trial</text></g>
+  <g data-v-aadb03b2=""><text data-v-aadb03b2="" x="510" y="220" class="ring-label" fill="var(--q-primary)" opacity="0.5" font-size="14">radar.rings.assess</text></g>
+  <g data-v-aadb03b2=""><text data-v-aadb03b2="" x="510" y="120" class="ring-label" fill="var(--q-primary)" opacity="0.5" font-size="14">radar.rings.hold</text></g><!-- Quadrant Labels -->
+  <g data-v-aadb03b2=""><text data-v-aadb03b2="" x="0" y="1020" class="quadrant-label" fill="var(--q-primary)" opacity="0.8" font-size="20" font-weight="bold" text-anchor="start">radar.quadrants.techniques</text></g>
+  <g data-v-aadb03b2=""><text data-v-aadb03b2="" x="1000" y="1020" class="quadrant-label" fill="var(--q-primary)" opacity="0.8" font-size="20" font-weight="bold" text-anchor="end">radar.quadrants.tools</text></g>
+  <g data-v-aadb03b2=""><text data-v-aadb03b2="" x="0" y="-10" class="quadrant-label" fill="var(--q-primary)" opacity="0.8" font-size="20" font-weight="bold" text-anchor="start">radar.quadrants.platforms</text></g>
+  <g data-v-aadb03b2=""><text data-v-aadb03b2="" x="1000" y="-10" class="quadrant-label" fill="var(--q-primary)" opacity="0.8" font-size="20" font-weight="bold" text-anchor="end">radar.quadrants.languages</text></g>
+</g>"
+`;

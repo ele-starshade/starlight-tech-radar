@@ -49,7 +49,11 @@ export default defineConfig({
     reuseExistingServer: false,
     timeout: 120 * 1000,
     env: {
-      NODE_ENV: 'test'
+      NODE_ENV: 'test',
+      GITHUB_API_BASE_URL: 'http://localhost:8080',
+      GITLAB_API_BASE_URL: 'http://localhost:8080',
+      SLACK_WEBHOOK: 'http://localhost:8080/hooks/slack',
+      TEAMS_WEBHOOK: 'http://localhost:8080/hooks/teams'
     }
   },
 })

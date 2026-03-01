@@ -1,0 +1,62 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SettingsPage.vue > matches snapshot 1`] = `
+"<q-page padding="">
+  <div class="text-h4 q-mb-md">settings.title</div>
+  <div class="row q-col-gutter-md">
+    <!-- Language Settings -->
+    <div class="col-12 col-md-6">
+      <q-card flat="" bordered="" class="full-height">
+        <q-card-section>
+          <div class="text-h6">settings.language_region</div>
+          <div class="text-subtitle2 text-grey">settings.choose_language</div>
+        </q-card-section>
+        <q-card-section>
+          <q-select modelvalue="en-US" options="[object Object]" label="settings.app_language" outlined="" emit-value="" map-options="" options-dense=""></q-select>
+        </q-card-section>
+      </q-card>
+    </div><!-- Accessibility Settings -->
+    <div class="col-12 col-md-6">
+      <q-card flat="" bordered="" class="full-height">
+        <q-card-section>
+          <div class="text-h6">accessibility.title</div>
+          <div class="text-subtitle2 text-grey">Customize your experience</div>
+        </q-card-section>
+        <q-card-section>
+          <div class="text-subtitle1 q-mb-xs">accessibility.font_size</div>
+          <div class="text-caption text-grey q-mb-md">accessibility.font_size_caption</div>
+          <div class="row items-center q-gutter-md">
+            <q-btn color="primary" flat="" round="" icon="remove" disable="false"></q-btn>
+            <div class="text-weight-bold text-h6" style="min-width: 40px; text-align: center;">+1</div>
+            <q-btn color="primary" flat="" round="" icon="add" disable="false"></q-btn>
+          </div>
+        </q-card-section>
+        <q-separator inset=""></q-separator>
+        <q-card-section>
+          <q-item tag="label" class="q-px-none">
+            <q-item-section class="open-dyslexic">
+              <q-item-label>accessibility.open_dyslexic</q-item-label>
+              <q-item-label caption="">accessibility.open_dyslexic_caption</q-item-label>
+            </q-item-section>
+            <q-item-section side="">
+              <q-toggle model-value="false"></q-toggle>
+            </q-item-section>
+          </q-item>
+        </q-card-section>
+        <q-separator inset=""></q-separator>
+        <q-card-section>
+          <q-item tag="label" class="q-px-none">
+            <q-item-section>
+              <q-item-label>accessibility.dark_mode</q-item-label>
+              <q-item-label caption="">accessibility.dark_mode_caption</q-item-label>
+            </q-item-section>
+            <q-item-section side="">
+              <q-toggle model-value="true"></q-toggle>
+            </q-item-section>
+          </q-item>
+        </q-card-section>
+      </q-card>
+    </div>
+  </div>
+</q-page>"
+`;

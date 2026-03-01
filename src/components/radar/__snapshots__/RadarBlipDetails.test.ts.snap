@@ -1,0 +1,37 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RadarBlipDetails.vue > matches snapshot 1`] = `
+"<q-dialog modelvalue="true" square="" class="shadow-0" aria-labelledby="blip-details-title">
+  <q-card style="min-width: 350px;" dark="" class="bg-dark text-white">
+    <q-card-section class="row items-center q-pb-none">
+      <div id="blip-details-title" class="text-h6 text-white">Test Blip</div>
+      <q-space></q-space>
+      <q-btn icon="close" flat="" round="" dense="" aria-label="radar.blips.close"></q-btn>
+    </q-card-section>
+    <q-card-section>
+      <div class="row items-center q-gutter-sm q-mb-md">
+        <!-- Use solid chips with dark text for maximum contrast on bright theme colors -->
+        <q-chip color="primary" text-color="dark">
+          <q-icon name="trending_flat" size="xs" class="q-mr-xs"></q-icon> radar.blips.stable
+        </q-chip>
+        <q-chip color="primary" text-color="dark">
+          <q-icon name="category" size="xs" class="q-mr-xs"></q-icon> radar.quadrants.tools
+        </q-chip>
+        <q-chip color="secondary" text-color="dark">
+          <q-icon name="layers" size="xs" class="q-mr-xs"></q-icon> radar.rings.adopt
+        </q-chip>
+        <!--v-if-->
+        <!--v-if-->
+      </div>
+      <div class="q-mb-md text-white">Test</div>
+      <q-separator q-my-md="" dark=""></q-separator>
+      <div class="row items-center q-gutter-md q-mt-sm">
+        <q-btn color="primary" text-color="dark" label="radar.blips.guidance" href="" target="_blank" icon="description"></q-btn>
+        <q-btn color="secondary" text-color="dark" label="radar.blips.repository" href="" target="_blank" icon="book"></q-btn>
+        <!--v-if-->
+      </div>
+    </q-card-section>
+  </q-card>
+</q-dialog>
+<!--v-if-->"
+`;

@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`MainLayout.vue > matches snapshot 1`] = `
+"<q-layout view="hHh Lpr lff" class="shadow-2 rounded-borders">
+  <!-- Top Bar -->
+  <main-header-stub isdarkmode="true"></main-header-stub><!-- Left Navigation Drawer -->
+  <main-drawer-stub modelvalue="false" isdarkmode="true"></main-drawer-stub><!-- Main Screen -->
+  <q-page-container>
+    <router-view-stub></router-view-stub>
+  </q-page-container>
+</q-layout>"
+`;

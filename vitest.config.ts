@@ -19,6 +19,7 @@ export default defineConfig({
   resolve: {
     alias: {
       src: fileURLToPath(new URL('./src', import.meta.url)),
+      test: fileURLToPath(new URL('./test', import.meta.url)),
       '#q-app/wrappers': fileURLToPath(new URL('./test/mocks/quasar-wrappers.ts', import.meta.url)),
       '#q-app': fileURLToPath(new URL('./.quasar', import.meta.url)),
     }

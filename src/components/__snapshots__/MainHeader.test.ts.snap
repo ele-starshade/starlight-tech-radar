@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`MainHeader.vue > matches snapshot 1`] = `
+"<q-header bordered="" class="bg-black text-white">
+  <q-toolbar>
+    <q-btn flat="" round="" dense="" icon="menu" aria-label="app.toggle_menu"></q-btn>
+    <q-toolbar-title class="text-weight-bold">
+      <q-avatar><img src="/icons/starlight-logo.png" alt="app.logo_alt"></q-avatar> Starlight Tech Radar
+    </q-toolbar-title>
+    <q-space></q-space>
+  </q-toolbar>
+</q-header>"
+`;
