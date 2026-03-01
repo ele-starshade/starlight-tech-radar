@@ -31,6 +31,4 @@ sonar_scan:
   allow_failure: true
   rules:
     # Only run if SONAR_TOKEN is set in CI/CD variables
-    - if: $SONAR_TOKEN
-  only:
-    - master
+    - if: $SONAR_TOKEN && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
