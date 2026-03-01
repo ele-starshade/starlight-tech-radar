@@ -1,0 +1,15 @@
+install_dependencies:
+  stage: install
+  image: node:24
+  script:
+    - npm ci
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - .npm/
+  artifacts:
+    paths:
+      - node_modules/
+    expire_in: 1 hour

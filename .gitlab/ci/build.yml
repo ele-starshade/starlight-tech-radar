@@ -1,0 +1,11 @@
+build_app:
+  stage: build
+  image: node:24
+  dependencies:
+    - install_dependencies
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1 hour
