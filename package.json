@@ -26,12 +26,6 @@
     "postinstall": "quasar prepare && npx playwright install",
     "prepare": "husky"
   },
-  "lint-staged": {
-    "*.{ts,js,cjs,mjs,vue}": [
-      "eslint --fix",
-      "vitest related --run"
-    ]
-  },
   "dependencies": {
     "@blueoak/list": "^15.0.0",
     "@fontsource/opendyslexic": "^5.2.5",
@@ -68,7 +62,6 @@
     "istanbul-lib-report": "^3.0.1",
     "istanbul-reports": "^3.2.0",
     "jsdom": "^28.1.0",
-    "lint-staged": "^16.2.7",
     "neostandard": "^0.12.2",
     "nyc": "^18.0.0",
     "typescript": "^5.9.2",

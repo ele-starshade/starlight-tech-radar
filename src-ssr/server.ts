@@ -84,7 +84,7 @@ export const listen = defineSsrListen(({ app, devHttpsApp, port }) => {
   // If running in a serverless environment (like Netlify), we don't want to start the HTTP server.
   // Instead, the wrapper function will use the exported 'app' instance.
   if (process.env.SERVERLESS) {
-    return
+    return {} as Server
   }
 
   const server = devHttpsApp || app
