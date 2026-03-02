@@ -4,12 +4,14 @@ stages:
   - code-quality
   - test
   - coverage
+  - release
 
 include:
   - local: '.gitlab/ci/install.yml'
   - local: '.gitlab/ci/build.yml'
   - local: '.gitlab/ci/code-quality.yml'
   - local: '.gitlab/ci/test.yml'
+  - local: '.gitlab/ci/release.yml'
   
   # GitLab CI/CD Components (Free Tier)
   # These automatically inject jobs into the "test" stage by default

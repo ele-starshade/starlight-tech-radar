@@ -44,12 +44,26 @@ We manage languages using `vue-i18n`. If you'd like to translate the application
 3. Ensure you follow the correct locale code (e.g., `es-ES`, `fr-FR`, `pt-BR`).
 4. Submit a Merge Request with your additions.
 
-## 📝 Code Style & Linting
+## 📝 Commit Convention & Releases
 
-- We use ESLint and TypeScript for static analysis.
-- Run the linter before committing: `npm run lint`
-- You can automatically fix many issues with: `npm run lint:fix`
-- Type checking is enforced; ensure `npm run type-check` passes.
+We use **[Conventional Commits](https://www.conventionalcommits.org/)** to automate our versioning and release process. This means your commit messages must follow a specific format:
+
+- `feat: ...` for new features (triggers a **minor** version bump).
+- `fix: ...` for bug fixes (triggers a **patch** version bump).
+- `docs: ...` for documentation changes.
+- `chore: ...` for maintenance tasks.
+- `perf: ...` for performance improvements.
+- `refactor: ...` for code changes that neither fix a bug nor add a feature.
+- `BREAKING CHANGE: ...` in the footer or `!` after the type/scope for breaking changes (triggers a **major** version bump).
+
+### Automated Releases
+
+When a Merge Request is merged into the `main` branch, our GitLab CI pipeline automatically:
+1.  Calculates the next version number using **semantic-release**.
+2.  Generates release notes based on commit messages.
+3.  Updates `CHANGELOG.md` and `package.json`.
+4.  Creates a new Git tag and a **GitLab Release**.
+5.  Uploads build artifacts (the `dist/` directory) as release assets.
 
 ## 📬 Merge Request Process
 

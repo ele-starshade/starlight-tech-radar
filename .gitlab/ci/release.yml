@@ -1,0 +1,11 @@
+release:
+  stage: release
+  image: node:24
+  script:
+    - npx semantic-release
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+  needs:
+    - job: unit_test
+    - job: e2e_test
+    - job: build_app
