@@ -33,7 +33,7 @@ Based on the [ROADMAP.md](ROADMAP.md), here is the progress of the project.
 - [x] Integrate OpenDyslexic typeface with global toggle.
 - [x] Configure Quasar Dark plugin support.
 - [x] Add Dark/Light mode toggle in Settings page (Currently hardcoded to Dark).
-- [ ] Implement comprehensive ARIA labels and descriptions for SVG elements.
+- [ ] Implement comprehensive ARIA labels and descriptions for all elements, including SVG.
 - [x] Implement multi-language support (i18n).
 
 ## Phase 6: Quality Assurance and Documentation

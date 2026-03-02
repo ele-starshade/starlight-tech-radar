@@ -1,32 +1,82 @@
-# Starlight Tech Radar (starlight-tech-radar)
+# Starlight Tech Radar
 
-This project is an open source tech radar, inspired by the ThoughtWorks Tech Radar.
+<!-- BADGES -->
+[![pipeline status](https://gitlab.com/ele.starshade/starlight-tech-radar/badges/main/pipeline.svg)](https://gitlab.com/ele.starshade/starlight-tech-radar/-/commits/main)
+[![coverage report](https://gitlab.com/ele.starshade/starlight-tech-radar/badges/main/coverage.svg)](https://gitlab.com/ele.starshade/starlight-tech-radar/-/commits/main)
+[![Latest Release](https://gitlab.com/ele.starshade/starlight-tech-radar/-/badges/release.svg)](https://gitlab.com/ele.starshade/starlight-tech-radar/-/releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+<!-- END BADGES -->
 
-## Install the dependencies
+An open-source, highly customizable tech radar inspired by the ThoughtWorks Tech Radar. Built with Vue 3, Quasar Framework, and TypeScript.
+
+## 🌟 Features
+
+- Visualize your technology landscape
+- SSR (Server-Side Rendering) Support
+- Fully customizable via configuration
+
+## ♿ Accessibility (a11y)
+
+We believe software should be accessible to everyone. The Starlight Tech Radar strives to adhere to **WCAG 2.1 AA** standards.
+Accessibility enhancements include:
+
+- **OpenDyslexic Font Support**: An option to switch the application font to OpenDyslexic, which is designed to mitigate some of the common reading errors caused by dyslexia.
+- **Dynamic Font Scaling**: Native support for increasing or decreasing font sizes across the entire application without breaking the layout.
+- **Keyboard Navigation**: Full support for screen readers and keyboard-only navigation.
+
+## 🌍 Internationalization (i18n)
+
+The application supports multiple languages using `vue-i18n`. We welcome contributions to translate the radar into different languages. Here are some of the target languages we aim to support:
+
+| Language             | Locale Code | % Complete |
+| -------------------- | ----------- | ---------- |
+| English              | `en-US`     | 100%       |
+| Spanish              | `es-ES`     | 0%         |
+| French               | `fr-FR`     | 0%         |
+| German               | `de-DE`     | 0%         |
+| Chinese (Simplified) | `zh-CN`     | 0%         |
+| Japanese             | `ja-JP`     | 0%         |
+| Portuguese (Brazil)  | `pt-BR`     | 0%         |
+
+## 🧪 Testing Pyramid
+
+Our project maintains a strong testing culture, adhering to the standard Testing Pyramid to balance speed and confidence:
+
+- **E2E Tests (Playwright)**: We run End-to-End tests to verify critical user journeys. Mocking of external services is handled via WireMock.
+- **Integration Tests (Vitest)**: Testing the interaction between Vue components and Pinia stores.
+- **Unit Tests (Vitest)**: Fast, isolated tests for our utility functions and models.
+
+## 📚 Documentation
+
+For detailed explanations, architecture, and guides, please visit our [Documentation Folder](./docs/README.md).
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js 24+
+- npm, yarn, or pnpm
+
+### Installation
+
 ```bash
-yarn
-# or
 npm install
-```
-
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
-```bash
-quasar dev
-```
-
-
-### Lint the files
-```bash
-yarn lint
 # or
-npm run lint
+yarn
 ```
 
+### Development
 
-### Build the app for production
 ```bash
-quasar build
+npm run dev
+# or
+yarn dev
 ```
 
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
+## 🤝 Contributing
+
+We love contributions! Please read our [Contributing Guidelines](CONTRIBUTING.md) to get started with development, testing, and merge requests.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
