@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <div class="text-h4 q-mb-md">{{ $t('settings.title') }}</div>
+    <h1 class="text-h4 q-mt-none q-mb-md">{{ $t('settings.title') }}</h1>
 
     <div class="row q-col-gutter-md">
       <!-- Language Settings -->
@@ -67,7 +67,7 @@
           <q-separator inset />
 
           <q-card-section>
-            <q-item tag="label" v-ripple class="q-px-none">
+            <q-item class="q-px-none">
               <q-item-section class="open-dyslexic">
                 <q-item-label>{{ $t('accessibility.open_dyslexic') }}</q-item-label>
                 <q-item-label caption>{{ $t('accessibility.open_dyslexic_caption') }}</q-item-label>
@@ -76,6 +76,7 @@
                 <q-toggle
                   :model-value="accessibilityStore.isDyslexicEnabled"
                   @update:model-value="accessibilityStore.setDyslexicEnabled"
+                  :aria-label="$t('accessibility.open_dyslexic')"
                 />
               </q-item-section>
             </q-item>
@@ -84,7 +85,7 @@
           <q-separator inset />
 
           <q-card-section>
-            <q-item tag="label" v-ripple class="q-px-none">
+            <q-item class="q-px-none">
               <q-item-section>
                 <q-item-label>{{ $t('accessibility.dark_mode') }}</q-item-label>
                 <q-item-label caption>{{ $t('accessibility.dark_mode_caption') }}</q-item-label>
@@ -93,6 +94,7 @@
                 <q-toggle
                   :model-value="accessibilityStore.isDarkMode"
                   @update:model-value="accessibilityStore.setDarkMode"
+                  :aria-label="$t('accessibility.dark_mode')"
                 />
               </q-item-section>
             </q-item>

@@ -2,7 +2,7 @@
 
 exports[`SettingsPage.vue > matches snapshot 1`] = `
 "<q-page padding="">
-  <div class="text-h4 q-mb-md">settings.title</div>
+  <h1 class="text-h4 q-mt-none q-mb-md">settings.title</h1>
   <div class="row q-col-gutter-md">
     <!-- Language Settings -->
     <div class="col-12 col-md-6">
@@ -33,25 +33,25 @@ exports[`SettingsPage.vue > matches snapshot 1`] = `
         </q-card-section>
         <q-separator inset=""></q-separator>
         <q-card-section>
-          <q-item tag="label" class="q-px-none">
+          <q-item class="q-px-none">
             <q-item-section class="open-dyslexic">
               <q-item-label>accessibility.open_dyslexic</q-item-label>
               <q-item-label caption="">accessibility.open_dyslexic_caption</q-item-label>
             </q-item-section>
             <q-item-section side="">
-              <q-toggle model-value="false"></q-toggle>
+              <q-toggle model-value="false" aria-label="accessibility.open_dyslexic"></q-toggle>
             </q-item-section>
           </q-item>
         </q-card-section>
         <q-separator inset=""></q-separator>
         <q-card-section>
-          <q-item tag="label" class="q-px-none">
+          <q-item class="q-px-none">
             <q-item-section>
               <q-item-label>accessibility.dark_mode</q-item-label>
               <q-item-label caption="">accessibility.dark_mode_caption</q-item-label>
             </q-item-section>
             <q-item-section side="">
-              <q-toggle model-value="true"></q-toggle>
+              <q-toggle model-value="true" aria-label="accessibility.dark_mode"></q-toggle>
             </q-item-section>
           </q-item>
         </q-card-section>
