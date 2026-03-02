@@ -1,9 +1,8 @@
 [build]
-  command = "npm run build"
+  command = "SERVERLESS=true npm run build"
   publish = "dist/ssr/client"
 
 [functions]
-  directory = "dist/ssr/server"
   node_bundler = "esbuild"
 
 [[redirects]]

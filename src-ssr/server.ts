@@ -81,6 +81,12 @@ export const injectDevMiddleware = defineSsrInjectDevMiddleware(({ app }) => {
  * Can be async: defineSsrListen(async ({ app, devHttpsApp, port }) => { ... })
  */
 export const listen = defineSsrListen(({ app, devHttpsApp, port }) => {
+  // If running in a serverless environment (like Netlify), we don't want to start the HTTP server.
+  // Instead, the wrapper function will use the exported 'app' instance.
+  if (process.env.SERVERLESS) {
+    return
+  }
+
   const server = devHttpsApp || app
 
   return server.listen(port, () => {
