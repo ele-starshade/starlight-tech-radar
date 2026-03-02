@@ -5,7 +5,9 @@ build_app:
     - install_dependencies
   script:
     - npm run build
+    - tar -czf starlight-tech-radar-build.tar.gz dist/
   artifacts:
     paths:
       - dist/
+      - starlight-tech-radar-build.tar.gz
     expire_in: 1 hour
