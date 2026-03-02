@@ -1,9 +1,9 @@
 stages:
   - install
   - build
-  - code-quality
   - test
   - coverage
+  - code-quality
   - release
 
 include:

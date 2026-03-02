@@ -6,8 +6,7 @@
     :aria-label="`Blip ${index + 1}: ${blip.name}`"
     :aria-describedby="`tooltip-${index}`"
     @click="$emit('click', blip)"
-    @keydown.enter="$emit('click', blip)"
-    @keydown.space.prevent="$emit('click', blip)"
+    @keydown="onKeydown"
   >
     <circle
       :id="anchorId"
@@ -52,6 +51,15 @@ export default defineComponent({
   },
 
   emits: ['click'],
+
+  methods: {
+    onKeydown (event: KeyboardEvent) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        if (event.key === ' ') event.preventDefault()
+        this.$emit('click', this.blip)
+      }
+    }
+  },
 
   computed: {
     anchorId (): string {

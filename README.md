@@ -4,6 +4,8 @@
 [![pipeline status](https://gitlab.com/ele.starshade/starlight-tech-radar/badges/main/pipeline.svg)](https://gitlab.com/ele.starshade/starlight-tech-radar/-/commits/main)
 [![coverage report](https://gitlab.com/ele.starshade/starlight-tech-radar/badges/main/coverage.svg)](https://gitlab.com/ele.starshade/starlight-tech-radar/-/commits/main)
 [![Latest Release](https://gitlab.com/ele.starshade/starlight-tech-radar/-/badges/release.svg)](https://gitlab.com/ele.starshade/starlight-tech-radar/-/releases)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/06a85395-4e55-41a6-b4ef-9317a66b8984/deploy-status)](https://app.netlify.com/projects/effervescent-mooncake-5fba7c/deploys)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ele.starshade_starlight-tech-radar&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ele.starshade_starlight-tech-radar)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 <!-- END BADGES -->
 

@@ -59,11 +59,12 @@ We use **[Conventional Commits](https://www.conventionalcommits.org/)** to autom
 ### Automated Releases
 
 When a Merge Request is merged into the `main` branch, our GitLab CI pipeline automatically:
-1.  Calculates the next version number using **semantic-release**.
-2.  Generates release notes based on commit messages.
-3.  Updates `CHANGELOG.md` and `package.json`.
-4.  Creates a new Git tag and a **GitLab Release**.
-5.  Uploads build artifacts (the `dist/` directory) as release assets.
+
+1. Calculates the next version number using **semantic-release**.
+2. Generates release notes based on commit messages.
+3. Updates `CHANGELOG.md` and `package.json`.
+4. Creates a new Git tag and a **GitLab Release**.
+5. Uploads build artifacts (the `dist/` directory) as release assets.
 
 ## 📬 Merge Request Process
 

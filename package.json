@@ -19,6 +19,7 @@
     "test:e2e:ui": "playwright test --ui",
     "type-check": "vue-tsc --noEmit",
     "test:all": "npm run type-check && npm run test:unit && npm run test:e2e",
+    "test:audit": "npm audit --omit=dev",
     "wiremock:up": "docker compose up -d",
     "wiremock:down": "docker compose down",
     "dev": "quasar dev -m ssr",
@@ -85,6 +86,7 @@
     "pnpm": ">= 10.0.0"
   },
   "overrides": {
-    "serialize-javascript": "^7.0.3"
+    "serialize-javascript": "^7.0.3",
+    "minimatch": "10.2.4"
   }
 }

@@ -1,3 +1,19 @@
+lint_code:
+  stage: test
+  image: node:24
+  dependencies:
+    - install_dependencies
+  script:
+    - npm run lint
+
+type_check:
+  stage: test
+  image: node:24
+  dependencies:
+    - install_dependencies
+  script:
+    - npm run type-check
+
 unit_test:
   stage: test
   image: node:24
@@ -51,7 +67,7 @@ coverage_report:
   script:
     - mkdir -p .nyc_output
     - cp coverage/unit/coverage-final.json .nyc_output/unit.json || true
-    - npx nyc report -t .nyc_output --report-dir coverage/combined --reporter=text --reporter=cobertura --reporter=html --extension .vue --extension .ts --extension .js
+    - npx nyc report -t .nyc_output --report-dir coverage/combined --reporter=text --reporter=cobertura --reporter=html --reporter=lcov --extension .vue --extension .ts --extension .js
   coverage: '/All files[^|]*\|[^|]*\s+([\d\.]+)/'
   artifacts:
     when: always
@@ -69,5 +85,5 @@ npm_audit:
   dependencies:
     - install_dependencies
   script:
-    - npm audit --audit-level=moderate
+    - npm audit --omit=dev --audit-level=moderate
   allow_failure: true
