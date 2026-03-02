@@ -26,5 +26,8 @@ The easiest way to deploy to Netlify is by connecting your repository. Since the
 Since the app relies on environment variables (like `GITHUB_TOKEN` and `SLACK_WEBHOOK`), you must configure these in Netlify:
 
 1. Go to **Site settings** > **Environment variables**.
-2. Add your required variables.
+2. Add your required variables:
+   - `SERVERLESS`: Set to `true` (Required for the server to correctly identify the serverless environment).
+   - `GITHUB_TOKEN`: Your GitHub Personal Access Token (for fetching license information).
+   - `SLACK_WEBHOOK` / `TEAMS_WEBHOOK`: (Optional) Webhook URLs for feedback notifications.
 3. Trigger a re-deploy to ensure the functions pick up the new variables.
