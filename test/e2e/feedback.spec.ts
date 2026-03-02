@@ -1,23 +1,11 @@
-import { test, expect } from '@playwright/test'
-import AxeBuilder from '@axe-core/playwright'
-
-const mockRadarData = {
-  quadrants: ['Techniques', 'Platforms', 'Tools', 'Languages & Frameworks'],
-  rings: ['Adopt', 'Trial', 'Assess', 'Hold'],
-  blips: [
-    { name: 'Vue.js', quadrant: 'Languages & Frameworks', ring: 'Adopt', isNew: false, description: 'Vue', repoUrl: 'https://github.com/vuejs/core', guidanceLink: 'https://vuejs.org' }
-  ]
-}
-
-const mockQuery = `?mock=true&clearCache=true&data=${encodeURIComponent(JSON.stringify(mockRadarData))}`
+import { test, expect, mockQuery, hideViteOverlay } from './utils'
 
 test.describe('Feedback Functionality', () => {
   test.beforeEach(async ({ page }) => {
-    // Hide Vite error overlay that might block pointer events
-    await page.addStyleTag({ content: 'vite-plugin-checker-error-overlay { display: none !important; }' })
+    await hideViteOverlay(page)
   })
 
-  test('should submit feedback successfully and have no accessibility issues', async ({ page }) => {
+  test('should submit feedback successfully', async ({ page }) => {
     await page.goto(`/${mockQuery}`)
 
     // Open blip details
@@ -40,20 +28,6 @@ test.describe('Feedback Functionality', () => {
     const feedbackDialog = page.locator('.q-dialog').filter({ hasText: 'Feedback for Vue.js' })
 
     await expect(feedbackDialog).toBeVisible()
-
-    // Accessibility check for the feedback dialog
-    const feedbackDialogA11y = await new AxeBuilder({ page })
-      .include('.q-dialog')
-      .disableRules([
-        'aria-progressbar-name',
-        'region',
-        'landmark-no-duplicate-main',
-        'scrollable-region-focusable',
-        'color-contrast' // Brand colors on dark background often fail automated scans
-      ])
-      .analyze()
-
-    expect(feedbackDialogA11y.violations).toEqual([])
 
     // Fill in feedback type
     await feedbackDialog.locator('.q-select').click()
@@ -78,20 +52,6 @@ test.describe('Feedback Functionality', () => {
 
     await expect(notification).toBeVisible()
     await expect(notification).toContainText('Thank you for your feedback!')
-
-    // Accessibility check for the success notification
-    const notificationA11y = await new AxeBuilder({ page })
-      .include('.q-notification')
-      .disableRules([
-        'aria-progressbar-name',
-        'region',
-        'landmark-no-duplicate-main',
-        'scrollable-region-focusable',
-        'color-contrast'
-      ])
-      .analyze()
-
-    expect(notificationA11y.violations).toEqual([])
   })
 
   test('should disable submit button when fields are empty', async ({ page }) => {

@@ -15,16 +15,16 @@
       <q-card-section>
         <div class="row items-center q-gutter-sm q-mb-md">
           <!-- Use solid chips with dark text for maximum contrast on bright theme colors -->
-          <q-chip :color="blip?.isNew ? 'positive' : 'primary'" text-color="dark">
+          <q-chip :color="blip?.isNew ? 'positive' : 'primary'" text-color="black">
             <q-icon name="trending_up" size="xs" class="q-mr-xs" v-if="blip?.isNew" />
             <q-icon name="trending_flat" size="xs" class="q-mr-xs" v-else />
             {{ blip?.isNew ? $t('radar.blips.new') : $t('radar.blips.stable') }}
           </q-chip>
-          <q-chip color="primary" text-color="dark">
+          <q-chip color="primary" text-color="black">
             <q-icon name="category" size="xs" class="q-mr-xs" />
             {{ blip ? $t(getQuadrantTranslationKey(blip.quadrant)) : '' }}
           </q-chip>
-          <q-chip color="secondary" text-color="dark">
+          <q-chip color="secondary" text-color="black">
             <q-icon name="layers" size="xs" class="q-mr-xs" />
             {{ blip ? $t(`radar.rings.${blip.ring.toLowerCase()}`) : '' }}
           </q-chip>
@@ -43,8 +43,8 @@
         <q-separator q-my-md dark />
 
         <div class="row items-center q-gutter-md q-mt-sm">
-          <q-btn color="primary" text-color="dark" :label="$t('radar.blips.guidance')" :href="blip?.guidanceLink" target="_blank" icon="description" />
-          <q-btn color="secondary" text-color="dark" :label="$t('radar.blips.repository')" :href="blip?.repoUrl" target="_blank" icon="book" />
+          <q-btn color="primary" text-color="black" :label="$t('radar.blips.guidance')" :href="blip?.guidanceLink" target="_blank" icon="description" />
+          <q-btn color="secondary" text-color="black" :label="$t('radar.blips.repository')" :href="blip?.repoUrl" target="_blank" icon="book" />
           <q-btn
             v-if="isFeedbackEnabled"
             color="deep-orange"

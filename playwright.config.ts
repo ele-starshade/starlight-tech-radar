@@ -10,9 +10,9 @@ export default defineConfig({
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
+  retries: 2,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : (process.platform === 'win32' ? 1 : '100%'),
+  workers: 1,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
@@ -50,6 +50,7 @@ export default defineConfig({
     timeout: 120 * 1000,
     env: {
       NODE_ENV: 'test',
+      VITE_COVERAGE: 'true',
       GITHUB_API_BASE_URL: 'http://localhost:8080',
       GITLAB_API_BASE_URL: 'http://localhost:8080',
       SLACK_WEBHOOK: 'http://localhost:8080/hooks/slack',

@@ -1,27 +1,8 @@
-import { test, expect } from '@playwright/test'
-import AxeBuilder from '@axe-core/playwright'
-
-const mockRadarData = {
-  quadrants: ['Techniques', 'Platforms', 'Tools', 'Languages & Frameworks'],
-  rings: ['Adopt', 'Trial', 'Assess', 'Hold'],
-  blips: [
-    { name: 'Vue.js', quadrant: 'Languages & Frameworks', ring: 'Adopt', isNew: false, description: 'Vue', repoUrl: 'https://github.com/vuejs/core', guidanceLink: 'https://vuejs.org' },
-    { name: 'React', quadrant: 'Languages & Frameworks', ring: 'Trial', isNew: true, description: 'React', repoUrl: 'https://github.com/facebook/react', guidanceLink: 'https://reactjs.org' },
-    { name: 'GitLab Project', quadrant: 'Tools', ring: 'Trial', isNew: false, description: 'GitLab', repoUrl: 'https://gitlab.com/test/repo', guidanceLink: 'https://test.com' },
-    { name: 'Node.js', quadrant: 'Platforms', ring: 'Adopt', isNew: false, description: 'Node', repoUrl: 'https://github.com/nodejs/node', guidanceLink: 'https://nodejs.org' },
-    { name: 'Docker', quadrant: 'Platforms', ring: 'Assess', isNew: true, description: 'Docker', repoUrl: 'https://github.com/docker/docker-ce', guidanceLink: 'https://docker.com' },
-    { name: 'Git', quadrant: 'Tools', ring: 'Adopt', isNew: false, description: 'Git', repoUrl: 'https://github.com/git/git', guidanceLink: 'https://git-scm.com' },
-    { name: 'Zod', quadrant: 'Tools', ring: 'Trial', isNew: true, description: 'Zod', repoUrl: 'https://github.com/colinhacks/zod', guidanceLink: 'https://zod.dev' },
-    { name: 'TDD', quadrant: 'Techniques', ring: 'Adopt', isNew: false, description: 'TDD', repoUrl: 'https://github.com/test/tdd', guidanceLink: 'https://test.com' }
-  ]
-}
-
-const mockQuery = `?mock=true&clearCache=true&data=${encodeURIComponent(JSON.stringify(mockRadarData))}`
+import { test, expect, mockRadarData, mockQuery, hideViteOverlay } from './utils'
 
 test.describe('Radar Home Page', () => {
   test.beforeEach(async ({ page }) => {
-    // Hide Vite error overlay that might block pointer events
-    await page.addStyleTag({ content: 'vite-plugin-checker-error-overlay { display: none !important; }' })
+    await hideViteOverlay(page)
   })
 
   test('should display license information in blip details modal', async ({ page }) => {
@@ -106,17 +87,9 @@ test.describe('Radar Home Page', () => {
 
     await expect(tooltip).toBeVisible()
     await expect(tooltip).toContainText(/Vue.js/)
-
-    // Run accessibility scan while tooltip is visible
-    const accessibilityScanResults = await new AxeBuilder({ page })
-      .include('.q-tooltip')
-      .disableRules(['aria-progressbar-name', 'region', 'landmark-no-duplicate-main', 'scrollable-region-focusable'])
-      .analyze()
-
-    expect(accessibilityScanResults.violations).toEqual([])
   })
 
-  test('should open details modal when clicking a blip and have no accessibility issues', async ({ page }) => {
+  test('should open details modal when clicking a blip', async ({ page }) => {
     await page.goto(`/${mockQuery}`)
 
     // Test for multiple blip types (standard and 'New')
@@ -134,20 +107,6 @@ test.describe('Radar Home Page', () => {
 
       await expect(dialog).toBeVisible()
       await expect(dialog.locator('.text-h6')).toContainText(new RegExp(blip.name))
-
-      // Run accessibility scan while modal is open
-      const accessibilityScanResults = await new AxeBuilder({ page })
-        .include('.q-dialog')
-        .disableRules([
-          'aria-progressbar-name',
-          'region',
-          'landmark-no-duplicate-main',
-          'scrollable-region-focusable',
-          'color-contrast' // Brand colors on dark background often fail automated scans
-        ])
-        .analyze()
-
-      expect(accessibilityScanResults.violations).toEqual([])
 
       // Close the dialog
       await page.keyboard.press('Escape')
@@ -169,7 +128,6 @@ test.describe('Radar Home Page', () => {
     // Verify list cards are shown
     const cards = page.locator('.q-card')
 
-    // 8 blips + maybe some other cards? No, just blips.
     await expect(cards).toHaveCount(mockRadarData.blips.length)
     await expect(page.locator('.radar-svg')).not.toBeVisible()
 

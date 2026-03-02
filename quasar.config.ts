@@ -88,6 +88,13 @@ export default defineConfig((ctx) => {
           include: [fileURLToPath(new URL('./src/i18n', import.meta.url))]
         }],
 
+        ['vite-plugin-istanbul', {
+          include: 'src/*',
+          exclude: ['node_modules', 'test/'],
+          extension: ['.js', '.ts', '.vue'],
+          requireEnv: true
+        }],
+
         ['vite-plugin-checker', {
           vueTsc: true,
           eslint: {

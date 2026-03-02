@@ -9,8 +9,9 @@ export default defineConfig({
     globals: true,
     include: ['test/unit/**/*.{test,spec}.ts'],
     coverage: {
-      provider: 'v8',
-      reporter: ['text', 'json', 'html'],
+      provider: 'istanbul',
+      reporter: ['text', 'json', 'html', 'cobertura'],
+      reportsDirectory: 'coverage/unit'
     },
     env: {
       NODE_ENV: 'test'

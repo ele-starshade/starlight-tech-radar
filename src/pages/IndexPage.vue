@@ -45,7 +45,7 @@
                   </div>
                 </div>
                 <div class="col-auto">
-                  <q-chip :color="blip.isNew ? 'positive' : 'grey-7'" text-color="white" dense>
+                  <q-chip :color="blip.isNew ? 'positive' : 'grey-7'" :text-color="blip.isNew ? 'dark' : 'white'" dense>
                     {{ blip.isNew ? $t('radar.blips.new') : $t('radar.blips.stable') }}
                   </q-chip>
                 </div>

@@ -35,3 +35,7 @@ yarn-error.log*
 # Playwright reports
 /playwright-report
 /test-results
+
+# Coverage output
+/coverage
+/.nyc_output

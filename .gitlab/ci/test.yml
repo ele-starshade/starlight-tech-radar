@@ -4,7 +4,7 @@ unit_test:
   dependencies:
     - install_dependencies
   script:
-    - npm run test:unit
+    - npx vitest run --coverage
   artifacts:
     when: always
     paths:
@@ -38,6 +38,29 @@ e2e_test:
     paths:
       - playwright-report/
       - test-results/
+      - .nyc_output/
+    expire_in: 30 days
+
+coverage_report:
+  stage: coverage
+  image: node:24
+  dependencies:
+    - install_dependencies
+    - unit_test
+    - e2e_test
+  script:
+    - mkdir -p .nyc_output
+    - cp coverage/unit/coverage-final.json .nyc_output/unit.json || true
+    - npx nyc report -t .nyc_output --report-dir coverage/combined --reporter=text --reporter=cobertura --reporter=html --extension .vue --extension .ts --extension .js
+  coverage: '/All files[^|]*\|[^|]*\s+([\d\.]+)/'
+  artifacts:
+    when: always
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/combined/cobertura-coverage.xml
+    paths:
+      - coverage/combined/
     expire_in: 30 days
 
 npm_audit:
