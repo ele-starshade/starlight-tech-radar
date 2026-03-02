@@ -1,5 +1,7 @@
 <template>
   <q-tooltip
+    :id="`tooltip-${index}`"
+    role="tooltip"
     :target="`#blip-anchor-${index}`"
     anchor="top middle"
     self="bottom middle"

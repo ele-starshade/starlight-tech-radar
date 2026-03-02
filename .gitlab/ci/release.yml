@@ -6,6 +6,7 @@ release:
   rules:
     - if: $CI_COMMIT_BRANCH == "main"
   needs:
+    - job: install_dependencies
     - job: unit_test
     - job: e2e_test
     - job: build_app

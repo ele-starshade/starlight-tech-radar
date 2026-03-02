@@ -12,7 +12,8 @@ export default {
     with_love: 'with Love',
     toggle_menu: 'Toggle navigation menu',
     close_menu: 'Close navigation menu',
-    logo_alt: 'Starlight Tech Radar Logo'
+    logo_alt: 'Starlight Tech Radar Logo',
+    skip_to_content: 'Skip to main content'
   },
   accessibility: {
     title: 'Accessibility Settings',

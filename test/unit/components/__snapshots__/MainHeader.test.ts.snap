@@ -5,7 +5,7 @@ exports[`MainHeader.vue > matches snapshot 1`] = `
   <q-toolbar>
     <q-btn flat="" round="" dense="" icon="menu" aria-label="app.toggle_menu"></q-btn>
     <q-toolbar-title class="text-weight-bold">
-      <q-avatar><img src="/icons/starlight-logo.png" alt="app.logo_alt"></q-avatar> Starlight Tech Radar
+      <q-avatar role="img" aria-label="app.logo_alt"><img src="/icons/starlight-logo.png" alt=""></q-avatar> Starlight Tech Radar
     </q-toolbar-title>
     <q-space></q-space>
   </q-toolbar>

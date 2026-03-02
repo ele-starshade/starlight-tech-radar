@@ -1,7 +1,13 @@
 <template>
   <g
-    class="blip-node"
+    class="blip-node focusable"
+    tabindex="0"
+    role="button"
+    :aria-label="`Blip ${index + 1}: ${blip.name}`"
+    :aria-describedby="`tooltip-${index}`"
     @click="$emit('click', blip)"
+    @keydown.enter="$emit('click', blip)"
+    @keydown.space.prevent="$emit('click', blip)"
   >
     <circle
       :id="anchorId"
@@ -90,5 +96,14 @@ export default defineComponent({
 
 .blip-node {
   cursor: pointer;
+  outline: none;
+
+  &.focusable:focus-visible {
+    .blip-circle {
+      stroke: var(--q-primary);
+      stroke-width: 3px;
+      filter: brightness(1.2);
+    }
+  }
 }
 </style>

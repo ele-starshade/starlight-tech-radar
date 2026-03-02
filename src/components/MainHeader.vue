@@ -11,8 +11,8 @@
       />
 
       <q-toolbar-title class="text-weight-bold">
-        <q-avatar>
-          <img :src="appConfig.logo" :alt="$t('app.logo_alt')">
+        <q-avatar role="img" :aria-label="$t('app.logo_alt')">
+          <img :src="appConfig.logo" alt="">
         </q-avatar>
         {{ appConfig.title }}
       </q-toolbar-title>

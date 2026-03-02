@@ -1,5 +1,7 @@
 <template>
   <q-layout view="hHh Lpr lff" class="shadow-2 rounded-borders">
+    <a href="#main-content" class="skip-link">{{ $t('app.skip_to_content') }}</a>
+
     <!-- Top Bar -->
     <MainHeader :is-dark-mode="isDarkMode" @toggle-drawer="toggleLeftDrawer" />
 
@@ -11,7 +13,7 @@
     />
 
     <!-- Main Screen -->
-    <q-page-container>
+    <q-page-container id="main-content">
       <router-view />
     </q-page-container>
   </q-layout>
