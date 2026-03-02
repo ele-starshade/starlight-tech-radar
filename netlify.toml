@@ -4,8 +4,8 @@
   functions = "netlify/functions"
 
 [functions]
-  node_bundler = "esbuild"
-  included_files = ["dist/ssr/**", "node_modules/**"]
+  node_bundler = "nft"
+  included_files = ["dist/ssr/**"]
 
 [[redirects]]
   from = "/*"
