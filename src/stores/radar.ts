@@ -12,7 +12,9 @@ export const useRadarStore = defineStore('radar', {
   actions: {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async fetchRadarData (params?: Record<string, any>) {
-      if (this.radarData && !this.error && !params) return
+      const hasParams = params && Object.keys(params).length > 0
+
+      if (this.radarData && !this.error && !hasParams) return
 
       this.loading = true
       this.error = null
