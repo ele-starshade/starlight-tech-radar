@@ -3,30 +3,47 @@
     class="blip-node focusable"
     tabindex="0"
     role="button"
-    :aria-label="`Blip ${index + 1}: ${blip.name}`"
+    :aria-label="node.isCluster ? `Cluster: ${node.name}` : `Blip ${index + 1}: ${node.name}`"
     :aria-describedby="`tooltip-${index}`"
-    @click="$emit('click', blip)"
+    @click="$emit('click', node)"
     @keydown="onKeydown"
+    :style="{ '--node-x': `${node.x}px`, '--node-y': `${node.y}px` }"
   >
-    <circle
-      :id="anchorId"
-      :cx="blip.x"
-      :cy="blip.y"
-      r="15"
-      :fill="`var(--q-${colorName})`"
-      class="blip-circle cursor-pointer"
-    />
+    <template v-if="node.isCluster">
+      <rect
+        :id="anchorId"
+        :x="node.x - 35"
+        :y="node.y - 15"
+        width="70"
+        height="30"
+        rx="15"
+        ry="15"
+        :fill="blipColor"
+        class="blip-shape cursor-pointer"
+      />
+    </template>
+    <template v-else>
+      <circle
+        :id="anchorId"
+        :cx="node.x"
+        :cy="node.y"
+        r="15"
+        :fill="blipColor"
+        class="blip-shape cursor-pointer"
+      />
+    </template>
+
     <text
-      :x="blip.x"
-      :y="(blip.y || 0) + 5"
+      :x="node.x"
+      :y="(node.y || 0) + 4"
       text-anchor="middle"
       :fill="textColor"
-      font-size="14"
+      :font-size="node.isCluster ? 12 : 14"
       font-weight="bold"
       class="cursor-pointer"
       pointer-events="none"
     >
-      {{ index + 1 }}
+      {{ node.isCluster ? `${node.blips.length} blips` : index + 1 }}
     </text>
   </g>
 </template>
@@ -34,14 +51,14 @@
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue'
 import { colors } from 'quasar'
-import type { Blip } from 'src/models/radar'
+import type { DisplayNode } from 'src/utils/radar-visualization'
 
 export default defineComponent({
   name: 'RadarBlip',
 
   props: {
-    blip: {
-      type: Object as PropType<Blip & { x: number; y: number }>,
+    node: {
+      type: Object as PropType<DisplayNode>,
       required: true
     },
     index: {
@@ -56,7 +73,7 @@ export default defineComponent({
     onKeydown (event: KeyboardEvent) {
       if (event.key === 'Enter' || event.key === ' ') {
         if (event.key === ' ') event.preventDefault()
-        this.$emit('click', this.blip)
+        this.$emit('click', this.node)
       }
     }
   },
@@ -66,22 +83,49 @@ export default defineComponent({
       return `blip-anchor-${this.index}`
     },
 
-    colorName (): string {
-      if (this.blip.isNew) return 'positive'
+    baseColorHex (): string {
+      let colorName = 'secondary'
 
-      switch (this.blip.quadrant) {
-        case 'Techniques': return 'secondary'
-        case 'Platforms': return 'accent'
-        case 'Tools': return 'info'
-        case 'Languages & Frameworks': return 'warning'
-        default: return 'secondary'
+      if (this.node.isNew) {
+        colorName = 'positive'
+      } else {
+        switch (this.node.quadrant) {
+          case 'Techniques': colorName = 'secondary'; break
+          case 'Platforms': colorName = 'accent'; break
+          case 'Tools': colorName = 'info'; break
+          case 'Languages & Frameworks': colorName = 'warning'; break
+        }
       }
+
+      return colors.getPaletteColor(colorName)
+    },
+
+    blipColor (): string {
+      const hex = this.baseColorHex
+
+      if (this.node.isNew) return hex
+
+      // Start normal on outside, get darker towards the center.
+      // Negative percent darkens the color in Quasar's colors.lighten
+      let darkenPercent = 0
+
+      switch (this.node.ring) {
+        case 'Hold': darkenPercent = 0; break
+        case 'Assess': darkenPercent = -12; break
+        case 'Trial': darkenPercent = -24; break
+        case 'Adopt': darkenPercent = -36; break
+      }
+
+      if (darkenPercent === 0) return hex
+
+      return colors.lighten(hex, darkenPercent)
     },
 
     textColor (): string {
-      const hex = colors.getPaletteColor(this.colorName)
+      const hex = this.blipColor
 
       // Dynamic contrast check: if background is dark, use white; otherwise dark navy
+      // Using 140 as a threshold for brightness (0-255) ensures good WCAG contrast
       if (hex && colors.brightness(hex) < 140) {
         return '#FFFFFF'
       }
@@ -93,24 +137,33 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.blip-circle {
-  transition: r 0.2s ease, filter 0.2s ease;
+.blip-shape {
+  transition: transform 0.2s ease, filter 0.2s ease;
+  transform-origin: var(--node-x) var(--node-y);
 
-  &:hover {
-    r: 18;
-    filter: brightness(1.2);
-  }
+  // Make the hit area stable by using pointer-events correctly on the group
+  pointer-events: visiblePainted;
 }
 
 .blip-node {
   cursor: pointer;
   outline: none;
+  // Increase hit area slightly
+  pointer-events: bounding-box;
+
+  &:hover {
+    .blip-shape {
+      filter: brightness(1.2);
+      transform: scale(1.15);
+    }
+  }
 
   &.focusable:focus-visible {
-    .blip-circle {
+    .blip-shape {
       stroke: var(--q-primary);
       stroke-width: 3px;
       filter: brightness(1.2);
+      transform: scale(1.15);
     }
   }
 }

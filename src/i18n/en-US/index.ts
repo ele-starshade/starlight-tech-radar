@@ -48,7 +48,7 @@ export default {
       repository: 'Repository',
       quadrant: 'Quadrant',
       ring: 'Ring',
-      close: 'Close'
+      close: 'Close',
     },
     feedback: {
       title: 'Feedback for',

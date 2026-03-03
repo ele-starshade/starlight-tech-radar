@@ -47,6 +47,1966 @@
       "description": "GitLab's built-in Continuous Integration, Continuous Deployment, and Continuous Delivery.",
       "repoUrl": "https://gitlab.com/gitlab-org/gitlab",
       "guidanceLink": "https://docs.gitlab.com/ee/ci/"
+    },
+    {
+      "name": "Techniques Adopt Example 1",
+      "quadrant": "Techniques",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Techniques in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Adopt Example 2",
+      "quadrant": "Techniques",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Techniques in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Adopt Example 3",
+      "quadrant": "Techniques",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Techniques in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Adopt Example 4",
+      "quadrant": "Techniques",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Techniques in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Adopt Example 5",
+      "quadrant": "Techniques",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Techniques in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Adopt Example 6",
+      "quadrant": "Techniques",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Techniques in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Adopt Example 7",
+      "quadrant": "Techniques",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Techniques in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Adopt Example 8",
+      "quadrant": "Techniques",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Techniques in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Adopt Example 9",
+      "quadrant": "Techniques",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Techniques in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Adopt Example 10",
+      "quadrant": "Techniques",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Techniques in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Trial Example 1",
+      "quadrant": "Techniques",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Techniques in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Trial Example 2",
+      "quadrant": "Techniques",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Techniques in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Trial Example 3",
+      "quadrant": "Techniques",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Techniques in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Trial Example 4",
+      "quadrant": "Techniques",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Techniques in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Trial Example 5",
+      "quadrant": "Techniques",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Techniques in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Trial Example 6",
+      "quadrant": "Techniques",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Techniques in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Trial Example 7",
+      "quadrant": "Techniques",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Techniques in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Trial Example 8",
+      "quadrant": "Techniques",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Techniques in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Trial Example 9",
+      "quadrant": "Techniques",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Techniques in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Trial Example 10",
+      "quadrant": "Techniques",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Techniques in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Trial Example 11",
+      "quadrant": "Techniques",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Techniques in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Trial Example 12",
+      "quadrant": "Techniques",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Techniques in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Trial Example 13",
+      "quadrant": "Techniques",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Techniques in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Trial Example 14",
+      "quadrant": "Techniques",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Techniques in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Trial Example 15",
+      "quadrant": "Techniques",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Techniques in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Assess Example 1",
+      "quadrant": "Techniques",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Techniques in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Assess Example 2",
+      "quadrant": "Techniques",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Techniques in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Assess Example 3",
+      "quadrant": "Techniques",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Techniques in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Assess Example 4",
+      "quadrant": "Techniques",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Techniques in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Assess Example 5",
+      "quadrant": "Techniques",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Techniques in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Assess Example 6",
+      "quadrant": "Techniques",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Techniques in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Assess Example 7",
+      "quadrant": "Techniques",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Techniques in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Assess Example 8",
+      "quadrant": "Techniques",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Techniques in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Assess Example 9",
+      "quadrant": "Techniques",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Techniques in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Assess Example 10",
+      "quadrant": "Techniques",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Techniques in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Assess Example 11",
+      "quadrant": "Techniques",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Techniques in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Assess Example 12",
+      "quadrant": "Techniques",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Techniques in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Assess Example 13",
+      "quadrant": "Techniques",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Techniques in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Assess Example 14",
+      "quadrant": "Techniques",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Techniques in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Assess Example 15",
+      "quadrant": "Techniques",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Techniques in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Assess Example 16",
+      "quadrant": "Techniques",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Techniques in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Assess Example 17",
+      "quadrant": "Techniques",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Techniques in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Assess Example 18",
+      "quadrant": "Techniques",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Techniques in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Assess Example 19",
+      "quadrant": "Techniques",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Techniques in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Assess Example 20",
+      "quadrant": "Techniques",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Techniques in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Hold Example 1",
+      "quadrant": "Techniques",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Techniques in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Hold Example 2",
+      "quadrant": "Techniques",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Techniques in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Hold Example 3",
+      "quadrant": "Techniques",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Techniques in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Hold Example 4",
+      "quadrant": "Techniques",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Techniques in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Hold Example 5",
+      "quadrant": "Techniques",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Techniques in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Hold Example 6",
+      "quadrant": "Techniques",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Techniques in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Hold Example 7",
+      "quadrant": "Techniques",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Techniques in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Hold Example 8",
+      "quadrant": "Techniques",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Techniques in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Hold Example 9",
+      "quadrant": "Techniques",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Techniques in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Hold Example 10",
+      "quadrant": "Techniques",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Techniques in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Hold Example 11",
+      "quadrant": "Techniques",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Techniques in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Hold Example 12",
+      "quadrant": "Techniques",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Techniques in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Hold Example 13",
+      "quadrant": "Techniques",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Techniques in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Hold Example 14",
+      "quadrant": "Techniques",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Techniques in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Hold Example 15",
+      "quadrant": "Techniques",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Techniques in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Hold Example 16",
+      "quadrant": "Techniques",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Techniques in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Hold Example 17",
+      "quadrant": "Techniques",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Techniques in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Hold Example 18",
+      "quadrant": "Techniques",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Techniques in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Hold Example 19",
+      "quadrant": "Techniques",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Techniques in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Hold Example 20",
+      "quadrant": "Techniques",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Techniques in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Hold Example 21",
+      "quadrant": "Techniques",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Techniques in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Hold Example 22",
+      "quadrant": "Techniques",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Techniques in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Hold Example 23",
+      "quadrant": "Techniques",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Techniques in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Hold Example 24",
+      "quadrant": "Techniques",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Techniques in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Hold Example 25",
+      "quadrant": "Techniques",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Techniques in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Techniques Hold Example 26",
+      "quadrant": "Techniques",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Techniques in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Adopt Example 1",
+      "quadrant": "Platforms",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Platforms in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Adopt Example 2",
+      "quadrant": "Platforms",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Platforms in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Adopt Example 3",
+      "quadrant": "Platforms",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Platforms in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Adopt Example 4",
+      "quadrant": "Platforms",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Platforms in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Adopt Example 5",
+      "quadrant": "Platforms",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Platforms in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Adopt Example 6",
+      "quadrant": "Platforms",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Platforms in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Adopt Example 7",
+      "quadrant": "Platforms",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Platforms in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Adopt Example 8",
+      "quadrant": "Platforms",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Platforms in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Adopt Example 9",
+      "quadrant": "Platforms",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Platforms in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Trial Example 1",
+      "quadrant": "Platforms",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Platforms in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Trial Example 2",
+      "quadrant": "Platforms",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Platforms in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Trial Example 3",
+      "quadrant": "Platforms",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Platforms in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Trial Example 4",
+      "quadrant": "Platforms",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Platforms in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Trial Example 5",
+      "quadrant": "Platforms",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Platforms in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Trial Example 6",
+      "quadrant": "Platforms",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Platforms in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Trial Example 7",
+      "quadrant": "Platforms",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Platforms in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Trial Example 8",
+      "quadrant": "Platforms",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Platforms in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Trial Example 9",
+      "quadrant": "Platforms",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Platforms in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Trial Example 10",
+      "quadrant": "Platforms",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Platforms in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Trial Example 11",
+      "quadrant": "Platforms",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Platforms in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Trial Example 12",
+      "quadrant": "Platforms",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Platforms in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Trial Example 13",
+      "quadrant": "Platforms",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Platforms in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Trial Example 14",
+      "quadrant": "Platforms",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Platforms in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Trial Example 15",
+      "quadrant": "Platforms",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Platforms in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Assess Example 1",
+      "quadrant": "Platforms",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Platforms in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Assess Example 2",
+      "quadrant": "Platforms",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Platforms in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Assess Example 3",
+      "quadrant": "Platforms",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Platforms in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Assess Example 4",
+      "quadrant": "Platforms",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Platforms in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Assess Example 5",
+      "quadrant": "Platforms",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Platforms in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Assess Example 6",
+      "quadrant": "Platforms",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Platforms in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Assess Example 7",
+      "quadrant": "Platforms",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Platforms in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Assess Example 8",
+      "quadrant": "Platforms",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Platforms in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Assess Example 9",
+      "quadrant": "Platforms",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Platforms in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Assess Example 10",
+      "quadrant": "Platforms",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Platforms in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Assess Example 11",
+      "quadrant": "Platforms",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Platforms in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Assess Example 12",
+      "quadrant": "Platforms",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Platforms in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Assess Example 13",
+      "quadrant": "Platforms",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Platforms in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Assess Example 14",
+      "quadrant": "Platforms",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Platforms in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Assess Example 15",
+      "quadrant": "Platforms",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Platforms in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Assess Example 16",
+      "quadrant": "Platforms",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Platforms in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Assess Example 17",
+      "quadrant": "Platforms",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Platforms in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Assess Example 18",
+      "quadrant": "Platforms",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Platforms in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Assess Example 19",
+      "quadrant": "Platforms",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Platforms in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Assess Example 20",
+      "quadrant": "Platforms",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Platforms in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Assess Example 21",
+      "quadrant": "Platforms",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Platforms in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Hold Example 1",
+      "quadrant": "Platforms",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Platforms in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Hold Example 2",
+      "quadrant": "Platforms",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Platforms in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Hold Example 3",
+      "quadrant": "Platforms",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Platforms in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Hold Example 4",
+      "quadrant": "Platforms",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Platforms in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Hold Example 5",
+      "quadrant": "Platforms",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Platforms in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Hold Example 6",
+      "quadrant": "Platforms",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Platforms in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Hold Example 7",
+      "quadrant": "Platforms",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Platforms in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Hold Example 8",
+      "quadrant": "Platforms",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Platforms in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Hold Example 9",
+      "quadrant": "Platforms",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Platforms in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Hold Example 10",
+      "quadrant": "Platforms",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Platforms in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Hold Example 11",
+      "quadrant": "Platforms",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Platforms in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Hold Example 12",
+      "quadrant": "Platforms",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Platforms in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Hold Example 13",
+      "quadrant": "Platforms",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Platforms in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Hold Example 14",
+      "quadrant": "Platforms",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Platforms in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Hold Example 15",
+      "quadrant": "Platforms",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Platforms in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Hold Example 16",
+      "quadrant": "Platforms",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Platforms in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Hold Example 17",
+      "quadrant": "Platforms",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Platforms in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Hold Example 18",
+      "quadrant": "Platforms",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Platforms in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Hold Example 19",
+      "quadrant": "Platforms",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Platforms in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Hold Example 20",
+      "quadrant": "Platforms",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Platforms in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Hold Example 21",
+      "quadrant": "Platforms",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Platforms in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Hold Example 22",
+      "quadrant": "Platforms",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Platforms in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Hold Example 23",
+      "quadrant": "Platforms",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Platforms in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Hold Example 24",
+      "quadrant": "Platforms",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Platforms in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Platforms Hold Example 25",
+      "quadrant": "Platforms",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Platforms in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Tools Adopt Example 1",
+      "quadrant": "Tools",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Tools in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Tools Adopt Example 2",
+      "quadrant": "Tools",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Tools in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Tools Adopt Example 3",
+      "quadrant": "Tools",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Tools in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Tools Adopt Example 4",
+      "quadrant": "Tools",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Tools in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Tools Adopt Example 5",
+      "quadrant": "Tools",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Tools in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Tools Adopt Example 6",
+      "quadrant": "Tools",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Tools in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Tools Adopt Example 7",
+      "quadrant": "Tools",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Tools in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Tools Adopt Example 8",
+      "quadrant": "Tools",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Tools in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Tools Adopt Example 9",
+      "quadrant": "Tools",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Tools in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Tools Adopt Example 10",
+      "quadrant": "Tools",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Tools in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Tools Trial Example 1",
+      "quadrant": "Tools",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Tools in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Tools Trial Example 2",
+      "quadrant": "Tools",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Tools in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Tools Trial Example 3",
+      "quadrant": "Tools",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Tools in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Tools Trial Example 4",
+      "quadrant": "Tools",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Tools in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Tools Trial Example 5",
+      "quadrant": "Tools",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Tools in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Tools Trial Example 6",
+      "quadrant": "Tools",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Tools in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Tools Trial Example 7",
+      "quadrant": "Tools",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Tools in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Tools Trial Example 8",
+      "quadrant": "Tools",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Tools in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Tools Trial Example 9",
+      "quadrant": "Tools",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Tools in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Tools Trial Example 10",
+      "quadrant": "Tools",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Tools in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Tools Trial Example 11",
+      "quadrant": "Tools",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Tools in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Tools Trial Example 12",
+      "quadrant": "Tools",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Tools in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Tools Trial Example 13",
+      "quadrant": "Tools",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Tools in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Tools Trial Example 14",
+      "quadrant": "Tools",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Tools in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Tools Trial Example 15",
+      "quadrant": "Tools",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Tools in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Tools Assess Example 1",
+      "quadrant": "Tools",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Tools in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Tools Assess Example 2",
+      "quadrant": "Tools",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Tools in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Tools Assess Example 3",
+      "quadrant": "Tools",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Tools in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Tools Assess Example 4",
+      "quadrant": "Tools",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Tools in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Tools Assess Example 5",
+      "quadrant": "Tools",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Tools in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Tools Assess Example 6",
+      "quadrant": "Tools",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Tools in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Tools Assess Example 7",
+      "quadrant": "Tools",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Tools in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Tools Assess Example 8",
+      "quadrant": "Tools",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Tools in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Tools Assess Example 9",
+      "quadrant": "Tools",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Tools in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Tools Assess Example 10",
+      "quadrant": "Tools",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Tools in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Tools Assess Example 11",
+      "quadrant": "Tools",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Tools in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Tools Assess Example 12",
+      "quadrant": "Tools",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Tools in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Tools Assess Example 13",
+      "quadrant": "Tools",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Tools in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Tools Assess Example 14",
+      "quadrant": "Tools",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Tools in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Tools Assess Example 15",
+      "quadrant": "Tools",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Tools in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Tools Assess Example 16",
+      "quadrant": "Tools",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Tools in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Tools Assess Example 17",
+      "quadrant": "Tools",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Tools in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Tools Assess Example 18",
+      "quadrant": "Tools",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Tools in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Tools Assess Example 19",
+      "quadrant": "Tools",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Tools in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Tools Assess Example 20",
+      "quadrant": "Tools",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Tools in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Tools Hold Example 1",
+      "quadrant": "Tools",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Tools in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Tools Hold Example 2",
+      "quadrant": "Tools",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Tools in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Tools Hold Example 3",
+      "quadrant": "Tools",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Tools in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Tools Hold Example 4",
+      "quadrant": "Tools",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Tools in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Tools Hold Example 5",
+      "quadrant": "Tools",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Tools in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Tools Hold Example 6",
+      "quadrant": "Tools",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Tools in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Tools Hold Example 7",
+      "quadrant": "Tools",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Tools in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Tools Hold Example 8",
+      "quadrant": "Tools",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Tools in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Tools Hold Example 9",
+      "quadrant": "Tools",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Tools in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Tools Hold Example 10",
+      "quadrant": "Tools",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Tools in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Tools Hold Example 11",
+      "quadrant": "Tools",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Tools in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Tools Hold Example 12",
+      "quadrant": "Tools",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Tools in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Tools Hold Example 13",
+      "quadrant": "Tools",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Tools in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Tools Hold Example 14",
+      "quadrant": "Tools",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Tools in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Tools Hold Example 15",
+      "quadrant": "Tools",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Tools in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Tools Hold Example 16",
+      "quadrant": "Tools",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Tools in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Tools Hold Example 17",
+      "quadrant": "Tools",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Tools in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Tools Hold Example 18",
+      "quadrant": "Tools",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Tools in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Tools Hold Example 19",
+      "quadrant": "Tools",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Tools in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Tools Hold Example 20",
+      "quadrant": "Tools",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Tools in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Tools Hold Example 21",
+      "quadrant": "Tools",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Tools in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Tools Hold Example 22",
+      "quadrant": "Tools",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Tools in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Tools Hold Example 23",
+      "quadrant": "Tools",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Tools in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Tools Hold Example 24",
+      "quadrant": "Tools",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Tools in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Tools Hold Example 25",
+      "quadrant": "Tools",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Tools in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Adopt Example 1",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Adopt Example 2",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Adopt Example 3",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Adopt Example 4",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Adopt Example 5",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Adopt Example 6",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Adopt Example 7",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Adopt Example 8",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Adopt",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Adopt to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Trial Example 1",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Trial Example 2",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Trial Example 3",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Trial Example 4",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Trial Example 5",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Trial Example 6",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Trial Example 7",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Trial Example 8",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Trial Example 9",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Trial Example 10",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Trial Example 11",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Trial Example 12",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Trial Example 13",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Trial Example 14",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Trial Example 15",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Trial Example 16",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Trial",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Trial to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Assess Example 1",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Assess Example 2",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Assess Example 3",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Assess Example 4",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Assess Example 5",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Assess Example 6",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Assess Example 7",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Assess Example 8",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Assess Example 9",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Assess Example 10",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Assess Example 11",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Assess Example 12",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Assess Example 13",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Assess Example 14",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Assess Example 15",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Assess Example 16",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Assess Example 17",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Assess Example 18",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Assess Example 19",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Assess Example 20",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Assess",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Assess to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Hold Example 1",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Hold Example 2",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Hold Example 3",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Hold Example 4",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Hold Example 5",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Hold Example 6",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Hold Example 7",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Hold Example 8",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Hold Example 9",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Hold Example 10",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Hold Example 11",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Hold Example 12",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Hold Example 13",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Hold Example 14",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Hold Example 15",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Hold Example 16",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Hold Example 17",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Hold Example 18",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Hold Example 19",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Hold Example 20",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Hold Example 21",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Hold Example 22",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Hold Example 23",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Hold Example 24",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Hold to exceed clustering limit."
+    },
+    {
+      "name": "Languages & Frameworks Hold Example 25",
+      "quadrant": "Languages & Frameworks",
+      "ring": "Hold",
+      "isNew": false,
+      "description": "Example blip for Languages & Frameworks in Hold to exceed clustering limit."
     }
   ]
 }

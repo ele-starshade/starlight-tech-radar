@@ -2,7 +2,7 @@ import { api } from 'src/boot/axios'
 import { type Blip, type LicenseMetadata } from 'src/models/radar'
 
 // Simple in-memory cache
-let enrichmentCache: Record<string, { license: LicenseMetadata; rating: string; timestamp: number }> = {}
+let enrichmentCache: Record<string, { license?: LicenseMetadata; rating?: string; timestamp: number }> = {}
 const CACHE_TTL = 1000 * 60 * 60 * 24 // 24 hours
 
 /**
@@ -67,6 +67,11 @@ export async function enrichBlip (
   githubApiBaseUrl: string = 'https://api.github.com',
   gitlabApiBaseUrl: string = 'https://gitlab.com'
 ): Promise<Blip> {
+  // If there's no repoUrl, there's no license or rating to fetch.
+  if (!blip.repoUrl) {
+    return blip
+  }
+
   const cacheKey = blip.repoUrl
   const now = Date.now()
 
@@ -78,7 +83,7 @@ export async function enrichBlip (
     }
   }
 
-  let license: LicenseMetadata = {
+  let license: LicenseMetadata | undefined = blip.license || {
     spdx_id: 'Unknown',
     name: 'Unknown License',
     url: blip.repoUrl
@@ -157,8 +162,8 @@ export async function enrichBlip (
     rating?: string
   }
 
-  if (Array.isArray(blueOak) && blueOak.length > 0) {
-    const found = (blueOak as BlueOakLicense[]).find((l) => l.id === license.spdx_id)
+  if (license && Array.isArray(blueOak) && blueOak.length > 0) {
+    const found = (blueOak as BlueOakLicense[]).find((l) => l.id === license?.spdx_id)
 
     if (found) {
       rating = found.rating || 'Approved'
@@ -166,7 +171,7 @@ export async function enrichBlip (
   }
 
   // Fallback to manual check if still unknown
-  if (rating === 'Unknown') {
+  if (rating === 'Unknown' && license) {
     if (license.spdx_id === 'MIT') {
       rating = 'Gold'
     } else if (license.spdx_id === 'Apache-2.0') {

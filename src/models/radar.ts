@@ -27,8 +27,8 @@ export const BlipSchema = z.object({
   ring: RingEnum,
   isNew: z.boolean(),
   description: z.string(),
-  repoUrl: z.string().url(),
-  guidanceLink: z.string().url(),
+  repoUrl: z.string().url().optional(),
+  guidanceLink: z.string().url().optional(),
   license: LicenseMetadataSchema.optional(),
   rating: z.string().optional() // Placeholder for Blue Oak rating
 })

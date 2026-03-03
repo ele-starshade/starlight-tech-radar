@@ -6,7 +6,7 @@ describe('RadarBlip.vue', () => {
   it('matches snapshot', () => {
     const wrapper = mountComponent(RadarBlip, {
       props: {
-        blip: { name: 'Test Blip', ring: 'Adopt', quadrant: 'Tools', isNew: false, description: 'Test', repoUrl: '', guidanceLink: '' },
+        node: { isCluster: false, id: '1', name: 'Test Blip', ring: 'Adopt', quadrant: 'Tools', isNew: false, description: 'Test', repoUrl: '', guidanceLink: '', x: 100, y: 100, blips: [{ name: 'Test Blip', ring: 'Adopt', quadrant: 'Tools', isNew: false, description: 'Test', repoUrl: '', guidanceLink: '' }] },
         position: { x: 100, y: 100 },
         isActive: false,
         index: 1

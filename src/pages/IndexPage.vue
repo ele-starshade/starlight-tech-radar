@@ -79,8 +79,8 @@
             </q-card-section>
 
             <q-card-actions align="right">
-              <q-btn flat color="primary" :label="$t('radar.blips.guidance')" :href="blip.guidanceLink" target="_blank" />
-              <q-btn flat color="secondary" :label="$t('radar.blips.repository')" :href="blip.repoUrl" target="_blank" />
+              <q-btn v-if="blip.guidanceLink" flat color="primary" :label="$t('radar.blips.guidance')" :href="blip.guidanceLink" target="_blank" />
+              <q-btn v-if="blip.repoUrl" flat color="secondary" :label="$t('radar.blips.repository')" :href="blip.repoUrl" target="_blank" />
             </q-card-actions>
           </q-card>
         </div>

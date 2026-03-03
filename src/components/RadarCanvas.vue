@@ -9,22 +9,22 @@
     >
       <RadarGrid />
 
-      <!-- Blips -->
+      <!-- Blips / Clusters -->
       <RadarBlip
-        v-for="(blip, index) in blipsWithPositions"
-        :key="blip.name"
-        :blip="blip"
+        v-for="(node, index) in displayNodes"
+        :key="node.id"
+        :node="node"
         :index="index"
-        @click="onBlipClick"
+        @click="onNodeClick"
       />
     </svg>
 
     <!-- Tooltips (moved outside SVG for better SSR/Portals support) -->
     <template v-if="isMounted">
       <RadarBlipTooltip
-        v-for="(blip, index) in blipsWithPositions"
-        :key="`tooltip-${blip.name}`"
-        :blip="blip"
+        v-for="(node, index) in displayNodes"
+        :key="`tooltip-${node.id}`"
+        :node="node"
         :index="index"
       />
     </template>
@@ -32,17 +32,19 @@
     <!-- Blip Details Dialog -->
     <RadarBlipDetails
       v-model="detailsDialog.show"
-      :blip="detailsDialog.blip"
+      :node="detailsDialog.node"
     />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue'
-import type { Blip } from 'src/models/radar'
-import type { Point } from 'src/utils/radar-visualization'
+import type { Blip, Ring } from 'src/models/radar'
+import type { Point, DisplayNode } from 'src/utils/radar-visualization'
 import {
   RADAR_RADIUS,
+  RING_RADII,
+  QUADRANT_ANGLES,
   getInitialBlipPosition,
   resolveBlipCollisions
 } from 'src/utils/radar-visualization'
@@ -76,24 +78,99 @@ export default defineComponent({
       isMounted: false,
       detailsDialog: {
         show: false,
-        blip: null as Blip | null
+        node: null as unknown as DisplayNode
       }
     }
   },
 
   computed: {
-    blipsWithPositions (): Array<Blip & Point> {
-      const initialPositions: Record<string, Point> = {}
+    displayNodes (): DisplayNode[] {
+      const groups: Record<string, Blip[]> = {}
 
       this.blips.forEach(blip => {
-        initialPositions[blip.name] = getInitialBlipPosition(blip)
+        const key = `${blip.quadrant}-${blip.ring}`
+
+        if (!groups[key]) {
+          groups[key] = []
+        }
+
+        groups[key].push(blip)
       })
 
-      const finalPositions = resolveBlipCollisions(this.blips, initialPositions)
+      const nodes: DisplayNode[] = []
+      const CLUSTER_THRESHOLDS: Record<Ring, number> = {
+        Adopt: 10,
+        Trial: 15,
+        Assess: 20,
+        Hold: 25
+      }
 
-      return this.blips.map(blip => ({
-        ...blip,
-        ...finalPositions[blip.name]!
+      for (const [key, groupBlips] of Object.entries(groups)) {
+        if (!groupBlips || groupBlips.length === 0) continue
+        const firstBlip = groupBlips[0] as Blip
+        const threshold = CLUSTER_THRESHOLDS[firstBlip.ring]
+
+        if (groupBlips.length > threshold) {
+          nodes.push({
+            isCluster: true,
+            id: `cluster-${key}`,
+            name: `${groupBlips.length} items`,
+            blips: groupBlips,
+            quadrant: firstBlip.quadrant,
+            ring: firstBlip.ring,
+            x: 0,
+            y: 0,
+            isNew: groupBlips.some(b => b.isNew)
+          })
+        } else {
+          groupBlips.forEach(blip => {
+            nodes.push({
+              isCluster: false,
+              id: blip.id || blip.name,
+              name: blip.name,
+              blips: [blip],
+              quadrant: blip.quadrant,
+              ring: blip.ring,
+              x: 0,
+              y: 0,
+              isNew: blip.isNew
+            })
+          })
+        }
+      }
+
+      const initialPositions: Record<string, Point> = {}
+
+      nodes.forEach(node => {
+        // Mock a blip to use the existing positioning logic based on quadrant/ring
+        const mockBlip = {
+          name: node.id,
+          quadrant: node.quadrant,
+          ring: node.ring
+        } as Blip
+
+        if (node.isCluster) {
+          const ringProps = RING_RADII[node.ring]
+          const quadProps = QUADRANT_ANGLES[node.quadrant]
+          const radius = (ringProps.inner + ringProps.outer) / 2
+          const angle = (quadProps.start + quadProps.end) / 2
+
+          const angleRadians = (angle * Math.PI) / 180
+
+          initialPositions[node.id] = {
+            x: RADAR_RADIUS + radius * Math.cos(angleRadians),
+            y: RADAR_RADIUS - radius * Math.sin(angleRadians)
+          }
+        } else {
+          initialPositions[node.id] = getInitialBlipPosition(mockBlip)
+        }
+      })
+
+      const finalPositions = resolveBlipCollisions(nodes, initialPositions)
+
+      return nodes.map(node => ({
+        ...node,
+        ...finalPositions[node.id]!
       }))
     }
   },
@@ -103,8 +180,8 @@ export default defineComponent({
   },
 
   methods: {
-    onBlipClick (blip: Blip) {
-      this.detailsDialog.blip = blip
+    onNodeClick (node: DisplayNode) {
+      this.detailsDialog.node = node
       this.detailsDialog.show = true
     }
   }

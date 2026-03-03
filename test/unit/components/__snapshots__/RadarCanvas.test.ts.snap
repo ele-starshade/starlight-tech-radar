@@ -2,7 +2,7 @@
 
 exports[`RadarCanvas.vue > matches snapshot 1`] = `
 "<div data-v-a0ade5a1="" class="radar-container overflow-auto flex flex-center q-pa-lg relative-position"><svg data-v-a0ade5a1="" viewBox="-50 -50 1100 1100" width="1100" height="1100" class="radar-svg" xmlns="http://www.w3.org/2000/svg">
-    <radar-grid-stub data-v-a0ade5a1=""></radar-grid-stub><!-- Blips -->
+    <radar-grid-stub data-v-a0ade5a1=""></radar-grid-stub><!-- Blips / Clusters -->
   </svg><!-- Tooltips (moved outside SVG for better SSR/Portals support) -->
   <!--v-if-->
   <!-- Blip Details Dialog -->
