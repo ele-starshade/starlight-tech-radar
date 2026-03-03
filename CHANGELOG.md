@@ -1,3 +1,10 @@
+# [1.1.0](https://gitlab.com/ele.starshade/starlight-tech-radar/compare/v1.0.0...v1.1.0) (2026-03-03)
+
+
+### Features
+
+* tidy radar math logic, add blip clustering ([e64b97a](https://gitlab.com/ele.starshade/starlight-tech-radar/commit/e64b97a32a7d184a6a8a86913369792ce628dae2))
+
 # 1.0.0 (2026-03-02)
 
 
