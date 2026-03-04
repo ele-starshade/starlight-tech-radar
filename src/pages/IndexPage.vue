@@ -34,8 +34,8 @@
       </div>
 
       <div class="row q-col-gutter-md" v-else-if="(viewMode === 'list' || $q.screen.lt.md) && radarData">
-        <div v-for="blip in radarData.blips" :key="blip.name" class="col-12 col-sm-6 col-md-4">
-          <q-card flat bordered class="full-height">
+        <div v-for="blip in radarData.blips" :key="blip.name" class="col-12 col-md-6">
+          <q-card flat bordered class="full-height column">
             <q-card-section>
               <div class="row items-center no-wrap">
                 <div class="col">
@@ -52,83 +52,120 @@
               </div>
             </q-card-section>
 
-            <q-card-section class="q-pt-none">
-              {{ blip.description }}
-            </q-card-section>
-
-            <q-separator />
-
             <q-card-section>
-              <div class="row items-center q-gutter-sm">
-                <q-chip
-                  outline
-                  color="primary"
-                  icon="description"
-                  dense
-                  clickable
-                  tag="a"
-                  :href="blip.license?.url"
-                  target="_blank"
-                >
-                  {{ blip.license?.spdx_id }}
+              <div class="row items-center q-gutter-sm q-mb-md">
+                <q-chip :color="blip.isNew ? 'positive' : 'primary'" text-color="black">
+                  <q-icon name="trending_up" size="xs" class="q-mr-xs" v-if="blip.isNew" />
+                  <q-icon name="trending_flat" size="xs" class="q-mr-xs" v-else />
+                  {{ blip.isNew ? $t('radar.blips.new') : $t('radar.blips.stable') }}
                 </q-chip>
-                <q-chip outline :color="getRatingColor(blip.rating)" icon="verified" dense>
+                <q-chip color="primary" text-color="black" v-if="blip.quadrant">
+                  <q-icon name="category" size="xs" class="q-mr-xs" />
+                  {{ $t(getQuadrantTranslationKey(blip.quadrant)) }}
+                </q-chip>
+                <q-chip color="secondary" text-color="black" v-if="blip.ring">
+                  <q-icon name="layers" size="xs" class="q-mr-xs" />
+                  {{ $t(`radar.rings.${blip.ring.toLowerCase()}`) }}
+                </q-chip>
+                <q-chip outline color="white" icon="description" v-if="blip.license?.spdx_id">
+                  {{ blip.license.spdx_id }}
+                </q-chip>
+                <q-chip outline :color="getRatingColor(blip.rating)" icon="verified" v-if="blip.rating">
                   {{ blip.rating }}
                 </q-chip>
               </div>
             </q-card-section>
 
-            <q-card-actions align="right">
-              <q-btn v-if="blip.guidanceLink" flat color="primary" :label="$t('radar.blips.guidance')" :href="blip.guidanceLink" target="_blank" />
-              <q-btn v-if="blip.repoUrl" flat color="secondary" :label="$t('radar.blips.repository')" :href="blip.repoUrl" target="_blank" />
-            </q-card-actions>
+            <q-card-section class="q-pt-none col">
+              {{ blip.description }}
+            </q-card-section>
+
+            <q-space />
+            <q-separator />
+
+            <q-card-section class="q-pb-none">
+              <q-btn-group spread>
+                <q-btn v-if="blip.guidanceLink" color="primary" text-color="black" :label="$t('radar.blips.guidance')" :href="blip.guidanceLink" target="_blank" icon="description" />
+                <q-btn v-if="blip.repoUrl" color="secondary" text-color="black" :label="$t('radar.blips.repository')" :href="blip.repoUrl" target="_blank" icon="book" />
+                <q-btn
+                  v-if="isFeedbackEnabled"
+                  color="orange"
+                  text-color="black"
+                  :label="$t('radar.feedback.give_feedback')"
+                  icon="feedback"
+                  @click="openFeedback(blip)"
+                />
+              </q-btn-group>
+            </q-card-section>
           </q-card>
         </div>
       </div>
+      <RadarBlipFeedbackDialog
+        v-if="isFeedbackEnabled"
+        v-model="showFeedbackDialog"
+        :blip="feedbackBlip"
+      />
     </div>
   </q-page>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, computed, ref, watch, onServerPrefetch } from 'vue'
+import { defineComponent } from 'vue'
+import { mapState } from 'pinia'
 import { useRadarStore } from 'src/stores/radar'
-import { useQuasar } from 'quasar'
-import { useRoute } from 'vue-router'
 import RadarCanvas from 'src/components/RadarCanvas.vue'
+import { appConfig } from 'src/config'
+import RadarBlipFeedbackDialog from 'src/components/radar/feedback/RadarBlipFeedbackDialog.vue'
+import type { Blip } from 'src/models/radar'
 
 export default defineComponent({
   name: 'IndexPage',
 
   components: {
-    RadarCanvas
+    RadarCanvas,
+    RadarBlipFeedbackDialog
   },
 
-  setup () {
-    const store = useRadarStore()
-    const $q = useQuasar()
-    const route = useRoute()
-    const viewMode = ref('radar')
+  data () {
+    return {
+      viewMode: 'radar',
+      showFeedbackDialog: false,
+      feedbackBlip: null as Blip | null
+    }
+  },
 
-    // On mobile/small screens, force list view; on larger screens, default back to radar
-    watch(() => $q.screen.lt.md, (isMobile) => {
-      if (isMobile) {
-        viewMode.value = 'list'
-      } else {
-        viewMode.value = 'radar'
-      }
-    }, { immediate: true })
+  computed: {
+    ...mapState(useRadarStore, ['radarData', 'loading', 'error']),
+    isFeedbackEnabled (): boolean {
+      return appConfig.isFeedbackEnabled
+    }
+  },
 
-    onServerPrefetch(async () => {
-      await store.fetchRadarData(route.query)
-    })
+  watch: {
+    '$q.screen.lt.md': {
+      handler (isMobile: boolean) {
+        if (isMobile) {
+          this.viewMode = 'list'
+        } else {
+          this.viewMode = 'radar'
+        }
+      },
+      immediate: true
+    }
+  },
 
-    onMounted(async () => {
-      // On client-side, we still want to ensure data is fetched
-      // if it wasn't already fetched by SSR
-      await store.fetchRadarData(route.query)
-    })
+  serverPrefetch () {
+    return useRadarStore().fetchRadarData(this.$route.query)
+  },
 
-    const getQuadrantTranslationKey = (quadrant: string) => {
+  async mounted () {
+    // On client-side, we still want to ensure data is fetched
+    // if it wasn't already fetched by SSR
+    await useRadarStore().fetchRadarData(this.$route.query)
+  },
+
+  methods: {
+    getQuadrantTranslationKey (quadrant: string) {
       const mapping: Record<string, string> = {
         Techniques: 'radar.quadrants.techniques',
         Platforms: 'radar.quadrants.platforms',
@@ -137,19 +174,8 @@ export default defineComponent({
       }
 
       return mapping[quadrant] || quadrant
-    }
+    },
 
-    return {
-      radarData: computed(() => store.radarData),
-      loading: computed(() => store.loading),
-      error: computed(() => store.error),
-      viewMode,
-      fetchRadarData: () => store.fetchRadarData(route.query),
-      getQuadrantTranslationKey
-    }
-  },
-
-  methods: {
     getRatingColor (rating: string | undefined) {
       if (rating === 'Gold') return 'amber-9'
       if (rating === 'Silver') return 'grey-6'
@@ -157,6 +183,12 @@ export default defineComponent({
       if (rating === 'Approved') return 'positive'
 
       return 'grey-5'
+    },
+
+    openFeedback (blip: Blip | undefined) {
+      if (!blip) return
+      this.feedbackBlip = blip
+      this.showFeedbackDialog = true
     }
   }
 })

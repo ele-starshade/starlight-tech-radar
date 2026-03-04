@@ -11,6 +11,7 @@ exports[`IndexPage.vue > matches snapshot 1`] = `
       </div>
     </div>
     <!--v-if-->
+    <!--v-if-->
   </div>
 </q-page>"
 `;

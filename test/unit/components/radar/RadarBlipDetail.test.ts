@@ -6,13 +6,13 @@ describe('RadarBlipDetails.vue', () => {
   it('matches snapshot', () => {
     const wrapper = mountComponent(RadarBlipDetail, {
       props: {
-        modelValue: true,
-        isCluster: false,
-        name: 'Test Blip',
+        subtitle: 'Test Blip',
         ring: 'Adopt',
         quadrant: 'Tools',
         isNew: false,
         description: 'Test',
+        licenseId: 'Apache2.0',
+        licenseRating: 'Gold',
         repoUrl: '',
         guidanceLink: ''
       }

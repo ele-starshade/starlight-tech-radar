@@ -1,7 +1,7 @@
 <template>
   <q-card-section class="q-pt-md">
-    <div class="text-bold q-mb-sm" v-if="subtitle">{{ subtitle }}</div>
-    <div class="row items-center q-gutter-sm q-mb-md">
+    <div class="text-bold" v-if="subtitle">{{ subtitle }}</div>
+    <div class="row items-center q-gutter-sm">
       <q-chip :color="isNew ? 'positive' : 'primary'" text-color="black">
         <q-icon name="trending_up" size="xs" class="q-mr-xs" v-if="isNew" />
         <q-icon name="trending_flat" size="xs" class="q-mr-xs" v-else />
@@ -22,25 +22,24 @@
         {{ licenseRating }}
       </q-chip>
     </div>
-
-    <div class="q-mb-md text-white">
-      {{ description }}
-    </div>
-
-    <q-separator q-my-md dark />
-
-    <div class="row items-center q-gutter-md q-mt-sm">
+  </q-card-section>
+  <q-card-section class="q-pt-none">
+    {{ description }}
+  </q-card-section>
+  <q-separator />
+  <q-card-section class="q-mt-xs">
+    <q-btn-group spread>
       <q-btn v-if="guidanceLink" color="primary" text-color="black" :label="$t('radar.blips.guidance')" :href="guidanceLink" target="_blank" icon="description" />
       <q-btn v-if="repoUrl" color="secondary" text-color="black" :label="$t('radar.blips.repository')" :href="repoUrl" target="_blank" icon="book" />
       <q-btn
         v-if="isFeedbackEnabled"
-        color="deep-orange"
-        text-color="white"
+        color="orange"
+        text-color="black"
         :label="$t('radar.feedback.give_feedback')"
         icon="feedback"
         @click="$emit('feedbackClicked')"
       />
-    </div>
+    </q-btn-group>
   </q-card-section>
 </template>
 

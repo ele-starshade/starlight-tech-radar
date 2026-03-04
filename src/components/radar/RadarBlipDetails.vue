@@ -6,7 +6,7 @@
     aria-labelledby="blip-details-title"
     :full-height="node?.isCluster"
   >
-    <q-card style="min-width: 350px;" dark class="bg-dark text-white scroll" :class="{ 'full-height': node?.isCluster }">
+    <q-card style="min-width: 50%;" dark class="bg-dark text-white scroll" :class="{ 'full-height': node?.isCluster }">
       <template v-if="node">
         <q-card-section class="row items-center q-pb-none sticky-top bg-dark" style="z-index: 10; position: sticky; top: 0;">
           <div id="blip-details-title" class="text-h6 text-white">
@@ -15,24 +15,21 @@
           <q-space />
           <q-btn icon="close" flat round dense v-close-popup :aria-label="$t('radar.blips.close')" />
         </q-card-section>
-
-        <q-card-section class="q-pt-md">
-          <div v-for="blip in node.blips" :key="blip.id || blip.name">
-            <radar-blip-detail
-              :subtitle="node.isCluster ? blip.name : ''"
-              :is-new="blip.isNew"
-              :license-id="blip.license?.spdx_id ?? ''"
-              :license-rating="blip.rating"
-              :description="blip.description"
-              :guidance-link="blip.guidanceLink"
-              :repo-url="blip.repoUrl"
-              :is-feedback-enabled="isFeedbackEnabled"
-              :quadrant="blip.quadrant"
-              :ring="blip.ring"
-              @feedback-clicked="openFeedback(blip)"
-            />
-          </div>
-        </q-card-section>
+        <template v-for="blip in node.blips" :key="blip.id || blip.name">
+          <radar-blip-detail
+            :subtitle="node.isCluster ? blip.name : ''"
+            :is-new="blip.isNew"
+            :license-id="blip.license?.spdx_id ?? ''"
+            :license-rating="blip.rating"
+            :description="blip.description"
+            :guidance-link="blip.guidanceLink"
+            :repo-url="blip.repoUrl"
+            :is-feedback-enabled="isFeedbackEnabled"
+            :quadrant="blip.quadrant"
+            :ring="blip.ring"
+            @feedback-clicked="openFeedback(blip)"
+          />
+        </template>
       </template>
     </q-card>
   </q-dialog>

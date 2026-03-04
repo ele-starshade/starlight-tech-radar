@@ -2,7 +2,6 @@
   <q-drawer
     :model-value="modelValue"
     @update:model-value="$emit('update:modelValue', $event)"
-    show-if-above
     bordered
     :class="isDarkMode ? 'bg-grey-9' : 'bg-grey-3'"
   >
