@@ -1,8 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`RadarBlipDetails.vue > matches snapshot 1`] = `
-"<q-dialog modelvalue="true" square="" class="shadow-0" aria-labelledby="blip-details-title" full-height="">
-  <q-card style="min-width: 350px; max-width: 800px; width: 100%;" dark="" class="bg-dark text-white scroll full-height">
+"<q-dialog modelvalue="true" square="" class="shadow-0" aria-labelledby="blip-details-title" full-height="false">
+  <q-card style="min-width: 350px;" dark="" class="bg-dark text-white scroll">
     <q-card-section class="row items-center q-pb-none sticky-top bg-dark" style="z-index: 10; position: sticky; top: 0px;">
       <div id="blip-details-title" class="text-h6 text-white">Test Blip</div>
       <q-space></q-space>
@@ -10,26 +10,7 @@ exports[`RadarBlipDetails.vue > matches snapshot 1`] = `
     </q-card-section>
     <q-card-section class="q-pt-md">
       <div>
-        <div class="row items-center q-gutter-sm q-mb-md">
-          <q-chip color="primary" text-color="black">
-            <q-icon name="trending_flat" size="xs" class="q-mr-xs"></q-icon> radar.blips.stable
-          </q-chip>
-          <q-chip color="primary" text-color="black">
-            <q-icon name="category" size="xs" class="q-mr-xs"></q-icon> radar.quadrants.tools
-          </q-chip>
-          <q-chip color="secondary" text-color="black">
-            <q-icon name="layers" size="xs" class="q-mr-xs"></q-icon> radar.rings.adopt
-          </q-chip>
-          <!--v-if-->
-          <!--v-if-->
-        </div>
-        <div class="q-mb-md text-white">Test</div>
-        <q-separator q-my-md="" dark=""></q-separator>
-        <div class="row items-center q-gutter-md q-mt-sm">
-          <!--v-if-->
-          <!--v-if-->
-          <!--v-if-->
-        </div>
+        <radar-blip-detail-stub description="Test" subtitle="" isnew="false" licenseid="" licenserating="" quadrant="Tools" ring="Adopt" guidancelink="" repourl="" isfeedbackenabled="false"></radar-blip-detail-stub>
       </div>
     </q-card-section>
   </q-card>

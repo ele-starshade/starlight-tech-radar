@@ -79,7 +79,7 @@ export async function enrichBlip (
     return {
       ...blip,
       license: enrichmentCache[cacheKey].license,
-      rating: enrichmentCache[cacheKey].rating
+      rating: enrichmentCache[cacheKey].rating ?? ''
     }
   }
 

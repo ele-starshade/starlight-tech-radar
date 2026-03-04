@@ -14,7 +14,8 @@ const generateClusteredData = () => {
       isNew: false,
       description: `Description ${i}`,
       repoUrl: `https://github.com/test/tool${i}`,
-      guidanceLink: `https://test.com/tool${i}`
+      guidanceLink: `https://test.com/tool${i}`,
+      rating: ''
     })
   }
 
@@ -27,7 +28,8 @@ const generateClusteredData = () => {
       isNew: false,
       description: `Description ${i}`,
       repoUrl: `https://github.com/test/trial${i}`,
-      guidanceLink: `https://test.com/trial${i}`
+      guidanceLink: `https://test.com/trial${i}`,
+      rating: ''
     })
   }
 

@@ -4,9 +4,9 @@
     square
     class="shadow-0"
     aria-labelledby="blip-details-title"
-    full-height
+    :full-height="node?.isCluster"
   >
-    <q-card style="min-width: 350px; max-width: 800px; width: 100%" dark class="bg-dark text-white scroll full-height">
+    <q-card style="min-width: 350px;" dark class="bg-dark text-white scroll" :class="{ 'full-height': node?.isCluster }">
       <template v-if="node">
         <q-card-section class="row items-center q-pb-none sticky-top bg-dark" style="z-index: 10; position: sticky; top: 0;">
           <div id="blip-details-title" class="text-h6 text-white">
@@ -17,87 +17,20 @@
         </q-card-section>
 
         <q-card-section class="q-pt-md">
-          <div v-if="node.isCluster" class="q-gutter-y-md">
-            <div v-for="blip in node.blips" :key="blip.id || blip.name" class="q-pa-md bg-grey-9 rounded-borders">
-              <div class="text-subtitle1 text-bold q-mb-sm">{{ blip.name }}</div>
-
-              <div class="row items-center q-gutter-sm q-mb-md">
-                <q-chip :color="blip.isNew ? 'positive' : 'primary'" text-color="black" dense>
-                  <q-icon name="trending_up" size="xs" class="q-mr-xs" v-if="blip.isNew" />
-                  <q-icon name="trending_flat" size="xs" class="q-mr-xs" v-else />
-                  {{ blip.isNew ? $t('radar.blips.new') : $t('radar.blips.stable') }}
-                </q-chip>
-                <q-chip outline color="white" icon="description" dense v-if="blip.license">
-                  {{ blip.license.spdx_id }}
-                </q-chip>
-                <q-chip outline :color="getRatingColor(blip.rating)" icon="verified" dense v-if="blip.rating">
-                  {{ blip.rating }}
-                </q-chip>
-              </div>
-
-              <div class="q-mb-md text-white text-body2">
-                {{ blip.description }}
-              </div>
-
-              <q-separator q-my-sm dark />
-
-              <div class="row items-center q-gutter-sm q-mt-sm">
-                <q-btn v-if="blip.guidanceLink" color="primary" text-color="black" :label="$t('radar.blips.guidance')" :href="blip.guidanceLink" target="_blank" icon="description" size="sm" />
-                <q-btn v-if="blip.repoUrl" color="secondary" text-color="black" :label="$t('radar.blips.repository')" :href="blip.repoUrl" target="_blank" icon="book" size="sm" />
-                <q-btn
-                  v-if="isFeedbackEnabled"
-                  color="deep-orange"
-                  text-color="white"
-                  :label="$t('radar.feedback.give_feedback')"
-                  icon="feedback"
-                  size="sm"
-                  @click="openFeedback(blip)"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div v-else>
-            <div class="row items-center q-gutter-sm q-mb-md">
-              <q-chip :color="node.blips[0]?.isNew ? 'positive' : 'primary'" text-color="black">
-                <q-icon name="trending_up" size="xs" class="q-mr-xs" v-if="node.blips[0]?.isNew" />
-                <q-icon name="trending_flat" size="xs" class="q-mr-xs" v-else />
-                {{ node.blips[0]?.isNew ? $t('radar.blips.new') : $t('radar.blips.stable') }}
-              </q-chip>
-              <q-chip color="primary" text-color="black">
-                <q-icon name="category" size="xs" class="q-mr-xs" />
-                {{ $t(getQuadrantTranslationKey(node.quadrant)) }}
-              </q-chip>
-              <q-chip color="secondary" text-color="black">
-                <q-icon name="layers" size="xs" class="q-mr-xs" />
-                {{ $t(`radar.rings.${node.ring.toLowerCase()}`) }}
-              </q-chip>
-              <q-chip outline color="white" icon="description" v-if="node.blips[0]?.license">
-                {{ node.blips[0]?.license?.spdx_id }}
-              </q-chip>
-              <q-chip outline :color="getRatingColor(node.blips[0]?.rating)" icon="verified" v-if="node.blips[0]?.rating">
-                {{ node.blips[0]?.rating }}
-              </q-chip>
-            </div>
-
-            <div class="q-mb-md text-white">
-              {{ node.blips[0]?.description }}
-            </div>
-
-            <q-separator q-my-md dark />
-
-            <div class="row items-center q-gutter-md q-mt-sm">
-              <q-btn v-if="node.blips[0]?.guidanceLink" color="primary" text-color="black" :label="$t('radar.blips.guidance')" :href="node.blips[0]?.guidanceLink" target="_blank" icon="description" />
-              <q-btn v-if="node.blips[0]?.repoUrl" color="secondary" text-color="black" :label="$t('radar.blips.repository')" :href="node.blips[0]?.repoUrl" target="_blank" icon="book" />
-              <q-btn
-                v-if="isFeedbackEnabled"
-                color="deep-orange"
-                text-color="white"
-                :label="$t('radar.feedback.give_feedback')"
-                icon="feedback"
-                @click="openFeedback(node.blips[0])"
-              />
-            </div>
+          <div v-for="blip in node.blips" :key="blip.id || blip.name">
+            <radar-blip-detail
+              :subtitle="node.isCluster ? blip.name : ''"
+              :is-new="blip.isNew"
+              :license-id="blip.license?.spdx_id ?? ''"
+              :license-rating="blip.rating"
+              :description="blip.description"
+              :guidance-link="blip.guidanceLink"
+              :repo-url="blip.repoUrl"
+              :is-feedback-enabled="isFeedbackEnabled"
+              :quadrant="blip.quadrant"
+              :ring="blip.ring"
+              @feedback-clicked="openFeedback(blip)"
+            />
           </div>
         </q-card-section>
       </template>
@@ -118,12 +51,14 @@ import type { DisplayNode } from 'src/utils/radar-visualization'
 import { getQuadrantTranslationKey } from 'src/models/radar'
 import { appConfig } from 'src/config'
 import RadarBlipFeedbackDialog from './feedback/RadarBlipFeedbackDialog.vue'
+import RadarBlipDetail from './RadarBlipDetail.vue'
 
 export default defineComponent({
   name: 'RadarBlipDetails',
 
   components: {
-    RadarBlipFeedbackDialog
+    RadarBlipFeedbackDialog,
+    RadarBlipDetail
   },
 
   props: {
@@ -161,17 +96,7 @@ export default defineComponent({
   },
 
   methods: {
-    getQuadrantTranslationKey (quadrant: string) {
-      return getQuadrantTranslationKey(quadrant)
-    },
-    getRatingColor (rating: string | undefined) {
-      if (rating === 'Gold') return 'amber-9'
-      if (rating === 'Silver') return 'grey-6'
-      if (rating === 'Bronze') return 'deep-orange-9'
-      if (rating === 'Approved') return 'positive'
-
-      return 'grey-5'
-    },
+    getQuadrantTranslationKey,
     openFeedback (blip: Blip | undefined) {
       if (!blip) return
       this.feedbackBlip = blip

@@ -17,7 +17,8 @@ describe('Radar Enrichment Utility', () => {
     isNew: false,
     description: 'A test blip',
     repoUrl: 'https://github.com/test/repo',
-    guidanceLink: 'https://test.com'
+    guidanceLink: 'https://test.com',
+    rating: ''
   }
 
   const getSpy = vi.spyOn(api, 'get')

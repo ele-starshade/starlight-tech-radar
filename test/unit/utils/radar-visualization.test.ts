@@ -45,7 +45,8 @@ describe('Radar Visualization Utility', () => {
       isNew: false,
       description: 'Test',
       repoUrl: 'https://test.com',
-      guidanceLink: 'https://test.com'
+      guidanceLink: 'https://test.com',
+      rating: ''
     }
 
     const pos1 = getInitialBlipPosition(blip)
@@ -64,7 +65,8 @@ describe('Radar Visualization Utility', () => {
         isNew: false,
         description: 'A',
         repoUrl: 'https://a.com',
-        guidanceLink: 'https://a.com'
+        guidanceLink: 'https://a.com',
+        rating: ''
       },
       {
         name: 'Blip B',
@@ -73,7 +75,8 @@ describe('Radar Visualization Utility', () => {
         isNew: false,
         description: 'B',
         repoUrl: 'https://b.com',
-        guidanceLink: 'https://b.com'
+        guidanceLink: 'https://b.com',
+        rating: ''
       }
     ]
 
@@ -103,7 +106,8 @@ describe('Radar Visualization Utility', () => {
       isNew: false,
       description: 'Test',
       repoUrl: 'https://test.com',
-      guidanceLink: 'https://test.com'
+      guidanceLink: 'https://test.com',
+      rating: ''
     }
 
     const pos = getInitialBlipPosition(blip)

@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RadarBlipDetails.vue > matches snapshot 1`] = `
+"<q-card-section class="q-pt-md" modelvalue="true" iscluster="false" name="Test Blip">
+  <!--v-if-->
+  <div class="row items-center q-gutter-sm q-mb-md">
+    <q-chip color="primary" text-color="black">
+      <q-icon name="trending_flat" size="xs" class="q-mr-xs"></q-icon> radar.blips.stable
+    </q-chip>
+    <q-chip color="primary" text-color="black">
+      <q-icon name="category" size="xs" class="q-mr-xs"></q-icon> radar.quadrants.tools
+    </q-chip>
+    <q-chip color="secondary" text-color="black">
+      <q-icon name="layers" size="xs" class="q-mr-xs"></q-icon> radar.rings.adopt
+    </q-chip>
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+  <div class="q-mb-md text-white">Test</div>
+  <q-separator q-my-md="" dark=""></q-separator>
+  <div class="row items-center q-gutter-md q-mt-sm">
+    <!--v-if-->
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+</q-card-section>"
+`;

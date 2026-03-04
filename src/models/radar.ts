@@ -17,7 +17,7 @@ export const RingEnum = z.enum([
 export const LicenseMetadataSchema = z.object({
   spdx_id: z.string(),
   name: z.string(),
-  url: z.string().url()
+  url: z.url()
 })
 
 export const BlipSchema = z.object({
@@ -27,10 +27,10 @@ export const BlipSchema = z.object({
   ring: RingEnum,
   isNew: z.boolean(),
   description: z.string(),
-  repoUrl: z.string().url().optional(),
-  guidanceLink: z.string().url().optional(),
+  repoUrl: z.url().default(''),
+  guidanceLink: z.url().default(''),
   license: LicenseMetadataSchema.optional(),
-  rating: z.string().optional() // Placeholder for Blue Oak rating
+  rating: z.string().default('')
 })
 
 export const RadarConfigurationSchema = z.object({
