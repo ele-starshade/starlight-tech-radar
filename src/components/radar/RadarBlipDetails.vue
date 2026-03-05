@@ -15,20 +15,23 @@
           <q-space />
           <q-btn icon="close" flat round dense v-close-popup :aria-label="$t('radar.blips.close')" />
         </q-card-section>
-        <template v-for="blip in node.blips" :key="blip.id || blip.name">
-          <radar-blip-detail
-            :subtitle="node.isCluster ? blip.name : ''"
-            :is-new="blip.isNew"
-            :license-id="blip.license?.spdx_id ?? ''"
-            :license-rating="blip.rating"
-            :description="blip.description"
-            :guidance-link="blip.guidanceLink"
-            :repo-url="blip.repoUrl"
-            :is-feedback-enabled="isFeedbackEnabled"
-            :quadrant="blip.quadrant"
-            :ring="blip.ring"
-            @feedback-clicked="openFeedback(blip)"
-          />
+        <template v-for="(blip, index) in node.blips" :key="blip.id || blip.name">
+          <div :style="index % 2 === 0 ? 'background-color: rgba(255, 255, 255, 0.05)' : ''">
+            <radar-blip-detail
+              :subtitle="node.isCluster ? blip.name : ''"
+              :is-new="blip.isNew"
+              :license-id="blip.license?.spdx_id ?? ''"
+              :license-rating="blip.rating"
+              :description="blip.description"
+              :guidance-link="blip.guidanceLink"
+              :repo-url="blip.repoUrl"
+              :is-feedback-enabled="isFeedbackEnabled"
+              :quadrant="blip.quadrant"
+              :ring="blip.ring"
+              @feedback-clicked="openFeedback(blip)"
+            />
+          </div>
+          <q-separator v-if="index !== node.blips.length - 1" />
         </template>
       </template>
     </q-card>

@@ -93,11 +93,11 @@ test.describe('Radar Clustering', () => {
     await expect(dialog.locator('#blip-details-title')).toContainText('11 items in Tools - Adopt')
 
     // Should render a card for each of the 11 blips inside
-    const blipCards = dialog.locator('.q-pa-md.bg-grey-9')
+    const blipCards = dialog.locator('.q-card__section.q-card__section--vert.q-pt-md')
 
     await expect(blipCards).toHaveCount(11)
 
     // Check first item content
-    await expect(blipCards.first().locator('.text-subtitle1')).toContainText('Adopt Tool 1')
+    await expect(blipCards.first().locator('.text-h6')).toContainText('Adopt Tool 1')
   })
 })

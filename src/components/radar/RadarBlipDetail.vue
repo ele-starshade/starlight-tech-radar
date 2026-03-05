@@ -1,6 +1,6 @@
 <template>
   <q-card-section class="q-pt-md">
-    <div class="text-bold" v-if="subtitle">{{ subtitle }}</div>
+    <div class="text-h6 q-mb-sm" v-if="subtitle">{{ subtitle }}</div>
     <div class="row items-center q-gutter-sm">
       <q-chip :color="isNew ? 'positive' : 'primary'" text-color="black">
         <q-icon name="trending_up" size="xs" class="q-mr-xs" v-if="isNew" />

@@ -2,7 +2,7 @@
 
 exports[`RadarBlipDetails.vue > matches snapshot 1`] = `
 "<q-card-section class="q-pt-md">
-  <div class="text-bold">Test Blip</div>
+  <div class="text-h6 q-mb-sm">Test Blip</div>
   <div class="row items-center q-gutter-sm">
     <q-chip color="primary" text-color="black">
       <q-icon name="trending_flat" size="xs" class="q-mr-xs"></q-icon> radar.blips.stable

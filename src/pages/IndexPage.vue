@@ -34,70 +34,8 @@
       </div>
 
       <div class="row q-col-gutter-md" v-else-if="(viewMode === 'list' || $q.screen.lt.md) && radarData">
-        <div v-for="blip in radarData.blips" :key="blip.name" class="col-12 col-md-6">
-          <q-card flat bordered class="full-height column">
-            <q-card-section>
-              <div class="row items-center no-wrap">
-                <div class="col">
-                  <div class="text-h6">{{ blip.name }}</div>
-                  <div class="text-subtitle2">
-                    {{ $t(getQuadrantTranslationKey(blip.quadrant)) }} - {{ $t(`radar.rings.${blip.ring.toLowerCase()}`) }}
-                  </div>
-                </div>
-                <div class="col-auto">
-                  <q-chip :color="blip.isNew ? 'positive' : 'grey-7'" :text-color="blip.isNew ? 'dark' : 'white'" dense>
-                    {{ blip.isNew ? $t('radar.blips.new') : $t('radar.blips.stable') }}
-                  </q-chip>
-                </div>
-              </div>
-            </q-card-section>
-
-            <q-card-section>
-              <div class="row items-center q-gutter-sm q-mb-md">
-                <q-chip :color="blip.isNew ? 'positive' : 'primary'" text-color="black">
-                  <q-icon name="trending_up" size="xs" class="q-mr-xs" v-if="blip.isNew" />
-                  <q-icon name="trending_flat" size="xs" class="q-mr-xs" v-else />
-                  {{ blip.isNew ? $t('radar.blips.new') : $t('radar.blips.stable') }}
-                </q-chip>
-                <q-chip color="primary" text-color="black" v-if="blip.quadrant">
-                  <q-icon name="category" size="xs" class="q-mr-xs" />
-                  {{ $t(getQuadrantTranslationKey(blip.quadrant)) }}
-                </q-chip>
-                <q-chip color="secondary" text-color="black" v-if="blip.ring">
-                  <q-icon name="layers" size="xs" class="q-mr-xs" />
-                  {{ $t(`radar.rings.${blip.ring.toLowerCase()}`) }}
-                </q-chip>
-                <q-chip outline color="white" icon="description" v-if="blip.license?.spdx_id">
-                  {{ blip.license.spdx_id }}
-                </q-chip>
-                <q-chip outline :color="getRatingColor(blip.rating)" icon="verified" v-if="blip.rating">
-                  {{ blip.rating }}
-                </q-chip>
-              </div>
-            </q-card-section>
-
-            <q-card-section class="q-pt-none col">
-              {{ blip.description }}
-            </q-card-section>
-
-            <q-space />
-            <q-separator />
-
-            <q-card-section class="q-pb-none">
-              <q-btn-group spread>
-                <q-btn v-if="blip.guidanceLink" color="primary" text-color="black" :label="$t('radar.blips.guidance')" :href="blip.guidanceLink" target="_blank" icon="description" />
-                <q-btn v-if="blip.repoUrl" color="secondary" text-color="black" :label="$t('radar.blips.repository')" :href="blip.repoUrl" target="_blank" icon="book" />
-                <q-btn
-                  v-if="isFeedbackEnabled"
-                  color="orange"
-                  text-color="black"
-                  :label="$t('radar.feedback.give_feedback')"
-                  icon="feedback"
-                  @click="openFeedback(blip)"
-                />
-              </q-btn-group>
-            </q-card-section>
-          </q-card>
+        <div v-for="(blip, index) in radarData.blips" :key="blip.id || blip.name" class="col-12 col-md-6">
+          <radar-blip-card :blip="blip" :index="index" @open-feedback="openFeedback(blip)" />
         </div>
       </div>
       <RadarBlipFeedbackDialog
@@ -117,13 +55,15 @@ import RadarCanvas from 'src/components/RadarCanvas.vue'
 import { appConfig } from 'src/config'
 import RadarBlipFeedbackDialog from 'src/components/radar/feedback/RadarBlipFeedbackDialog.vue'
 import type { Blip } from 'src/models/radar'
+import RadarBlipCard from 'src/components/radar/RadarBlipCard.vue'
 
 export default defineComponent({
   name: 'IndexPage',
 
   components: {
     RadarCanvas,
-    RadarBlipFeedbackDialog
+    RadarBlipFeedbackDialog,
+    RadarBlipCard
   },
 
   data () {

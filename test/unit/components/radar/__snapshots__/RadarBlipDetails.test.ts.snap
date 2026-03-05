@@ -8,7 +8,10 @@ exports[`RadarBlipDetails.vue > matches snapshot 1`] = `
       <q-space></q-space>
       <q-btn icon="close" flat="" round="" dense="" aria-label="radar.blips.close"></q-btn>
     </q-card-section>
-    <radar-blip-detail-stub description="Test" subtitle="" isnew="false" licenseid="" licenserating="" quadrant="Tools" ring="Adopt" guidancelink="" repourl="" isfeedbackenabled="false"></radar-blip-detail-stub>
+    <div style="background-color: rgba(255, 255, 255, 0.05);">
+      <radar-blip-detail-stub description="Test" subtitle="" isnew="false" licenseid="" licenserating="" quadrant="Tools" ring="Adopt" guidancelink="" repourl="" isfeedbackenabled="false"></radar-blip-detail-stub>
+    </div>
+    <!--v-if-->
   </q-card>
 </q-dialog>
 <!--v-if-->"
