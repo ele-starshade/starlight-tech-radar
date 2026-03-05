@@ -33,7 +33,7 @@ We use [Playwright](https://playwright.dev/) for E2E testing to simulate real us
 - Run E2E tests: `npm run test:e2e`
 - Use the Playwright UI for debugging: `npm run test:e2e:ui`
 
-*Note: A Merge Request will not be accepted without sufficient test coverage.*
+*Note: A Pull Request will not be accepted without sufficient test coverage.*
 
 ## 🌍 Translating (i18n)
 
@@ -42,7 +42,7 @@ We manage languages using `vue-i18n`. If you'd like to translate the application
 1. Locate the locale files in `src/i18n/`.
 2. Add or modify the translation strings.
 3. Ensure you follow the correct locale code (e.g., `es-ES`, `fr-FR`, `pt-BR`).
-4. Submit a Merge Request with your additions.
+4. Submit a Pull Request with your additions.
 
 ## 📝 Commit Convention & Releases
 
@@ -58,16 +58,16 @@ We use **[Conventional Commits](https://www.conventionalcommits.org/)** to autom
 
 ### Automated Releases
 
-When a Merge Request is merged into the `main` branch, our GitLab CI pipeline automatically:
+When a Pull Request is merged into the `main` branch, our GitHub Actions pipeline automatically:
 
 1. Calculates the next version number using **semantic-release**.
 2. Generates release notes based on commit messages.
 3. Updates `CHANGELOG.md` and `package.json`.
-4. Creates a new Git tag and a **GitLab Release**.
+4. Creates a new Git tag and a **GitHub Release**.
 5. Uploads build artifacts (the `dist/` directory) as release assets.
 
-## 📬 Merge Request Process
+## 📬 Pull Request Process
 
 1. Ensure all tests and linting pass (`npm run test:all`).
 2. Update the `README.md` or `docs/` with details of changes to the interface or behavior.
-3. Submit a Merge Request with a clear description of the problem and the proposed solution.
+3. Submit a Pull Request with a clear description of the problem and the proposed solution.

@@ -22,15 +22,14 @@
       }
     ],
     [
-      "@semantic-release/gitlab",
+      "@semantic-release/github",
       {
         "assets": [
           {
             "path": "starlight-tech-radar-build.tar.gz",
             "label": "Build Artifacts (${nextRelease.version})"
           }
-        ],
-        "milestones": ["${nextRelease.version}"]
+        ]
       }
     ],
     [
