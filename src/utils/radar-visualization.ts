@@ -53,13 +53,13 @@ export function getInitialBlipPosition (blip: Blip): Point {
   // Use blip name as seed for deterministic "randomness"
   let seed = 0
 
-  for (let i = 0; i < blip.name.length; i++) {
-    seed = (Math.imul(31, seed) + blip.name.charCodeAt(i)) | 0
+  for (const char of blip.name) {
+    seed = Math.trunc(Math.imul(31, seed) + (char.codePointAt(0) || 0))
   }
 
   // Mulberry32 PRNG for better uniform distribution
   const pseudoRandom = (offset: number) => {
-    let t = (seed + Math.imul(offset, 0x6D2B79F5)) | 0
+    let t = Math.trunc(seed + Math.imul(offset, 0x6D2B79F5))
 
     t = Math.imul(t ^ (t >>> 15), t | 1)
     t ^= t + Math.imul(t ^ (t >>> 7), t | 61)

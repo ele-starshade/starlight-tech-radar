@@ -84,7 +84,7 @@ export default defineComponent({
     },
 
     baseColorHex (): string {
-      let colorName = 'secondary'
+      let colorName: string
 
       if (this.node.isNew) {
         colorName = 'positive'
@@ -94,6 +94,7 @@ export default defineComponent({
           case 'Platforms': colorName = 'accent'; break
           case 'Tools': colorName = 'info'; break
           case 'Languages & Frameworks': colorName = 'warning'; break
+          default: colorName = 'secondary'; break
         }
       }
 
@@ -110,13 +111,11 @@ export default defineComponent({
       let darkenPercent = 0
 
       switch (this.node.ring) {
-        case 'Hold': darkenPercent = 0; break
+        case 'Hold': return hex
         case 'Assess': darkenPercent = -12; break
         case 'Trial': darkenPercent = -24; break
         case 'Adopt': darkenPercent = -36; break
       }
-
-      if (darkenPercent === 0) return hex
 
       return colors.lighten(hex, darkenPercent)
     },

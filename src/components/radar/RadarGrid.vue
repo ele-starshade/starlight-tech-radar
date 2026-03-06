@@ -101,7 +101,7 @@ export default defineComponent({
 
         let x = RADAR_RADIUS + dist * Math.cos(rad)
         let y = RADAR_RADIUS - dist * Math.sin(rad)
-        let anchor = 'middle'
+        let anchor: string
 
         // Adjust positioning to stay within the square canvas
         if (x < RADAR_RADIUS) {

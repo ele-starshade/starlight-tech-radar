@@ -106,7 +106,6 @@ export default defineComponent({
       }
 
       for (const [key, groupBlips] of Object.entries(groups)) {
-        if (!groupBlips || groupBlips.length === 0) continue
         const firstBlip = groupBlips[0] as Blip
         const threshold = CLUSTER_THRESHOLDS[firstBlip.ring]
 

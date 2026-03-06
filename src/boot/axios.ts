@@ -42,7 +42,13 @@ if (process.env.SERVER) {
   const logError = (type: string, error: AxiosError) => {
     const timestamp = new Date().toISOString()
     const method = error.config?.method?.toUpperCase() || 'UNKNOWN'
-    const fullUrl = error.config ? (error.config.baseURL ? `${error.config.baseURL}${error.config.url}` : error.config.url) : 'UNKNOWN'
+
+    let fullUrl = 'UNKNOWN'
+
+    if (error.config) {
+      fullUrl = error.config.baseURL ? `${error.config.baseURL}${error.config.url}` : String(error.config.url)
+    }
+
     const status = error.response ? `${error.response.status} ${error.response.statusText}` : 'NO_RESPONSE'
 
     console.error(`[${timestamp}] [${type} Error] ${method} ${fullUrl} - ${status} - ${error.message}`)

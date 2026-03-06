@@ -29,3 +29,33 @@ exports[`MainDrawer.vue > matches snapshot 1`] = `
   </q-scroll-area>
 </q-drawer>"
 `;
+
+exports[`MainDrawer.vue > matches snapshot in dark mode 1`] = `
+"<q-drawer model-value="true" bordered="" class="bg-grey-9">
+  <q-scroll-area class="fit">
+    <q-list role="navigation">
+      <q-item-label header="" class="row items-center justify-between">app.navigation <q-btn flat="" round="" dense="" icon="close" aria-label="app.close_menu"></q-btn>
+      </q-item-label>
+      <q-item clickable="" tag="router-link" to="/" exact="" role="link">
+        <q-item-section avatar="">
+          <q-icon name="home"></q-icon>
+        </q-item-section>
+        <q-item-section>
+          <q-item-label>app.homepage</q-item-label>
+          <q-item-label caption="">app.homepage_caption</q-item-label>
+        </q-item-section>
+      </q-item>
+      <q-item clickable="" tag="router-link" to="/settings" exact="" role="link">
+        <q-item-section avatar="">
+          <q-icon name="settings"></q-icon>
+        </q-item-section>
+        <q-item-section>
+          <q-item-label>app.settings</q-item-label>
+          <q-item-label caption="">app.settings_caption</q-item-label>
+        </q-item-section>
+      </q-item>
+      <q-separator></q-separator>
+    </q-list>
+  </q-scroll-area>
+</q-drawer>"
+`;

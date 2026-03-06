@@ -25,8 +25,6 @@ export default {
     dark_mode_caption: 'Toggle between dark and light themes'
   },
   radar: {
-    title: 'Technology Radar',
-    welcome: 'Welcome to the Technology Radar.',
     view_radar: 'Radar',
     view_list: 'List',
     quadrants: {

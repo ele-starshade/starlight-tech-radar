@@ -59,7 +59,7 @@ export default defineSsrMiddleware(({ app }) => {
                     ]
                   }
                 ],
-                $schema: 'http://adaptivecards.io/schemas/adaptive-card.json',
+                $schema: 'https://adaptivecards.io/schemas/adaptive-card.json',
                 version: '1.0'
               }
             }

@@ -1,12 +1,12 @@
 # Starlight Tech Radar
 
 <!-- BADGES -->
-[![CI/CD Pipeline](https://github.com/ele-starshade/starlight-tech-radar/actions/workflows/ci.yml/badge.svg)](https://github.com/ele-starshade/starlight-tech-radar/actions/workflows/ci.yml)
-[![coverage report](https://codecov.io/gh/ele-starshade/starlight-tech-radar/branch/main/graph/badge.svg)](https://codecov.io/gh/ele-starshade/starlight-tech-radar)
-[![Latest Release](https://img.shields.io/github/v/release/ele-starshade/starlight-tech-radar)](https://github.com/ele-starshade/starlight-tech-radar/releases)
+![CI/CD Pipeline](https://github.com/ele-starshade/starlight-tech-radar/actions/workflows/ci.yml/badge.svg)
+![Coverage](https://sonarcloud.io/api/project_badges/measure?project=starlight-tech-radar_starlight-tech-radar&metric=coverage)
+![Latest Release](https://img.shields.io/github/v/release/ele-starshade/starlight-tech-radar)
 ![Netlify Status](https://api.netlify.com/api/v1/badges/06a85395-4e55-41a6-b4ef-9317a66b8984/deploy-status)
-![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ele.starshade_starlight-tech-radar&metric=alert_status)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=starlight-tech-radar_starlight-tech-radar&metric=alert_status)
+![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 <!-- END BADGES -->
 
 An open-source, highly customizable tech radar inspired by the ThoughtWorks Tech Radar. Built with Vue 3, Quasar Framework, and TypeScript.

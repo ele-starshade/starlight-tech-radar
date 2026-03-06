@@ -1,7 +1,5 @@
 <template>
   <q-page padding class="q-pa-md">
-    <h1 class="text-h4 q-mt-none q-mb-md">{{ $t('radar.title') }}</h1>
-
     <div v-if="loading" class="flex flex-center q-pa-xl">
       <q-spinner-dots color="primary" size="40px" />
     </div>
@@ -12,9 +10,6 @@
 
     <div v-else>
       <div class="row items-center q-mb-lg">
-        <div class="text-body1 col">
-          {{ $t('radar.welcome') }}
-        </div>
         <div class="col-auto" v-if="!$q.screen.lt.md">
           <q-btn-toggle
             v-model="viewMode"
