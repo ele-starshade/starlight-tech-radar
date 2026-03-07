@@ -1,46 +1,67 @@
 <template>
-  <q-card-section class="q-pt-md">
-    <div class="text-h6 q-mb-sm" v-if="subtitle">{{ subtitle }}</div>
-    <div class="row items-center q-gutter-sm">
-      <q-chip :color="isNew ? 'positive' : 'primary'" text-color="black">
-        <q-icon name="trending_up" size="xs" class="q-mr-xs" v-if="isNew" />
-        <q-icon name="trending_flat" size="xs" class="q-mr-xs" v-else />
-        {{ isNew ? $t('radar.blips.new') : $t('radar.blips.stable') }}
-      </q-chip>
-      <q-chip color="primary" text-color="black" v-if="quadrant">
-        <q-icon name="category" size="xs" class="q-mr-xs" />
-        {{ $t(getQuadrantTranslationKey(quadrant)) }}
-      </q-chip>
-      <q-chip color="secondary" text-color="black" v-if="ring">
-        <q-icon name="layers" size="xs" class="q-mr-xs" />
-        {{ $t(`radar.rings.${ring.toLowerCase()}`) }}
-      </q-chip>
+  <q-card-section>
+    <div class="row items-center no-wrap">
+      <div class="col">
+        <div class="text-h6">{{ subtitle }}</div>
+        <div class="text-subtitle2">
+          {{ $t(getQuadrantTranslationKey(quadrant)) }} - {{ $t(`radar.rings.${ring.toLowerCase()}`) }}
+        </div>
+      </div>
+      <div class="col-auto">
+        <q-chip :color="isNew ? 'positive' : 'grey-7'" :text-color="isNew ? 'dark' : 'white'">
+          {{ isNew ? $t('radar.blips.new') : $t('radar.blips.stable') }}
+        </q-chip>
+      </div>
+    </div>
+  </q-card-section>
+
+  <q-card-section class="q-py-none">
+    <div class="row items-center">
       <q-chip outline color="white" icon="description" v-if="licenseId">
         {{ licenseId }}
+        <q-tooltip>{{ $t('radar.licenseLabel') }}</q-tooltip>
       </q-chip>
       <q-chip outline :color="getRatingColor(licenseRating)" icon="verified" v-if="licenseRating">
         {{ licenseRating }}
+        <q-tooltip>{{ $t('radar.licenseRating') }}</q-tooltip>
       </q-chip>
     </div>
   </q-card-section>
-  <q-card-section class="q-pt-none">
+
+  <q-card-section>
     {{ description }}
   </q-card-section>
+
   <q-separator />
-  <q-card-section class="q-mt-xs">
-    <q-btn-group spread>
-      <q-btn v-if="guidanceLink" color="primary" text-color="black" :label="$t('radar.blips.guidance')" :href="guidanceLink" target="_blank" icon="description" />
-      <q-btn v-if="repoUrl" color="secondary" text-color="black" :label="$t('radar.blips.repository')" :href="repoUrl" target="_blank" icon="book" />
-      <q-btn
-        v-if="isFeedbackEnabled"
-        color="orange"
-        text-color="black"
-        :label="$t('radar.feedback.give_feedback')"
-        icon="feedback"
-        @click="$emit('feedbackClicked')"
-      />
-    </q-btn-group>
-  </q-card-section>
+
+  <q-card-actions align="right">
+    <q-btn
+      v-if="guidanceLink"
+      color="primary"
+      text-color="black"
+      :label="$t('radar.blips.guidance')"
+      :href="guidanceLink"
+      target="_blank"
+      icon="description"
+    />
+    <q-btn
+      v-if="repoUrl"
+      color="secondary"
+      text-color="black"
+      :label="$t('radar.blips.repository')"
+      :href="repoUrl"
+      target="_blank"
+      icon="book"
+    />
+    <q-btn
+      v-if="isFeedbackEnabled"
+      color="orange"
+      text-color="black"
+      :label="$t('radar.feedback.give_feedback')"
+      icon="feedback"
+      @click="$emit('openFeedback')"
+    />
+  </q-card-actions>
 </template>
 
 <script lang="ts">

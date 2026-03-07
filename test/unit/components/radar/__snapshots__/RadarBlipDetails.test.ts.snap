@@ -3,7 +3,7 @@
 exports[`RadarBlipDetails.vue > matches snapshot 1`] = `
 "<q-dialog modelvalue="true" square="" class="shadow-0" aria-labelledby="blip-details-title" full-height="false">
   <q-card style="min-width: 50%;" dark="" class="bg-dark text-white scroll">
-    <q-card-section class="row items-center q-pb-none sticky-top bg-dark" style="z-index: 10; position: sticky; top: 0px;">
+    <q-card-section class="row items-center sticky-top bg-dark" style="z-index: 10; position: sticky; top: 0px;">
       <div id="blip-details-title" class="text-h6 text-white">Test Blip</div>
       <q-space></q-space>
       <q-btn icon="close" flat="" round="" dense="" aria-label="radar.blips.close"></q-btn>

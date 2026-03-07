@@ -69,7 +69,15 @@ export async function enrichBlip (
 ): Promise<Blip> {
   // If there's no repoUrl, there's no license or rating to fetch.
   if (!blip.repoUrl) {
-    return blip
+    return {
+      ...blip,
+      rating: 'Unknown',
+      license: {
+        spdx_id: 'Unknown',
+        name: 'Unknown License',
+        url: ''
+      }
+    }
   }
 
   const cacheKey = blip.repoUrl

@@ -8,7 +8,7 @@
   >
     <q-card style="min-width: 50%;" dark class="bg-dark text-white scroll" :class="{ 'full-height': node?.isCluster }">
       <template v-if="node">
-        <q-card-section class="row items-center q-pb-none sticky-top bg-dark" style="z-index: 10; position: sticky; top: 0;">
+        <q-card-section class="row items-center sticky-top bg-dark" style="z-index: 10; position: sticky; top: 0;">
           <div id="blip-details-title" class="text-h6 text-white">
             {{ node.isCluster ? `${node.blips.length} items in ${$t(getQuadrantTranslationKey(node.quadrant))} - ${$t('radar.rings.' + node.ring.toLowerCase())}` : node.name }}
           </div>

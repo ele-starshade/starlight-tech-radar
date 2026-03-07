@@ -1,29 +1,30 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`RadarBlipDetails.vue > matches snapshot 1`] = `
-"<q-card-section class="q-pt-md">
-  <div class="text-h6 q-mb-sm">Test Blip</div>
-  <div class="row items-center q-gutter-sm">
-    <q-chip color="primary" text-color="black">
-      <q-icon name="trending_flat" size="xs" class="q-mr-xs"></q-icon> radar.blips.stable
-    </q-chip>
-    <q-chip color="primary" text-color="black">
-      <q-icon name="category" size="xs" class="q-mr-xs"></q-icon> radar.quadrants.tools
-    </q-chip>
-    <q-chip color="secondary" text-color="black">
-      <q-icon name="layers" size="xs" class="q-mr-xs"></q-icon> radar.rings.adopt
-    </q-chip>
-    <q-chip outline="" color="white" icon="description">Apache2.0</q-chip>
-    <q-chip outline="" color="amber-9" icon="verified">Gold</q-chip>
+"<q-card-section>
+  <div class="row items-center no-wrap">
+    <div class="col">
+      <div class="text-h6">Test Blip</div>
+      <div class="text-subtitle2">radar.quadrants.tools - radar.rings.adopt</div>
+    </div>
+    <div class="col-auto">
+      <q-chip color="grey-7" text-color="white">radar.blips.stable</q-chip>
+    </div>
   </div>
 </q-card-section>
-<q-card-section class="q-pt-none">Test</q-card-section>
+<q-card-section class="q-py-none">
+  <div class="row items-center">
+    <q-chip outline="" color="white" icon="description">Apache2.0 <q-tooltip>radar.licenseLabel</q-tooltip>
+    </q-chip>
+    <q-chip outline="" color="amber-9" icon="verified">Gold <q-tooltip>radar.licenseRating</q-tooltip>
+    </q-chip>
+  </div>
+</q-card-section>
+<q-card-section>Test</q-card-section>
 <q-separator></q-separator>
-<q-card-section class="q-mt-xs">
-  <q-btn-group spread="">
-    <!--v-if-->
-    <!--v-if-->
-    <!--v-if-->
-  </q-btn-group>
-</q-card-section>"
+<q-card-actions align="right">
+  <!--v-if-->
+  <!--v-if-->
+  <!--v-if-->
+</q-card-actions>"
 `;

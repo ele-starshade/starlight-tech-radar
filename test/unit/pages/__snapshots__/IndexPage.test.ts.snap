@@ -5,18 +5,12 @@ exports[`IndexPage.vue > matches snapshot 1`] = `
   <h1 class="text-h4 q-mt-none q-mb-md">radar.radar_view</h1>
   <div>
     <div class="row items-center q-mb-lg">
+      <q-space></q-space>
       <div class="col-auto">
         <q-btn-toggle modelvalue="radar" flat="" stretch="" toggle-color="primary" options="[object Object],[object Object]"></q-btn-toggle>
       </div>
     </div>
     <!--v-if-->
-    <q-separator></q-separator>
-    <q-tab-panels modelvalue="Techniques" animated="">
-      <q-tab-panel name="Techniques"></q-tab-panel>
-      <q-tab-panel name="Languages &amp; Frameworks"></q-tab-panel>
-      <q-tab-panel name="Platforms"></q-tab-panel>
-      <q-tab-panel name="Tools"></q-tab-panel>
-    </q-tab-panels>
     <!--v-if-->
   </div>
 </q-page>"
