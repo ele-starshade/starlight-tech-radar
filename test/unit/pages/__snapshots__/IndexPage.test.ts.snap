@@ -10,6 +10,13 @@ exports[`IndexPage.vue > matches snapshot 1`] = `
       </div>
     </div>
     <!--v-if-->
+    <q-separator></q-separator>
+    <q-tab-panels modelvalue="Techniques" animated="">
+      <q-tab-panel name="Techniques"></q-tab-panel>
+      <q-tab-panel name="Languages &amp; Frameworks"></q-tab-panel>
+      <q-tab-panel name="Platforms"></q-tab-panel>
+      <q-tab-panel name="Tools"></q-tab-panel>
+    </q-tab-panels>
     <!--v-if-->
   </div>
 </q-page>"

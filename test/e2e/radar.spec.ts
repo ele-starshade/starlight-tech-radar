@@ -52,12 +52,17 @@ test.describe('Radar Home Page', () => {
 
     await listButton.click()
 
-    const firstCard = page.locator('.q-card').first()
+    const tabs = page.getByRole('tab')
 
-    await expect(firstCard.locator('.q-chip', { hasText: 'MIT' })).toBeVisible()
-    await expect(firstCard.locator('.q-chip', { hasText: 'Gold' })).toBeVisible()
+    await tabs.filter({ hasText: 'Languages' }).click()
 
-    const gitlabCard = page.locator('.q-card').nth(2)
+    const vueCard = page.locator('.q-card').filter({ hasText: 'Vue.js' })
+
+    await expect(vueCard.locator('.q-chip', { hasText: 'MIT' })).toBeVisible()
+    await expect(vueCard.locator('.q-chip', { hasText: 'Gold' })).toBeVisible()
+
+    await tabs.filter({ hasText: 'Tools' }).click()
+    const gitlabCard = page.locator('.q-card').filter({ hasText: 'GitLab' })
 
     await expect(gitlabCard.locator('.q-chip', { hasText: 'Apache-2.0' })).toBeVisible()
   })
@@ -125,10 +130,35 @@ test.describe('Radar Home Page', () => {
 
     await listButton.click()
 
-    // Verify list cards are shown
-    const cards = page.locator('.q-card')
+    // Check tabs
+    const tabs = page.getByRole('tab')
+    const allTabs = await tabs.all()
 
-    await expect(cards).toHaveCount(mockRadarData.blips.length)
+    expect(allTabs).toHaveLength(4)
+    await expect(tabs.nth(0)).toHaveText('Techniques')
+    await expect(tabs.nth(1)).toHaveText('Languages & Frameworks')
+    await expect(tabs.nth(2)).toHaveText('Platforms')
+    await expect(tabs.nth(3)).toHaveText('Tools')
+
+    // Verify you can click the tabs
+    // Languages
+    await tabs.nth(1).click({ delay: 100 })
+    await expect(page.locator('.q-card:visible').nth(0)).toBeVisible()
+    await expect(page.locator('.q-card:visible')).toHaveCount(mockRadarData.blips.filter(blip => blip.quadrant === 'Languages & Frameworks').length)
+    // Platforms
+    await tabs.nth(2).click({ delay: 100 })
+    await expect(page.locator('.q-card:visible').nth(0)).toBeVisible()
+    await expect(page.locator('.q-card:visible')).toHaveCount(mockRadarData.blips.filter(blip => blip.quadrant === 'Platforms').length)
+    // Tools
+    await tabs.nth(3).click({ delay: 100 })
+    await expect(page.locator('.q-card:visible').nth(0)).toBeVisible()
+    await expect(page.locator('.q-card:visible')).toHaveCount(mockRadarData.blips.filter(blip => blip.quadrant === 'Tools').length)
+    // Techniques
+    await tabs.nth(0).click({ delay: 100 })
+    await expect(page.locator('.q-card:visible').nth(0)).toBeVisible()
+    await expect(page.locator('.q-card:visible')).toHaveCount(mockRadarData.blips.filter(blip => blip.quadrant === 'Techniques').length)
+
+    // Radar not visible
     await expect(page.locator('.radar-svg')).not.toBeVisible()
 
     // Switch back to Radar
@@ -154,11 +184,14 @@ test.describe('Mobile View', () => {
     await expect(page.locator('.radar-svg')).not.toBeVisible()
 
     // List view cards should be visible
-    const cards = page.locator('.q-card')
+    const tabs = page.getByRole('tab')
 
-    await expect(cards).toHaveCount(mockRadarData.blips.length)
+    await expect(tabs).toHaveCount(4)
+
+    await tabs.filter({ hasText: 'Languages' }).click()
+    const cards = page.locator('.q-card:visible')
 
     // Check content of a card
-    await expect(cards.first().locator('.text-h6')).toContainText(/Vue.js/)
+    await expect(cards.first().locator('.text-h6')).toContainText(/TDD/)
   })
 })

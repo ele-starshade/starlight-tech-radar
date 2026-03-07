@@ -1,5 +1,5 @@
 <template>
-  <q-card flat bordered class="full-height column"  :style="Math.floor(index / 2) % 2 !== 0 ? 'background-color: rgba(255, 255, 255, 0.05)' : ''">
+  <q-card flat bordered class="full-height column" :style="Math.floor(index / 2) % 2 !== 0 ? 'background-color: rgba(255, 255, 255, 0.05)' : ''">
     <q-card-section>
       <div class="row items-center no-wrap">
         <div class="col">

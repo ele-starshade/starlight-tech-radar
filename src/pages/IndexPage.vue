@@ -30,11 +30,42 @@
         <radar-canvas :blips="radarData.blips" />
       </div>
 
-      <div class="row q-col-gutter-md" v-else-if="(viewMode === 'list' || $q.screen.lt.md) && radarData">
-        <div v-for="(blip, index) in radarData.blips" :key="blip.id || blip.name" class="col-12 col-md-6">
-          <radar-blip-card :blip="blip" :index="index" @open-feedback="openFeedback(blip)" />
-        </div>
-      </div>
+      <q-tabs
+        v-model="tab"
+        inline-label
+        :breakpoint="0"
+        align="justify"
+        :class="isDarkMode ? ['bg-grey-9', 'text-white'] : ['bg-grey-1', 'text-dark']"
+        v-else-if="(viewMode === 'list' || $q.screen.lt.md) && radarData"
+      >
+        <q-tab name="Techniques" :label="$t('radar.quadrants.techniques')" class="ellipsis" />
+        <q-tab name="Languages & Frameworks" :label="$t('radar.quadrants.languages')" class="ellipsis" />
+        <q-tab name="Platforms" :label="$t('radar.quadrants.platforms')" class="ellipsis" />
+        <q-tab name="Tools" :label="$t('radar.quadrants.tools')" class="ellipsis" />
+      </q-tabs>
+      <q-separator />
+      <q-tab-panels v-model="tab" animated>
+        <q-tab-panel name="Techniques">
+          <div v-for="(blip, index) in techniqueBlips" :key="blip.id || blip.name" class="col-12 col-md-6 q-mb-sm-sm">
+            <radar-blip-card :blip="blip" :index="index" @open-feedback="openFeedback(blip)" />
+          </div>
+        </q-tab-panel>
+        <q-tab-panel name="Languages & Frameworks">
+          <div v-for="(blip, index) in languageBlips" :key="blip.id || blip.name" class="col-12 col-md-6 q-mb-sm q-mb-sm-sm">
+            <radar-blip-card :blip="blip" :index="index" @open-feedback="openFeedback(blip)" />
+          </div>
+        </q-tab-panel>
+        <q-tab-panel name="Platforms">
+          <div v-for="(blip, index) in platformBlips" :key="blip.id || blip.name" class="col-12 col-md-6 q-mb-sm q-mb-sm-sm">
+            <radar-blip-card :blip="blip" :index="index" @open-feedback="openFeedback(blip)" />
+          </div>
+        </q-tab-panel>
+        <q-tab-panel name="Tools">
+          <div v-for="(blip, index) in toolBlips" :key="blip.id || blip.name" class="col-12 col-md-6 q-mb-sm q-mb-sm-sm">
+            <radar-blip-card :blip="blip" :index="index" @open-feedback="openFeedback(blip)" />
+          </div>
+        </q-tab-panel>
+      </q-tab-panels>
       <RadarBlipFeedbackDialog
         v-if="isFeedbackEnabled"
         v-model="showFeedbackDialog"
@@ -51,8 +82,9 @@ import { useRadarStore } from 'src/stores/radar'
 import RadarCanvas from 'src/components/RadarCanvas.vue'
 import { appConfig } from 'src/config'
 import RadarBlipFeedbackDialog from 'src/components/radar/feedback/RadarBlipFeedbackDialog.vue'
-import type { Blip } from 'src/models/radar'
+import type { Blip, Quadrant } from 'src/models/radar'
 import RadarBlipCard from 'src/components/radar/RadarBlipCard.vue'
+import { useAccessibilityStore } from 'src/stores/accessibility'
 
 export default defineComponent({
   name: 'IndexPage',
@@ -67,14 +99,28 @@ export default defineComponent({
     return {
       viewMode: 'radar',
       showFeedbackDialog: false,
-      feedbackBlip: null as Blip | null
+      feedbackBlip: null as Blip | null,
+      tab: 'Techniques' as Quadrant
     }
   },
 
   computed: {
     ...mapState(useRadarStore, ['radarData', 'loading', 'error']),
+    ...mapState(useAccessibilityStore, ['isDarkMode']),
     isFeedbackEnabled (): boolean {
       return appConfig.isFeedbackEnabled
+    },
+    techniqueBlips () {
+      return this.radarData?.blips.filter(blip => blip.quadrant === 'Techniques')
+    },
+    platformBlips () {
+      return this.radarData?.blips.filter(blip => blip.quadrant === 'Platforms')
+    },
+    toolBlips () {
+      return this.radarData?.blips.filter(blip => blip.quadrant === 'Tools')
+    },
+    languageBlips () {
+      return this.radarData?.blips.filter(blip => blip.quadrant === 'Languages & Frameworks')
     }
   },
 
