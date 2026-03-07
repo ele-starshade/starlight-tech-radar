@@ -2,6 +2,7 @@
 
 exports[`IndexPage.vue > matches snapshot 1`] = `
 "<q-page padding="" class="q-pa-md">
+  <h1 class="text-h4 q-mt-none q-mb-md">radar.radar_view</h1>
   <div>
     <div class="row items-center q-mb-lg">
       <div class="col-auto">

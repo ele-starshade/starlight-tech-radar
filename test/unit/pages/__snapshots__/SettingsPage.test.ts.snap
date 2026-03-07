@@ -2,7 +2,7 @@
 
 exports[`SettingsPage.vue > matches snapshot 1`] = `
 "<q-page padding="">
-  <h1 class="text-h4 q-mt-none q-mb-md">settings.title</h1>
+  <h1 class="text-h4 q-mt-none q-mb-md">app.settings</h1>
   <div class="row q-col-gutter-md">
     <!-- Language Settings -->
     <div class="col-12 col-md-6">

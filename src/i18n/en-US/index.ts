@@ -26,7 +26,9 @@ export default {
   },
   radar: {
     view_radar: 'Radar',
+    radar_view: 'Radar View',
     view_list: 'List',
+    list_view: 'List View',
     quadrants: {
       techniques: 'Techniques',
       platforms: 'Platforms',
@@ -68,7 +70,6 @@ export default {
     }
   },
   settings: {
-    title: 'Settings',
     language_region: 'Language & Region',
     choose_language: 'Choose your preferred language',
     app_language: 'Application Language'

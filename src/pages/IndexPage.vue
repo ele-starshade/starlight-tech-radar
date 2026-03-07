@@ -1,5 +1,7 @@
 <template>
   <q-page padding class="q-pa-md">
+    <h1 class="text-h4 q-mt-none q-mb-md">{{ viewMode === 'radar' ? $t('radar.radar_view') : $t('radar.list_view') }}</h1>
+
     <div v-if="loading" class="flex flex-center q-pa-xl">
       <q-spinner-dots color="primary" size="40px" />
     </div>

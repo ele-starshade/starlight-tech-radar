@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <h1 class="text-h4 q-mt-none q-mb-md">{{ $t('settings.title') }}</h1>
+    <h1 class="text-h4 q-mt-none q-mb-md">{{ $t('app.settings') }}</h1>
 
     <div class="row q-col-gutter-md">
       <!-- Language Settings -->
