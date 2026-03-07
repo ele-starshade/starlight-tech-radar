@@ -93,7 +93,7 @@ test.describe('Radar Clustering', () => {
     await expect(dialog.locator('#blip-details-title')).toContainText('11 items in Tools - Adopt')
 
     // Should render a card for each of the 11 blips inside
-    const blipCards = dialog.locator('.q-card__section.q-card__section--vert.q-pt-md')
+    const blipCards = dialog.getByTestId('radar-blip-detail-wrapper')
 
     await expect(blipCards).toHaveCount(11)
 

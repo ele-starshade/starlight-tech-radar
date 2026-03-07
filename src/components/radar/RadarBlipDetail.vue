@@ -2,7 +2,7 @@
   <q-card-section>
     <div class="row items-center no-wrap">
       <div class="col">
-        <div class="text-h6">{{ subtitle }}</div>
+        <div class="text-h6" v-if="subtitle">{{ subtitle }}</div>
         <div class="text-subtitle2">
           {{ $t(getQuadrantTranslationKey(quadrant)) }} - {{ $t(`radar.rings.${ring.toLowerCase()}`) }}
         </div>

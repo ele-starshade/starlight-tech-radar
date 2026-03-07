@@ -34,7 +34,7 @@
       <template v-else-if="(viewMode === 'list' || $q.screen.lt.md) && radarData">
         <div class="row items-center q-mb-lg">
           <q-space />
-          <div class="col-5 col-md-3 col-lg-2">
+          <div class="col-6 col-md-3 col-lg-2">
             <q-input
               filled
               color="orange"
@@ -47,7 +47,7 @@
               </template>
             </q-input>
           </div>
-          <div class="col-5 col-md-3 col-lg-2">
+          <div class="col-6 col-md-3 col-lg-2">
             <q-select
               color="orange"
               filled
@@ -61,7 +61,7 @@
               </template>
             </q-select>
           </div>
-          <div class="col-2 col-md-1 col-lg-1">
+          <div class="col-12 col-md-2 col-lg-1">
             <q-toggle size="md" v-model="newOnly" :label="$t('radar.newOnly')" />
           </div>
         </div>
@@ -70,8 +70,9 @@
           v-model="tab"
           inline-label
           :breakpoint="0"
-          align="justify"
+          align="center"
           :class="isDarkMode ? ['bg-grey-9', 'text-white'] : ['bg-grey-1', 'text-dark']"
+          :vertical="!$q.screen.lg || $q.screen.xl"
         >
           <q-tab name="Techniques" :label="$t('radar.quadrants.techniques')" class="ellipsis" />
           <q-tab name="Languages & Frameworks" :label="$t('radar.quadrants.languages')" class="ellipsis" />

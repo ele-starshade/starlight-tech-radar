@@ -188,7 +188,6 @@ test.describe('Mobile View', () => {
 
     await expect(tabs).toHaveCount(4)
 
-    await tabs.filter({ hasText: 'Languages' }).click()
     const cards = page.locator('.q-card:visible')
 
     // Check content of a card

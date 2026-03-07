@@ -16,7 +16,7 @@
           <q-btn icon="close" flat round dense v-close-popup :aria-label="$t('radar.blips.close')" />
         </q-card-section>
         <template v-for="(blip, index) in node.blips" :key="blip.id || blip.name">
-          <div :style="index % 2 === 0 ? 'background-color: rgba(255, 255, 255, 0.05)' : ''">
+          <div :style="index % 2 === 0 ? 'background-color: rgba(255, 255, 255, 0.05)' : ''" data-testid="radar-blip-detail-wrapper">
             <radar-blip-detail
               :subtitle="node.isCluster ? blip.name : ''"
               :is-new="blip.isNew"
@@ -28,7 +28,7 @@
               :is-feedback-enabled="isFeedbackEnabled"
               :quadrant="blip.quadrant"
               :ring="blip.ring"
-              @feedback-clicked="openFeedback(blip)"
+              @open-feedback="openFeedback(blip)"
             />
           </div>
           <q-separator v-if="index !== node.blips.length - 1" />
