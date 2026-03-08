@@ -213,19 +213,19 @@ describe('Radar Enrichment Utility', () => {
   it('should use provided base URLs', async () => {
     getSpy.mockResolvedValue({ data: {} })
 
-    await enrichBlip(mockBlip, [], '', '', 'http://custom-github.com', 'http://custom-gitlab.com')
+    await enrichBlip(mockBlip, [], '', '', 'https://custom-github.com', 'https://custom-gitlab.com')
 
     expect(getSpy).toHaveBeenCalledWith(
-      expect.stringContaining('http://custom-github.com'),
+      expect.stringContaining('https://custom-github.com'),
       expect.any(Object)
     )
 
     const gitlabBlip = { ...mockBlip, repoUrl: 'https://gitlab.com/test/repo' }
 
-    await enrichBlip(gitlabBlip, [], '', '', 'http://custom-github.com', 'http://custom-gitlab.com')
+    await enrichBlip(gitlabBlip, [], '', '', 'https://custom-github.com', 'https://custom-gitlab.com')
 
     expect(getSpy).toHaveBeenCalledWith(
-      expect.stringContaining('http://custom-gitlab.com'),
+      expect.stringContaining('https://custom-gitlab.com'),
       expect.any(Object)
     )
   })

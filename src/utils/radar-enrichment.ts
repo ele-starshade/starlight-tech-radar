@@ -83,7 +83,7 @@ export async function fetchGithubLicense (
     const url = `${githubApiBaseUrl}/repos/${githubInfo.owner}/${githubInfo.repo}/license`
     const response = await api.get(url, { headers, timeout: 5000 })
 
-    if (response.data && response.data.license) {
+    if (response.data?.license) {
       return {
         spdx_id: response.data.license.spdx_id || 'Unknown',
         name: response.data.license.name || 'Unknown License',
@@ -117,7 +117,7 @@ export async function fetchGitlabLicense (
     const url = `${gitlabApiBaseUrl}/api/v4/projects/${encodedPath}`
     const response = await api.get(url, { headers, timeout: 5000 })
 
-    if (response.data && response.data.license) {
+    if (response.data?.license) {
       return {
         spdx_id: response.data.license.nickname || response.data.license.key || 'Unknown',
         name: response.data.license.name || 'Unknown License',

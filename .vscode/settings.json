@@ -18,5 +18,9 @@
   ],
   "[markdown]": {
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
+  "sonarlint.connectedMode.project": {
+    "connectionId": "starlight-tech-radar",
+    "projectKey": "starlight-tech-radar_starlight-tech-radar"
   }
 }

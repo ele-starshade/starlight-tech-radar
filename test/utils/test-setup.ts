@@ -49,7 +49,7 @@ export function mountComponent (component: any, options: any = {}) {
       directives: {
         ripple: {},
         'close-popup': {},
-        ...(options.global?.directives || {})
+        ...options.global?.directives
       },
       mocks: {
         $t: (msg: string) => msg,
@@ -61,7 +61,7 @@ export function mountComponent (component: any, options: any = {}) {
         },
         $route: { query: {} },
         $router: { push: vi.fn(), replace: vi.fn() },
-        ...(options.global?.mocks || {})
+        ...options.global?.mocks
       },
       provide: {
         _q_: {
@@ -70,12 +70,12 @@ export function mountComponent (component: any, options: any = {}) {
           platform: { has: { webStorage: false } },
           localStorage: { getItem: vi.fn(), setItem: vi.fn() },
         },
-        ...(options.global?.provide || {})
+        ...options.global?.provide
       },
       stubs: {
         'router-link': true,
         'router-view': true,
-        ...(options.global?.stubs || {})
+        ...options.global?.stubs
       }
     }
   })
