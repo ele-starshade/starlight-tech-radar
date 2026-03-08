@@ -1,0 +1,49 @@
+name: Manual Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Run semantic-release in dry-run mode?'
+        required: true
+        default: false
+        type: boolean
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+      
+      - run: npm ci --ignore-scripts
+      - run: npx quasar prepare
+      
+      # Build is needed for assets defined in .releaserc.json
+      - name: Build & Package
+        run: |
+          npm run build
+          tar -czf starlight-tech-radar-build.tar.gz dist/
+      
+      - name: Run Semantic Release
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            npm run release -- --dry-run
+          else
+            npm run release
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

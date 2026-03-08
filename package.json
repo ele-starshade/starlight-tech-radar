@@ -5,7 +5,7 @@
   "productName": "Starlight Tech Radar",
   "author": "\"Ele\" <starlight-tech-radar@ele.codes>",
   "type": "module",
-  "private": false,
+  "private": true,
   "license": "MIT",
   "scripts": {
     "lint": "eslint .",
@@ -23,6 +23,7 @@
     "type-check": "vue-tsc --noEmit",
     "test:all": "npm run type-check && npm run test:unit && npm run test:e2e",
     "test:audit": "npm audit --omit=dev",
+    "release": "semantic-release",
     "wiremock:up": "docker compose up -d",
     "wiremock:down": "docker compose down",
     "dev": "quasar dev -m ssr",

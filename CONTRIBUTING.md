@@ -1,73 +1,100 @@
 # Contributing to Starlight Tech Radar
 
-First off, thank you for considering contributing to Starlight Tech Radar! It's people like you that make open-source a great community.
+Thank you for considering contributing to Starlight Tech Radar! We welcome contributions of all kinds: from fixing bugs and adding features to improving documentation and translations.
 
-## 🛠️ Development Setup
+---
 
-1. Fork and clone the repository.
-2. Install dependencies: `npm install` (or `yarn`).
-3. Start the development server: `npm run dev`.
+## 🚀 Getting Started
+
+1. **Fork and Clone**: Fork the repository on GitHub and clone it to your local machine.
+2. **Environment Setup**:
+    - Ensure you have **Node.js 24+** installed.
+    - Install dependencies: `npm install`
+    - Install Playwright browsers: `npx playwright install`
+3. **Local Development**:
+    - Start the development server (SSR): `npm run dev`
+    - The app will be available at `http://localhost:3000`.
+
+---
+
+## 🛠️ Development Workflow
+
+We follow a standard Git workflow:
+
+- **Branching**: Create a feature branch from `main` (e.g., `feat/add-new-quadrant` or `fix/blip-alignment`).
+- **Commit Convention**: We use **Conventional Commits**. This is critical for our automated release process.
+  - `feat:` New feature
+  - `fix:` Bug fix
+  - `docs:` Documentation changes
+  - `perf:` Performance improvements
+  - `refactor:` Code refactoring
+  - `chore:` Maintenance
+  - `test:` Adding or fixing tests
+- **Linting**: Run `npm run lint` before committing. We use Husky to prevent commits with linting errors.
+
+---
 
 ## 🧪 Testing Requirements
 
-To maintain a high level of quality, we require tests for all new features and bug fixes. We follow the **Testing Pyramid** philosophy: write many fast Unit Tests, a good amount of Integration Tests, and a few critical E2E tests.
+We take testing seriously. A Pull Request will not be accepted without sufficient test coverage.
 
-### Unit & Integration Testing
+### 1. Unit & Integration (Vitest)
 
-We use [Vitest](https://vitest.dev/) for unit and integration testing.
+All new business logic or components **must** have corresponding tests in `test/unit/`.
 
-- **Unit Tests**: Write isolated tests for utilities, models, and purely functional logic.
-- **Integration Tests**: Write tests to ensure Vue components interact correctly with Pinia stores and Vue Router.
-- Place tests in the `test/unit` directory.
-- Run unit tests: `npm run test:unit`
-- Update snapshots if needed: `npm run test:update`
+```bash
+# Run unit tests
+npm run test:unit
+```
 
-### End-to-End (E2E) Testing
+### 2. End-to-End (E2E) & Mocking (Playwright + WireMock)
 
-We use [Playwright](https://playwright.dev/) for E2E testing to simulate real user interactions and catch regressions in critical flows.
+For changes that affect user flow or accessibility, update the Playwright tests in `test/e2e/`.
 
-- E2E tests live in the `test/e2e` directory.
-- **Mocking**: Our application relies on external APIs. We use WireMock (via Docker Compose) to mock these dependencies during E2E tests.
-  - Start WireMock: `npm run wiremock:up`
-  - Stop WireMock: `npm run wiremock:down`
-- Run E2E tests: `npm run test:e2e`
-- Use the Playwright UI for debugging: `npm run test:e2e:ui`
+Since we rely on external APIs, we use **WireMock** to mock these during E2E testing.
 
-*Note: A Pull Request will not be accepted without sufficient test coverage.*
+```bash
+# Start the mocking server
+npm run wiremock:up
 
-## 🌍 Translating (i18n)
+# Run E2E tests
+npm run test:e2e
 
-We manage languages using `vue-i18n`. If you'd like to translate the application into a new language or improve an existing translation:
+# Stop mocking server
+npm run wiremock:down
+```
 
-1. Locate the locale files in `src/i18n/`.
-2. Add or modify the translation strings.
-3. Ensure you follow the correct locale code (e.g., `es-ES`, `fr-FR`, `pt-BR`).
-4. Submit a Pull Request with your additions.
+---
 
-## 📝 Commit Convention & Releases
+## 🏁 Pipeline Architecture
 
-We use **[Conventional Commits](https://www.conventionalcommits.org/)** to automate our versioning and release process. This means your commit messages must follow a specific format:
+When you open a Pull Request, our GitHub Actions pipeline will:
 
-- `feat: ...` for new features (triggers a **minor** version bump).
-- `fix: ...` for bug fixes (triggers a **patch** version bump).
-- `docs: ...` for documentation changes.
-- `chore: ...` for maintenance tasks.
-- `perf: ...` for performance improvements.
-- `refactor: ...` for code changes that neither fix a bug nor add a feature.
-- `BREAKING CHANGE: ...` in the footer or `!` after the type/scope for breaking changes (triggers a **major** version bump).
+1. **Code Quality**: Lint the code and perform TypeScript type-checking.
+2. **Tests & Coverage**: Run all unit and E2E tests and combine the coverage results.
+3. **Performance Audit**: Run a Lighthouse audit. If the performance scores fall below our threshold, the PR will fail.
+4. **SonarCloud**: Analyze code for maintainability, security, and complexity.
 
-### Automated Releases
+Detailed information about the pipeline can be found in [docs/ci-cd.md](./docs/ci-cd.md).
 
-When a Pull Request is merged into the `main` branch, our GitHub Actions pipeline automatically:
+---
 
-1. Calculates the next version number using **semantic-release**.
-2. Generates release notes based on commit messages.
-3. Updates `CHANGELOG.md` and `package.json`.
-4. Creates a new Git tag and a **GitHub Release**.
-5. Uploads build artifacts (the `dist/` directory) as release assets.
+## 🌍 Translations (i18n)
 
-## 📬 Pull Request Process
+If you'd like to add a new language:
 
-1. Ensure all tests and linting pass (`npm run test:all`).
-2. Update the `README.md` or `docs/` with details of changes to the interface or behavior.
-3. Submit a Pull Request with a clear description of the problem and the proposed solution.
+1. Locate `src/i18n/`.
+2. Copy the `en-US` directory and rename it to your target locale code (e.g., `es-ES`).
+3. Translate the strings in `index.ts`.
+4. Register the new locale in `src/i18n/index.ts`.
+
+---
+
+## 📝 Pull Request Process
+
+1. **Ensure all tests pass**: Run `npm run test:all`.
+2. **Update Docs**: If you change the API, configuration schema, or UI behavior, update the corresponding file in `docs/`.
+3. **Describe your changes**: Provide a clear description of the problem you're solving and how you've solved it.
+4. **Link Issues**: If your PR fixes a specific issue, mention it (e.g., `Fixes #123`).
+
+Once your PR is merged, a maintainer can manually trigger the **Manual Release** workflow via the GitHub Actions tab. We utilize **semantic-release** to calculate the next version, update the changelog, and create a GitHub Release based on your commit history.

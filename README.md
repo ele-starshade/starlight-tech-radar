@@ -14,76 +14,81 @@
 ![Best Practices](https://raw.githubusercontent.com/ele-starshade/starlight-tech-radar/badges/lighthouse_best-practices.svg)
 <!-- END BADGES -->
 
-An open-source, highly customizable tech radar inspired by the ThoughtWorks Tech Radar. Built with Vue 3, Quasar Framework, and TypeScript.
+Starlight Tech Radar is an open-source, highly customizable, and **accessible** technology radar. Inspired by the ThoughtWorks Tech Radar, it's designed to help engineering organizations visualize their technology landscape, manage lifecycle stages, and drive architectural alignment.
 
-## 🌟 Features
+---
 
-- Visualize your technology landscape
-- SSR (Server-Side Rendering) Support
-- Fully customizable via configuration
+## 🚀 Key Features
 
-## ♿ Accessibility (a11y)
+- **Interactive Visualization**: A high-performance SVG radar canvas with interactive blips, tooltips, and detailed views.
+- **Server-Side Rendering (SSR)**: Built for speed, SEO, and accessibility using Vue 3 and Quasar.
+- **Accessibility (a11y) First**:
+  - **WCAG 2.1 AA** compliance.
+  - **OpenDyslexic Font Support** and dynamic font scaling.
+  - Full keyboard and screen reader navigation.
+- **Dynamic Configuration**: Easily customize quadrants, rings, and blips via a simple `radar.json` file.
+- **Feedback Loop**: Integrated feedback mechanism that hooks into **Slack** or **Microsoft Teams** via webhooks.
+- **Automated Insights**: Automatically fetches license ratings and repository metadata (via Blue Oak Council) for your technology blips.
 
-We believe software should be accessible to everyone. The Starlight Tech Radar strives to adhere to **WCAG 2.1 AA** standards.
-Accessibility enhancements include:
+---
 
-- **OpenDyslexic Font Support**: An option to switch the application font to OpenDyslexic, which is designed to mitigate some of the common reading errors caused by dyslexia.
-- **Dynamic Font Scaling**: Native support for increasing or decreasing font sizes across the entire application without breaking the layout.
-- **Keyboard Navigation**: Full support for screen readers and keyboard-only navigation.
+## 🧩 Core Technology Stack
 
-## 🌍 Internationalization (i18n)
+- **Frontend**: [Vue.js 3](https://vuejs.org/) & [Quasar Framework](https://quasar.dev/)
+- **State Management**: [Pinia](https://pinia.vuejs.org/)
+- **Schema Validation**: [Zod](https://zod.dev/)
+- **Testing**: [Vitest](https://vitest.dev/) (Unit), [Playwright](https://playwright.dev/) (E2E), [WireMock](https://wiremock.org/) (Mocking)
+- **Pipeline**: GitHub Actions, Lighthouse CI, SonarCloud, Semantic Release
 
-The application supports multiple languages using `vue-i18n`. We welcome contributions to translate the radar into different languages. Here are some of the target languages we aim to support:
-
-| Language             | Locale Code | % Complete |
-| -------------------- | ----------- | ---------- |
-| English              | `en-US`     | 100%       |
-| Spanish              | `es-ES`     | 0%         |
-| French               | `fr-FR`     | 0%         |
-| German               | `de-DE`     | 0%         |
-| Chinese (Simplified) | `zh-CN`     | 0%         |
-| Japanese             | `ja-JP`     | 0%         |
-| Portuguese (Brazil)  | `pt-BR`     | 0%         |
-
-## 🧪 Testing Pyramid
-
-Our project maintains a strong testing culture, adhering to the standard Testing Pyramid to balance speed and confidence:
-
-- **E2E Tests (Playwright)**: We run End-to-End tests to verify critical user journeys. Mocking of external services is handled via WireMock.
-- **Integration Tests (Vitest)**: Testing the interaction between Vue components and Pinia stores.
-- **Unit Tests (Vitest)**: Fast, isolated tests for our utility functions and models.
+---
 
 ## 📚 Documentation
 
-For detailed explanations, architecture, and guides, please visit our [Documentation Folder](./docs/README.md).
+For comprehensive guides on architecture, testing, configuration, and deployment, visit our **[Documentation Hub](./docs/README.md)**.
 
-## 🚀 Quick Start
+- **[Getting Started](./docs/getting-started.md)**: Local installation and core commands.
+- **[Architecture](./docs/architecture.md)**: Detailed project structure and SSR design.
+- **[Configuration Guide](./docs/configuration.md)**: How to customize your radar's data and integrations.
+- **[Testing Guide](./docs/testing.md)**: Unit, E2E, and Performance testing.
+- **[CI/CD & Pipeline](./docs/ci-cd.md)**: Pipeline architecture and automated releases.
+- **[Deployment](./docs/deployment/README.md)**: Deploying to AWS, GCP, K8s, and Netlify.
+
+---
+
+## 🏁 Quick Start
 
 ### Prerequisites
 
-- Node.js 24+
-- npm, yarn, or pnpm
+- **Node.js 24+**
+- Docker (Optional, for E2E mocking)
 
 ### Installation
 
 ```bash
+git clone https://github.com/ele-starshade/starlight-tech-radar.git
+cd starlight-tech-radar
 npm install
-# or
-yarn
+npx playwright install
 ```
 
 ### Development
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
+
+---
 
 ## 🤝 Contributing
 
-We love contributions! Please read our [Contributing Guidelines](CONTRIBUTING.md) to get started with development, testing, and merge requests.
+We love contributions! Whether you're fixing a bug, adding a new feature, or improving documentation, please read our **[Contributing Guidelines](CONTRIBUTING.md)** to get started.
+
+- Follow **Conventional Commits** for all PRs.
+- Ensure all tests pass: `npm run test:all`.
+- Maintain high accessibility standards.
+
+---
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
