@@ -3,11 +3,11 @@
 <!-- BADGES -->
 ![Tests & Coverage](https://github.com/ele-starshade/starlight-tech-radar/actions/workflows/tests.yml/badge.svg)
 ![Code Quality](https://github.com/ele-starshade/starlight-tech-radar/actions/workflows/quality.yml/badge.svg)
-![Coverage](https://sonarcloud.io/api/project_badges/measure?project=starlight-tech-radar_starlight-tech-radar&metric=coverage)
 ![Latest Release](https://img.shields.io/github/v/release/ele-starshade/starlight-tech-radar)
-![Netlify Status](https://api.netlify.com/api/v1/badges/06a85395-4e55-41a6-b4ef-9317a66b8984/deploy-status)
-![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=starlight-tech-radar_starlight-tech-radar&metric=alert_status)
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+
+![Coverage](https://sonarcloud.io/api/project_badges/measure?project=starlight-tech-radar_starlight-tech-radar&metric=coverage)
+![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=starlight-tech-radar_starlight-tech-radar&metric=alert_status)
 
 ![Performance](https://raw.githubusercontent.com/ele-starshade/starlight-tech-radar/badges/lighthouse_performance.svg)
 ![Accessibility](https://raw.githubusercontent.com/ele-starshade/starlight-tech-radar/badges/lighthouse_accessibility.svg)
