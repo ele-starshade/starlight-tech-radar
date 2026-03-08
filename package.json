@@ -1,6 +1,6 @@
 {
   "name": "starlight-tech-radar",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "This project is an open source tech radar, inspired by the ThoughtWorks Tech Radar.",
   "productName": "Starlight Tech Radar",
   "author": "\"Ele\" <starlight-tech-radar@ele.codes>",
@@ -18,7 +18,7 @@
     "test:e2e:ci": "playwright test --reporter=list",
     "test:e2e:ui": "playwright test --ui",
     "test:perf": "CHROME_PATH=$(node -e \"console.log(require('@playwright/test').chromium.executablePath())\") lhci autorun",
-  "test:perf:all": "npm run build && (npm run serve:prod &) && sleep 5 && npm run test:perf && npm run serve:prod:stop; npm run test:perf:cleanup",
+    "test:perf:all": "npm run build && (npm run serve:prod &) && sleep 5 && npm run test:perf && npm run serve:prod:stop; npm run test:perf:cleanup",
     "test:perf:cleanup": "rm -rf *\\lighthouse.*",
     "type-check": "vue-tsc --noEmit",
     "test:all": "npm run type-check && npm run test:unit && npm run test:e2e",
