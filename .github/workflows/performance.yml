@@ -45,7 +45,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: build-artifacts
-      - run: npm i -g @lhci/cli@0.13.0 lighthouse-badges
+      - run: npm i -g @lhci/cli lighthouse-badges
       - run: wget https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/3.12.1/wiremock-standalone-3.12.1.jar
       - run: java -jar wiremock-standalone-3.12.1.jar --port 8080 --root-dir ./test/wiremock &
       - run: timeout 30 bash -c 'while ! echo > /dev/tcp/localhost/8080; do sleep 1; done'

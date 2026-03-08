@@ -43,3 +43,4 @@ yarn-error.log*
 # Lighthouse
 lighthouse-report-prod.json
 *AppData\\Local\\lighthouse.*/
+/.lighthouseci

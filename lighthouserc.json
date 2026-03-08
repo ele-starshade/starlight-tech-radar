@@ -2,7 +2,10 @@
   "ci": {
     "collect": {
       "url": ["http://127.0.0.1:3000"],
-      "numberOfRuns": 1
+      "numberOfRuns": 1,
+      "settings": {
+        "chromeFlags": "--no-sandbox --headless --disable-gpu"
+      }
     },
     "upload": {
       "target": "temporary-public-storage"
