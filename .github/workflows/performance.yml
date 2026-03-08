@@ -31,7 +31,6 @@ jobs:
 
   performance-test:
     runs-on: ubuntu-latest
-    container: mcr.microsoft.com/playwright:v1.58.2-noble
     needs: build-app
     steps:
       - uses: actions/checkout@v4
@@ -44,7 +43,6 @@ jobs:
         with:
           name: build-artifacts
       - run: npm i -g @lhci/cli@0.13.0 lighthouse-badges
-      - run: apt-get update && apt-get install -y default-jre wget git
       - run: wget https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/3.12.1/wiremock-standalone-3.12.1.jar
       - run: java -jar wiremock-standalone-3.12.1.jar --port 8080 --root-dir ./test/wiremock &
       - run: timeout 30 bash -c 'while ! echo > /dev/tcp/localhost/8080; do sleep 1; done'
@@ -62,7 +60,7 @@ jobs:
       - name: Run Lighthouse CI
         run: lhci autorun
         env:
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Generate Lighthouse Badges
         run: |
           mkdir -p badges
