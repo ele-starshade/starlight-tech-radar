@@ -54,24 +54,28 @@ jobs:
           echo "3a8c87f30aaf310bcb1cf8b86d346874834ca6acd901db2f8b19b9aa6a8066e2  wiremock-standalone-3.12.1.jar" | sha256sum -c -
       - run: java -jar wiremock-standalone-3.12.1.jar --port 8080 --root-dir ./test/wiremock &
       - run: timeout 30 bash -c 'while ! echo > /dev/tcp/localhost/8080; do sleep 1; done'
-      - name: Start App
-        run: npm run serve:prod &
+      - name: Run Lighthouse CI
+        run: lhci autorun
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_ENV: production
+          GITHUB_API_BASE_URL: http://localhost:8080
+          GITLAB_API_BASE_URL: http://localhost:8080
+          SLACK_WEBHOOK: http://localhost:8080/hooks/slack
+          TEAMS_WEBHOOK: http://localhost:8080/hooks/teams
+      - name: Generate Lighthouse Badges
+        run: |
+          mkdir -p badges
+          npm run serve:prod &
+          timeout 120 bash -c 'until curl -s http://127.0.0.1:3000/ > /dev/null; do sleep 1; done'
+          lighthouse-badges -u http://127.0.0.1:3000 -o badges -r
+          npm run serve:prod:stop
         env:
           NODE_ENV: production
           GITHUB_API_BASE_URL: http://localhost:8080
           GITLAB_API_BASE_URL: http://localhost:8080
           SLACK_WEBHOOK: http://localhost:8080/hooks/slack
           TEAMS_WEBHOOK: http://localhost:8080/hooks/teams
-      - name: Wait for App
-        run: timeout 120 bash -c 'until curl -s http://127.0.0.1:3000/ > /dev/null; do sleep 1; done'
-      - name: Run Lighthouse CI
-        run: lhci autorun
-        env:
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Generate Lighthouse Badges
-        run: |
-          mkdir -p badges
-          lighthouse-badges -u http://127.0.0.1:3000 -o badges -r
         continue-on-error: true
       - name: Upload Lighthouse Report
         uses: actions/upload-artifact@v4

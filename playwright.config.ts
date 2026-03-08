@@ -16,12 +16,12 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'http://localhost:9100',
+    baseURL: process.env.CI ? 'http://localhost:3000' : 'http://localhost:9100',
     viewport: { width: 1920, height: 1080 },
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'retain-on-failure',
-    video: 'retain-on-failure',
+    video: 'on-first-retry',
     screenshot: 'only-on-failure'
   },
 
@@ -54,12 +54,12 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'npm run dev',
-    url: 'http://localhost:9100',
-    reuseExistingServer: false,
+    command: process.env.CI ? 'npm run serve:prod' : 'npm run dev',
+    url: process.env.CI ? 'http://localhost:3000' : 'http://localhost:9100',
+    reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,
     env: {
-      NODE_ENV: 'test',
+      NODE_ENV: process.env.CI ? 'production' : 'test',
       VITE_COVERAGE: 'true',
       GITHUB_API_BASE_URL: 'http://localhost:8080',
       GITLAB_API_BASE_URL: 'http://localhost:8080',

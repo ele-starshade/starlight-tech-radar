@@ -20,11 +20,11 @@ jobs:
           cache: 'npm'
       - run: npm ci --ignore-scripts
       - run: npx quasar prepare
-      - run: npm run build
+      - run: VITE_COVERAGE=true npm run build
       - run: tar -czf starlight-tech-radar-build.tar.gz dist/
       - uses: actions/upload-artifact@v4
         with:
-          name: build-artifacts
+          name: build-artifacts-e2e
           path: |
             dist/
             starlight-tech-radar-build.tar.gz
@@ -60,16 +60,19 @@ jobs:
       - run: npm ci --ignore-scripts
       - uses: actions/download-artifact@v4
         with:
-          name: build-artifacts
-      - run: npx playwright install --with-deps
+          name: build-artifacts-e2e
       - run: apt-get update && apt-get install -y default-jre wget
-      - run: wget https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/3.12.1/wiremock-standalone-3.12.1.jar
-      - run: java -jar wiremock-standalone-3.12.1.jar --port 8080 --root-dir ./test/wiremock &
-      - run: timeout 30 bash -c 'while ! echo > /dev/tcp/localhost/8080; do sleep 1; done'
+      - name: Start WireMock
+        run: |
+          wget -q https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/3.12.1/wiremock-standalone-3.12.1.jar
+          java -jar wiremock-standalone-3.12.1.jar --port 8080 --root-dir ./test/wiremock &
+          timeout 60 bash -c 'until curl -s http://localhost:8080/__admin/health > /dev/null; do sleep 1; done'
       - name: Run E2E Tests
         run: npm run test:e2e:ci
         env:
           HOME: /root
+          CI: true
+          VITE_COVERAGE: true
       - uses: actions/upload-artifact@v4
         if: always()
         with:

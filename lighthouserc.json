@@ -1,10 +1,15 @@
 {
   "ci": {
     "collect": {
+      "startServerCommand": "npm run serve:prod",
+      "startServerReadyPattern": "Server listening at port",
       "url": ["http://127.0.0.1:3000"],
-      "numberOfRuns": 1,
+      "numberOfRuns": 5,
       "settings": {
-        "chromeFlags": "--no-sandbox --headless --disable-gpu"
+        "chromeFlags": "--no-sandbox --headless --disable-gpu",
+        "throttlingMethod": "simulate",
+        "maxWaitForFcp": 15000,
+        "maxWaitForLoad": 45000
       }
     },
     "upload": {
