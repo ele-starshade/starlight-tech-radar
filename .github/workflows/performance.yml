@@ -1,0 +1,89 @@
+name: Performance Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
+      - run: tar -czf starlight-tech-radar-build.tar.gz dist/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts
+          path: |
+            dist/
+            starlight-tech-radar-build.tar.gz
+          retention-days: 1
+
+  performance-test:
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/playwright:v1.58.2-noble
+    needs: build-app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+      - run: npm i -g @lhci/cli@0.13.0 lighthouse-badges
+      - run: apt-get update && apt-get install -y default-jre wget git
+      - run: wget https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/3.12.1/wiremock-standalone-3.12.1.jar
+      - run: java -jar wiremock-standalone-3.12.1.jar --port 8080 --root-dir ./test/wiremock &
+      - run: timeout 30 bash -c 'while ! echo > /dev/tcp/localhost/8080; do sleep 1; done'
+      - name: Start App
+        run: npm run dev &
+        env:
+          NODE_ENV: test
+          VITE_COVERAGE: true
+          GITHUB_API_BASE_URL: http://localhost:8080
+          GITLAB_API_BASE_URL: http://localhost:8080
+          SLACK_WEBHOOK: http://localhost:8080/hooks/slack
+          TEAMS_WEBHOOK: http://localhost:8080/hooks/teams
+      - name: Wait for App
+        run: timeout 120 bash -c 'while ! echo > /dev/tcp/localhost/9100; do sleep 1; done'
+      - name: Run Lighthouse CI
+        run: lhci autorun
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+      - name: Generate Lighthouse Badges
+        run: |
+          mkdir -p badges
+          lighthouse-badges -u http://localhost:9100 -o badges -r
+        continue-on-error: true
+      - name: Upload Lighthouse Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-report
+          path: |
+            .lighthouseci/
+            badges/
+          retention-days: 30
+      - name: Deploy Badges
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./badges
+          publish_branch: badges
+          force_orphan: true
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
