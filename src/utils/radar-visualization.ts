@@ -87,6 +87,165 @@ export function getInitialBlipPosition (blip: Blip): Point {
   return polarToCartesian(radius, angle)
 }
 
+export function getRadius (item: { isCluster?: boolean }) {
+  return item.isCluster ? 26 : 18
+}
+
+export function clampToBoundaries (pos: Point, item: { quadrant?: Quadrant; ring?: Ring; isCluster?: boolean }) {
+  const itemRadius = getRadius(item)
+
+  if (item.quadrant && item.ring) {
+    const ring = RING_RADII[item.ring]
+    const quadrant = QUADRANT_ANGLES[item.quadrant]
+
+    const dx = pos.x - RADAR_RADIUS
+    const dy = RADAR_RADIUS - pos.y
+    let distance = Math.sqrt(dx * dx + dy * dy)
+    let angle = (Math.atan2(dy, dx) * 180) / Math.PI
+
+    if (angle < 0) angle += 360
+
+    let changed = false
+
+    // 1. Clamp distance (radius)
+    // Enforce a strict margin from the edges
+    const edgeMargin = 14
+    const minDistance = ring.inner === 0 ? 30 : ring.inner + itemRadius / 2 + edgeMargin
+    const maxDistance = ring.outer - itemRadius / 2 - edgeMargin
+
+    if (distance < minDistance) {
+      distance = minDistance
+      changed = true
+    } else if (distance > maxDistance) {
+      distance = maxDistance
+      changed = true
+    }
+
+    // 2. Clamp angle
+    // Keep a larger margin from axes equivalent to the blip's radius plus padding
+    const arcLengthMargin = itemRadius + edgeMargin
+    const dynamicAngleMargin = Math.min(44, (arcLengthMargin / Math.max(distance, 1)) * (180 / Math.PI))
+
+    let minAngle = quadrant.start + dynamicAngleMargin
+    let maxAngle = quadrant.end - dynamicAngleMargin
+
+    if (minAngle > maxAngle) {
+      const mid = (quadrant.start + quadrant.end) / 2
+
+      minAngle = mid
+      maxAngle = mid
+    }
+
+    if (angle < minAngle || angle > maxAngle) {
+      const normalize = (a: number) => (a % 360 + 360) % 360
+      const getDist = (a: number, b: number) => {
+        const d = Math.abs(normalize(a) - normalize(b))
+
+        return Math.min(d, 360 - d)
+      }
+
+      if (getDist(angle, minAngle) < getDist(angle, maxAngle)) {
+        angle = minAngle
+      } else {
+        angle = maxAngle
+      }
+
+      changed = true
+    }
+
+    if (changed) {
+      const angleRadians = (angle * Math.PI) / 180
+
+      pos.x = RADAR_RADIUS + distance * Math.cos(angleRadians)
+      pos.y = RADAR_RADIUS - distance * Math.sin(angleRadians)
+    }
+  } else {
+    const distA = Math.sqrt(Math.pow(pos.x - RADAR_RADIUS, 2) + Math.pow(pos.y - RADAR_RADIUS, 2))
+
+    if (distA > RADAR_RADIUS - itemRadius) {
+      const ratio = (RADAR_RADIUS - itemRadius) / Math.max(distA, 1)
+
+      pos.x = RADAR_RADIUS + (pos.x - RADAR_RADIUS) * ratio
+      pos.y = RADAR_RADIUS + (pos.y - RADAR_RADIUS) * ratio
+    }
+  }
+}
+
+export function clampToLabels (pos: Point, item: { quadrant?: Quadrant; ring?: Ring; isCluster?: boolean }) {
+  if (item.quadrant !== 'Languages & Frameworks') return
+
+  const itemRadius = getRadius(item)
+
+  // Check against each label's approximate bounding box
+  Object.values(RING_RADII).forEach(ring => {
+    const labelX = RADAR_RADIUS + 10
+    const labelY = RADAR_RADIUS - ring.inner - 10
+
+    // Label rectangle roughly [510, 570] x [labelY - 15, labelY + 5]
+    const rect = { x: labelX, y: labelY - 15, w: 60, h: 20 }
+
+    // Add a small extra margin around the text
+    const padding = 5
+    const padRect = {
+      x: rect.x - padding,
+      y: rect.y - padding,
+      w: rect.w + padding * 2,
+      h: rect.h + padding * 2
+    }
+
+    // Find the closest point to the circle within the rectangle
+    const closestX = Math.max(padRect.x, Math.min(pos.x, padRect.x + padRect.w))
+    const closestY = Math.max(padRect.y, Math.min(pos.y, padRect.y + padRect.h))
+
+    const distanceX = pos.x - closestX
+    const distanceY = pos.y - closestY
+
+    const distanceSquared = (distanceX * distanceX) + (distanceY * distanceY)
+
+    if (distanceSquared < (itemRadius * itemRadius)) {
+      // Collision! Push the blip out
+      let distance = Math.sqrt(distanceSquared)
+      let pushX = distanceX
+      let pushY = distanceY
+
+      if (distance === 0) {
+        // If exactly inside, push it arbitrarily to the right
+        pushX = 1
+        pushY = 0
+        distance = 1
+      }
+
+      const overlap = itemRadius - distance
+
+      pos.x += (pushX / distance) * overlap
+      pos.y += (pushY / distance) * overlap
+    }
+  })
+}
+
+function applyForce (
+  posA: Point,
+  posB: Point,
+  itemA: { isCluster?: boolean },
+  itemB: { isCluster?: boolean },
+  ux: number,
+  uy: number,
+  force: number
+) {
+  if (!itemA.isCluster && !itemB.isCluster) {
+    posA.x -= ux * force * 0.5
+    posA.y -= uy * force * 0.5
+    posB.x += ux * force * 0.5
+    posB.y += uy * force * 0.5
+  } else if (!itemA.isCluster) {
+    posA.x -= ux * force
+    posA.y -= uy * force
+  } else if (!itemB.isCluster) {
+    posB.x += ux * force
+    posB.y += uy * force
+  }
+}
+
 /**
  * Simple collision detection and resolution for blips.
  * This is a basic force-directed approach to push blips apart.
@@ -94,140 +253,6 @@ export function getInitialBlipPosition (blip: Blip): Point {
 export function resolveBlipCollisions (items: { id?: string | undefined; name: string; quadrant?: Quadrant; ring?: Ring; isCluster?: boolean }[], itemPositions: Record<string, Point>): Record<string, Point> {
   const positions = { ...itemPositions }
   const ITERATIONS = 80 // Increased for better settling and weak repulsion
-
-  const getRadius = (item: { isCluster?: boolean }) => item.isCluster ? 26 : 18
-
-  const clampToBoundaries = (pos: Point, item: { quadrant?: Quadrant; ring?: Ring; isCluster?: boolean }) => {
-    const itemRadius = getRadius(item)
-
-    if (item.quadrant && item.ring) {
-      const ring = RING_RADII[item.ring]
-      const quadrant = QUADRANT_ANGLES[item.quadrant]
-
-      const dx = pos.x - RADAR_RADIUS
-      const dy = RADAR_RADIUS - pos.y
-      let distance = Math.sqrt(dx * dx + dy * dy)
-      let angle = (Math.atan2(dy, dx) * 180) / Math.PI
-
-      if (angle < 0) angle += 360
-
-      let changed = false
-
-      // 1. Clamp distance (radius)
-      // Enforce a strict margin from the edges
-      const edgeMargin = 14
-      const minDistance = ring.inner === 0 ? 30 : ring.inner + itemRadius / 2 + edgeMargin
-      const maxDistance = ring.outer - itemRadius / 2 - edgeMargin
-
-      if (distance < minDistance) {
-        distance = minDistance
-        changed = true
-      } else if (distance > maxDistance) {
-        distance = maxDistance
-        changed = true
-      }
-
-      // 2. Clamp angle
-      // Keep a larger margin from axes equivalent to the blip's radius plus padding
-      const arcLengthMargin = itemRadius + edgeMargin
-      const dynamicAngleMargin = Math.min(44, (arcLengthMargin / Math.max(distance, 1)) * (180 / Math.PI))
-
-      let minAngle = quadrant.start + dynamicAngleMargin
-      let maxAngle = quadrant.end - dynamicAngleMargin
-
-      if (minAngle > maxAngle) {
-        const mid = (quadrant.start + quadrant.end) / 2
-
-        minAngle = mid
-        maxAngle = mid
-      }
-
-      if (angle < minAngle || angle > maxAngle) {
-        const normalize = (a: number) => (a % 360 + 360) % 360
-        const getDist = (a: number, b: number) => {
-          const d = Math.abs(normalize(a) - normalize(b))
-
-          return Math.min(d, 360 - d)
-        }
-
-        if (getDist(angle, minAngle) < getDist(angle, maxAngle)) {
-          angle = minAngle
-        } else {
-          angle = maxAngle
-        }
-
-        changed = true
-      }
-
-      if (changed) {
-        const angleRadians = (angle * Math.PI) / 180
-
-        pos.x = RADAR_RADIUS + distance * Math.cos(angleRadians)
-        pos.y = RADAR_RADIUS - distance * Math.sin(angleRadians)
-      }
-    } else {
-      const distA = Math.sqrt(Math.pow(pos.x - RADAR_RADIUS, 2) + Math.pow(pos.y - RADAR_RADIUS, 2))
-
-      if (distA > RADAR_RADIUS - itemRadius) {
-        const ratio = (RADAR_RADIUS - itemRadius) / Math.max(distA, 1)
-
-        pos.x = RADAR_RADIUS + (pos.x - RADAR_RADIUS) * ratio
-        pos.y = RADAR_RADIUS + (pos.y - RADAR_RADIUS) * ratio
-      }
-    }
-  }
-
-  const clampToLabels = (pos: Point, item: { quadrant?: Quadrant; ring?: Ring; isCluster?: boolean }) => {
-    if (item.quadrant !== 'Languages & Frameworks') return
-
-    const itemRadius = getRadius(item)
-
-    // Check against each label's approximate bounding box
-    Object.values(RING_RADII).forEach(ring => {
-      const labelX = RADAR_RADIUS + 10
-      const labelY = RADAR_RADIUS - ring.inner - 10
-
-      // Label rectangle roughly [510, 570] x [labelY - 15, labelY + 5]
-      const rect = { x: labelX, y: labelY - 15, w: 60, h: 20 }
-
-      // Add a small extra margin around the text
-      const padding = 5
-      const padRect = {
-        x: rect.x - padding,
-        y: rect.y - padding,
-        w: rect.w + padding * 2,
-        h: rect.h + padding * 2
-      }
-
-      // Find the closest point to the circle within the rectangle
-      const closestX = Math.max(padRect.x, Math.min(pos.x, padRect.x + padRect.w))
-      const closestY = Math.max(padRect.y, Math.min(pos.y, padRect.y + padRect.h))
-
-      const distanceX = pos.x - closestX
-      const distanceY = pos.y - closestY
-
-      const distanceSquared = (distanceX * distanceX) + (distanceY * distanceY)
-
-      if (distanceSquared < (itemRadius * itemRadius)) {
-        // Collision! Push the blip out
-        let distance = Math.sqrt(distanceSquared)
-        let pushX = distanceX
-        let pushY = distanceY
-
-        if (distance === 0) {
-          // If exactly inside, push it arbitrarily to the right
-          pushX = 1
-          pushY = 0
-          distance = 1
-        }
-
-        const overlap = itemRadius - distance
-
-        pos.x += (pushX / distance) * overlap
-        pos.y += (pushY / distance) * overlap
-      }
-    })
-  }
 
   for (let i = 0; i < ITERATIONS; i++) {
     let moved = false
@@ -270,19 +295,7 @@ export function resolveBlipCollisions (items: { id?: string | undefined; name: s
           const ux = dx / distance
           const uy = dy / distance
 
-          // Push them apart, but clusters are immovable
-          if (!itemA.isCluster && !itemB.isCluster) {
-            posA.x -= ux * totalForce * 0.5
-            posA.y -= uy * totalForce * 0.5
-            posB.x += ux * totalForce * 0.5
-            posB.y += uy * totalForce * 0.5
-          } else if (!itemA.isCluster) {
-            posA.x -= ux * totalForce
-            posA.y -= uy * totalForce
-          } else if (!itemB.isCluster) {
-            posB.x += ux * totalForce
-            posB.y += uy * totalForce
-          }
+          applyForce(posA, posB, itemA, itemB, ux, uy, totalForce)
 
           if (!itemA.isCluster) {
             clampToLabels(posA, itemA)
@@ -302,18 +315,9 @@ export function resolveBlipCollisions (items: { id?: string | undefined; name: s
             const ux = dx / distance
             const uy = dy / distance
 
-            if (!itemA.isCluster && !itemB.isCluster) {
-              posA.x -= ux * force
-              posA.y -= uy * force
-              posB.x += ux * force
-              posB.y += uy * force
-            } else if (!itemA.isCluster) {
-              posA.x -= ux * force * 2
-              posA.y -= uy * force * 2
-            } else if (!itemB.isCluster) {
-              posB.x += ux * force * 2
-              posB.y += uy * force * 2
-            }
+            // Weak force is applied stronger to push things apart slightly faster,
+            // but we use the same helper, just double the force before passing it.
+            applyForce(posA, posB, itemA, itemB, ux, uy, force * 2)
 
             if (!itemA.isCluster) {
               clampToLabels(posA, itemA)

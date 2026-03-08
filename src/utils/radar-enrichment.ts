@@ -15,7 +15,7 @@ export function clearEnrichmentCache () {
 /**
  * Parses owner and repo from a GitHub URL.
  */
-function parseGithubUrl (url: string): { owner: string; repo: string } | null {
+export function parseGithubUrl (url: string): { owner: string; repo: string } | null {
   try {
     const parsed = new URL(url)
 
@@ -42,7 +42,7 @@ function parseGithubUrl (url: string): { owner: string; repo: string } | null {
 /**
  * Parses project path from a GitLab URL.
  */
-function parseGitlabUrl (url: string): string | null {
+export function parseGitlabUrl (url: string): string | null {
   try {
     const parsed = new URL(url)
 
@@ -54,6 +54,102 @@ function parseGitlabUrl (url: string): string | null {
   } catch {
     return null
   }
+}
+
+interface BlueOakLicense {
+  id: string
+  rating?: string
+}
+
+export async function fetchGithubLicense (
+  blip: Blip,
+  githubToken?: string,
+  githubApiBaseUrl: string = 'https://api.github.com'
+): Promise<LicenseMetadata | undefined> {
+  const githubInfo = parseGithubUrl(blip.repoUrl)
+
+  if (!githubInfo) return undefined
+
+  try {
+    const headers: Record<string, string> = {
+      Accept: 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28'
+    }
+
+    if (githubToken) {
+      headers.Authorization = `Bearer ${githubToken}`
+    }
+
+    const url = `${githubApiBaseUrl}/repos/${githubInfo.owner}/${githubInfo.repo}/license`
+    const response = await api.get(url, { headers, timeout: 5000 })
+
+    if (response.data && response.data.license) {
+      return {
+        spdx_id: response.data.license.spdx_id || 'Unknown',
+        name: response.data.license.name || 'Unknown License',
+        url: response.data.html_url || blip.repoUrl
+      }
+    }
+  } catch (error) {
+    console.warn(`Failed to fetch GitHub license for ${blip.name}:`, (error as Error).message)
+  }
+
+  return undefined
+}
+
+export async function fetchGitlabLicense (
+  blip: Blip,
+  gitlabToken?: string,
+  gitlabApiBaseUrl: string = 'https://gitlab.com'
+): Promise<LicenseMetadata | undefined> {
+  const projectPath = parseGitlabUrl(blip.repoUrl)
+
+  if (!projectPath) return undefined
+
+  try {
+    const encodedPath = encodeURIComponent(projectPath)
+    const headers: Record<string, string> = {}
+
+    if (gitlabToken) {
+      headers['Private-Token'] = gitlabToken
+    }
+
+    const url = `${gitlabApiBaseUrl}/api/v4/projects/${encodedPath}`
+    const response = await api.get(url, { headers, timeout: 5000 })
+
+    if (response.data && response.data.license) {
+      return {
+        spdx_id: response.data.license.nickname || response.data.license.key || 'Unknown',
+        name: response.data.license.name || 'Unknown License',
+        url: response.data.license_url || `${blip.repoUrl}/-/blob/master/LICENSE`
+      }
+    }
+  } catch (error) {
+    console.warn(`Failed to fetch GitLab license for ${blip.name}:`, (error as Error).message)
+  }
+
+  return undefined
+}
+
+export function getBlueOakRating (licenseId: string | undefined, blueOak: unknown[]): string {
+  let rating = 'Unknown'
+
+  if (licenseId && Array.isArray(blueOak) && blueOak.length > 0) {
+    const found = (blueOak as BlueOakLicense[]).find((l) => l.id === licenseId)
+
+    if (found) {
+      rating = found.rating || 'Approved'
+    }
+  }
+
+  // Fallback to manual check if still unknown
+  if (rating === 'Unknown' && licenseId) {
+    if (licenseId === 'MIT' || licenseId === 'Apache-2.0') {
+      rating = 'Gold'
+    }
+  }
+
+  return rating
 }
 
 /**
@@ -72,11 +168,7 @@ export async function enrichBlip (
     return {
       ...blip,
       rating: 'Unknown',
-      license: {
-        spdx_id: 'Unknown',
-        name: 'Unknown License',
-        url: ''
-      }
+      license: { spdx_id: 'Unknown', name: 'Unknown License', url: '' }
     }
   }
 
@@ -97,95 +189,19 @@ export async function enrichBlip (
     url: blip.repoUrl
   }
 
-  // Fetch from GitHub
+  // Fetch from APIs
   if (blip.repoUrl.includes('github.com')) {
-    const githubInfo = parseGithubUrl(blip.repoUrl)
+    const ghLicense = await fetchGithubLicense(blip, githubToken, githubApiBaseUrl)
 
-    if (githubInfo) {
-      try {
-        const headers: Record<string, string> = {
-          Accept: 'application/vnd.github+json',
-          'X-GitHub-Api-Version': '2022-11-28'
-        }
-
-        if (githubToken) {
-          headers.Authorization = `Bearer ${githubToken}`
-        }
-
-        const url = `${githubApiBaseUrl}/repos/${githubInfo.owner}/${githubInfo.repo}/license`
-
-        const response = await api.get(
-          url,
-          { headers, timeout: 5000 }
-        )
-
-        if (response.data && response.data.license) {
-          license = {
-            spdx_id: response.data.license.spdx_id || 'Unknown',
-            name: response.data.license.name || 'Unknown License',
-            url: response.data.html_url || blip.repoUrl
-          }
-        }
-      } catch (error) {
-        console.warn(`Failed to fetch GitHub license for ${blip.name}:`, (error as Error).message)
-      }
-    }
+    if (ghLicense) license = ghLicense
   } else if (blip.repoUrl.includes('gitlab.com')) {
-    const projectPath = parseGitlabUrl(blip.repoUrl)
+    const glLicense = await fetchGitlabLicense(blip, gitlabToken, gitlabApiBaseUrl)
 
-    if (projectPath) {
-      try {
-        const encodedPath = encodeURIComponent(projectPath)
-        const headers: Record<string, string> = {}
-
-        if (gitlabToken) {
-          headers['Private-Token'] = gitlabToken
-        }
-
-        const url = `${gitlabApiBaseUrl}/api/v4/projects/${encodedPath}`
-
-        const response = await api.get(
-          url,
-          { headers, timeout: 5000 }
-        )
-
-        if (response.data && response.data.license) {
-          license = {
-            spdx_id: response.data.license.nickname || response.data.license.key || 'Unknown',
-            name: response.data.license.name || 'Unknown License',
-            url: response.data.license_url || `${blip.repoUrl}/-/blob/master/LICENSE`
-          }
-        }
-      } catch (error) {
-        console.warn(`Failed to fetch GitLab license for ${blip.name}:`, (error as Error).message)
-      }
-    }
+    if (glLicense) license = glLicense
   }
 
-  // Compare against Blue Oak list
-  let rating = 'Unknown'
-
-  interface BlueOakLicense {
-    id: string
-    rating?: string
-  }
-
-  if (license && Array.isArray(blueOak) && blueOak.length > 0) {
-    const found = (blueOak as BlueOakLicense[]).find((l) => l.id === license?.spdx_id)
-
-    if (found) {
-      rating = found.rating || 'Approved'
-    }
-  }
-
-  // Fallback to manual check if still unknown
-  if (rating === 'Unknown' && license) {
-    if (license.spdx_id === 'MIT') {
-      rating = 'Gold'
-    } else if (license.spdx_id === 'Apache-2.0') {
-      rating = 'Gold'
-    }
-  }
+  // Determine Rating
+  const rating = getBlueOakRating(license?.spdx_id, blueOak)
 
   // Update cache
   enrichmentCache[cacheKey] = {

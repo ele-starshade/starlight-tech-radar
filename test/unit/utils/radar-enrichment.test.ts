@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { enrichBlip, clearEnrichmentCache } from 'src/utils/radar-enrichment'
+import { enrichBlip, enrichBlips, clearEnrichmentCache, parseGithubUrl, parseGitlabUrl } from 'src/utils/radar-enrichment'
 import { type Blip } from 'src/models/radar'
 import { api } from 'src/boot/axios'
 
@@ -28,6 +28,32 @@ describe('Radar Enrichment Utility', () => {
     clearEnrichmentCache()
   })
 
+  describe('parseGithubUrl', () => {
+    it('returns null for invalid urls', () => {
+      expect(parseGithubUrl('not a url')).toBeNull()
+      expect(parseGithubUrl('https://gitlab.com/test/repo')).toBeNull()
+      expect(parseGithubUrl('https://github.com/')).toBeNull()
+    })
+
+    it('returns owner and repo for valid urls', () => {
+      expect(parseGithubUrl('https://github.com/owner/repo.git')).toEqual({ owner: 'owner', repo: 'repo' })
+      expect(parseGithubUrl('https://github.com/owner/repo')).toEqual({ owner: 'owner', repo: 'repo' })
+    })
+  })
+
+  describe('parseGitlabUrl', () => {
+    it('returns null for invalid urls', () => {
+      expect(parseGitlabUrl('not a url')).toBeNull()
+      expect(parseGitlabUrl('https://github.com/test/repo')).toBeNull()
+      expect(parseGitlabUrl('https://gitlab.com/')).toBeNull()
+    })
+
+    it('returns project path for valid urls', () => {
+      expect(parseGitlabUrl('https://gitlab.com/owner/repo')).toBe('owner/repo')
+      expect(parseGitlabUrl('https://gitlab.com/owner/subgroup/repo')).toBe('owner/subgroup/repo')
+    })
+  })
+
   it('should enrich a blip with license from GitHub API', async () => {
     getSpy.mockResolvedValue({
       data: {
@@ -41,6 +67,25 @@ describe('Radar Enrichment Utility', () => {
     expect(enriched.license?.spdx_id).toBe('MIT')
     expect(enriched.rating).toBe('Gold')
     expect(enriched.license?.url).toBe('https://github.com/test/repo/blob/main/LICENSE')
+  })
+
+  it('should return Unknown if no repoUrl provided', async () => {
+    const blip = { ...mockBlip, repoUrl: '' }
+    const enriched = await enrichBlip(blip)
+
+    expect(enriched.rating).toBe('Unknown')
+    expect(enriched.license?.spdx_id).toBe('Unknown')
+  })
+
+  it('should handle GitHub API error gracefully', async () => {
+    getSpy.mockRejectedValue(new Error('API Down'))
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
+
+    const enriched = await enrichBlip(mockBlip)
+
+    expect(enriched.rating).toBe('Unknown')
+    expect(warnSpy).toHaveBeenCalled()
+    warnSpy.mockRestore()
   })
 
   it('should enrich a blip with GitLab URL from GitLab API', async () => {
@@ -57,6 +102,42 @@ describe('Radar Enrichment Utility', () => {
 
     expect(enriched.license?.spdx_id).toBe('MIT')
     expect(enriched.license?.url).toBe('https://gitlab.com/test/repo/-/blob/master/LICENSE')
+  })
+
+  it('should handle GitLab API error gracefully', async () => {
+    const gitlabBlip = { ...mockBlip, repoUrl: 'https://gitlab.com/test/repo' }
+
+    getSpy.mockRejectedValue(new Error('API Down'))
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
+
+    const enriched = await enrichBlip(gitlabBlip)
+
+    expect(enriched.rating).toBe('Unknown')
+    expect(warnSpy).toHaveBeenCalled()
+    warnSpy.mockRestore()
+  })
+
+  it('should rate Apache-2.0 as Gold', async () => {
+    getSpy.mockResolvedValue({
+      data: {
+        license: { spdx_id: 'Apache-2.0', name: 'Apache License 2.0' }
+      }
+    })
+
+    const enriched = await enrichBlip(mockBlip)
+
+    expect(enriched.rating).toBe('Gold')
+  })
+
+  it('should enrich multiple blips in batch', async () => {
+    getSpy.mockResolvedValue({ data: { license: { spdx_id: 'MIT' } } })
+    const blips = [mockBlip, { ...mockBlip, name: 'Blip 2' }]
+
+    const enriched = await enrichBlips(blips)
+
+    expect(enriched.length).toBe(2)
+    expect(enriched[0]!.license?.spdx_id).toBe('MIT')
+    expect(enriched[1]!.license?.spdx_id).toBe('MIT')
   })
 
   it('should use Blue Oak rating if provided in the list', async () => {
@@ -149,6 +230,26 @@ describe('Radar Enrichment Utility', () => {
     )
   })
 
+  it('should handle GitHub URL parsing errors gracefully', async () => {
+    // A malformed URL to throw in URL constructor
+    const blip = { ...mockBlip, repoUrl: 'invalid://github.com/repo' }
+
+    // We expect it to gracefully fail and not enrich from github
+    const enriched = await enrichBlip(blip)
+
+    expect(enriched.rating).toBe('Unknown')
+    expect(getSpy).not.toHaveBeenCalled()
+  })
+
+  it('should handle GitLab URL parsing errors gracefully', async () => {
+    // It actually doesn't get caught by 'includes("gitlab.com")' unless it really does, so:
+    const blipWithInvalidGitlab = { ...mockBlip, repoUrl: '://gitlab.com/invalid' }
+    const enriched = await enrichBlip(blipWithInvalidGitlab)
+
+    expect(enriched.rating).toBe('Unknown')
+    expect(getSpy).not.toHaveBeenCalled()
+  })
+
   it('should cache enrichment results and not call API twice for same repo', async () => {
     const cacheBlip = { ...mockBlip, repoUrl: 'https://github.com/cache/repo' }
 
@@ -163,7 +264,9 @@ describe('Radar Enrichment Utility', () => {
     expect(getSpy).toHaveBeenCalledTimes(1)
 
     // Second call
-    await enrichBlip(cacheBlip)
+    const enriched = await enrichBlip(cacheBlip)
+
     expect(getSpy).toHaveBeenCalledTimes(1) // Should still be 1
+    expect(enriched.license?.spdx_id).toBe('MIT')
   })
 })

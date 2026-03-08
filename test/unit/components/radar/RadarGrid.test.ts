@@ -13,4 +13,18 @@ describe('RadarGrid.vue', () => {
 
     expect(wrapper.html()).toMatchSnapshot()
   })
+
+  it('renders quadrant labels', () => {
+    const wrapper = mountComponent(RadarGrid, {
+      props: {
+        quadrants: ['Techniques', 'Tools', 'Platforms', 'Languages & Frameworks'],
+        rings: ['Adopt', 'Trial', 'Assess', 'Hold']
+      }
+    })
+
+    const labels = wrapper.findAll('.quadrant-label')
+
+    expect(labels.length).toBe(4)
+    expect(labels[0]!.text()).toBe('radar.quadrants.techniques')
+  })
 })

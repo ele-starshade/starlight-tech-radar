@@ -43,6 +43,7 @@
 
             <div class="row items-center q-gutter-md">
               <q-btn
+                data-testid="decrease-font-size"
                 color="primary"
                 flat
                 round
@@ -54,6 +55,7 @@
                 {{ accessibilityStore.fontSizeStep > 0 ? '+' : '' }}{{ accessibilityStore.fontSizeStep }}
               </div>
               <q-btn
+                data-testid="increase-font-size"
                 color="primary"
                 flat
                 round
@@ -74,6 +76,7 @@
               </q-item-section>
               <q-item-section side>
                 <q-toggle
+                  data-testid="toggle-dyslexic"
                   :model-value="accessibilityStore.isDyslexicEnabled"
                   @update:model-value="accessibilityStore.setDyslexicEnabled"
                   :aria-label="$t('accessibility.open_dyslexic')"
@@ -92,6 +95,7 @@
               </q-item-section>
               <q-item-section side>
                 <q-toggle
+                  data-testid="toggle-dark-mode"
                   :model-value="accessibilityStore.isDarkMode"
                   @update:model-value="accessibilityStore.setDarkMode"
                   :aria-label="$t('accessibility.dark_mode')"

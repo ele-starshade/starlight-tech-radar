@@ -31,10 +31,21 @@ const i18n = createI18n({
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function mountComponent (component: any, options: any = {}) {
+  const plugins = [...(options.global?.plugins || []), i18n]
+
+  // Check if Pinia is already provided in plugins
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const hasPinia = options.global?.plugins?.some((p: any) => p && (p.state || p._s))
+
+  if (!hasPinia) {
+    plugins.unshift(createPinia())
+  }
+
   return shallowMount(component, {
     ...options,
     global: {
-      plugins: [createPinia(), i18n, ...(options.global?.plugins || [])],
+      ...options.global,
+      plugins,
       directives: {
         ripple: {},
         'close-popup': {},

@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`RadarBlipDetails.vue > matches snapshot 1`] = `
+exports[`RadarBlipDetail.vue > matches snapshot 1`] = `
 "<q-card-section>
   <div class="row items-center no-wrap">
     <div class="col">
@@ -23,8 +23,8 @@ exports[`RadarBlipDetails.vue > matches snapshot 1`] = `
 <q-card-section>Test</q-card-section>
 <q-separator></q-separator>
 <q-card-actions align="right">
-  <!--v-if-->
-  <!--v-if-->
-  <!--v-if-->
+  <q-btn color="primary" text-color="black" label="radar.blips.guidance" href="https://guidance.com" target="_blank" icon="description"></q-btn>
+  <q-btn color="secondary" text-color="black" label="radar.blips.repository" href="https://repo.com" target="_blank" icon="book"></q-btn>
+  <q-btn color="orange" text-color="black" label="radar.feedback.give_feedback" icon="feedback"></q-btn>
 </q-card-actions>"
 `;

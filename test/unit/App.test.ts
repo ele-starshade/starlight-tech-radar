@@ -3,6 +3,7 @@ import { mountComponent } from 'test/utils/test-setup'
 import App from 'src/App.vue'
 import { useAccessibilityStore } from 'src/stores/accessibility'
 import { nextTick } from 'vue'
+import { createTestingPinia } from '@pinia/testing'
 
 const mockSetDark = vi.fn()
 
@@ -27,7 +28,9 @@ describe('App.vue', () => {
   })
 
   it('updates dark mode when isDarkMode changes', async () => {
-    mountComponent(App)
+    const pinia = createTestingPinia({ stubActions: false })
+
+    mountComponent(App, { global: { plugins: [pinia] } })
     const store = useAccessibilityStore()
 
     // Default is true, so change to false to trigger watcher
@@ -38,7 +41,9 @@ describe('App.vue', () => {
   })
 
   it('applies dyslexic class and scales font down when isDyslexicEnabled is true', async () => {
-    mountComponent(App)
+    const pinia = createTestingPinia({ stubActions: false })
+
+    mountComponent(App, { global: { plugins: [pinia] } })
     const store = useAccessibilityStore()
 
     store.isDyslexicEnabled = true
@@ -50,8 +55,21 @@ describe('App.vue', () => {
     expect(document.documentElement.style.fontSize).toBe('14.4px')
   })
 
+  it('applies open-dyslexic class on mount if enabled in store', () => {
+    const pinia = createTestingPinia({ stubActions: false })
+    const store = useAccessibilityStore(pinia)
+
+    store.isDyslexicEnabled = true
+
+    mountComponent(App, { global: { plugins: [pinia] } })
+
+    expect(document.body.classList.contains('open-dyslexic')).toBe(true)
+  })
+
   it('applies font size step correctly', async () => {
-    mountComponent(App)
+    const pinia = createTestingPinia({ stubActions: false })
+
+    mountComponent(App, { global: { plugins: [pinia] } })
     const store = useAccessibilityStore()
 
     // Assuming a step size of 2

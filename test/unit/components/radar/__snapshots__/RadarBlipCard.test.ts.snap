@@ -1,0 +1,32 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RadarBlipCard.vue > matches snapshot 1`] = `
+"<q-card flat="" bordered="" style="">
+  <q-card-section>
+    <div class="row items-center no-wrap">
+      <div class="col">
+        <div class="text-h6">Test Blip</div>
+        <div class="text-subtitle2">radar.quadrants.tools - radar.rings.adopt</div>
+      </div>
+      <div class="col-auto">
+        <q-chip color="positive" text-color="dark">radar.blips.new</q-chip>
+      </div>
+    </div>
+  </q-card-section>
+  <q-card-section class="q-py-none">
+    <div class="row items-center">
+      <q-chip outline="" color="white" icon="description">MIT <q-tooltip>radar.licenseLabel</q-tooltip>
+      </q-chip>
+      <q-chip outline="" color="amber-9" icon="verified">Gold <q-tooltip>radar.licenseRating</q-tooltip>
+      </q-chip>
+    </div>
+  </q-card-section>
+  <q-card-section>Test description</q-card-section>
+  <q-separator></q-separator>
+  <q-card-actions align="right">
+    <q-btn color="primary" text-color="black" label="radar.blips.guidance" href="https://guidance.com" target="_blank" icon="description"></q-btn>
+    <q-btn color="secondary" text-color="black" label="radar.blips.repository" href="https://repo.com" target="_blank" icon="book"></q-btn>
+    <q-btn color="orange" text-color="black" label="radar.feedback.give_feedback" icon="feedback"></q-btn>
+  </q-card-actions>
+</q-card>"
+`;

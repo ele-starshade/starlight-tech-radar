@@ -1,10 +1,10 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`RadarBlipFeedbackDialog.vue > matches snapshot 1`] = `
-"<q-dialog modelvalue="true" persistent="" aria-labelledby="feedback-dialog-title" blipname="Test Blip">
+"<q-dialog modelvalue="true" persistent="" aria-labelledby="feedback-dialog-title">
   <q-card style="min-width: 350px;" dark="" class="bg-dark text-white">
     <q-card-section>
-      <div id="feedback-dialog-title" class="text-h6">radar.feedback.title </div>
+      <div id="feedback-dialog-title" class="text-h6">radar.feedback.title Test Blip</div>
     </q-card-section>
     <q-card-section class="q-pt-none">
       <q-select options="[object Object],[object Object],[object Object],[object Object]" label="radar.feedback.type" dark="" emit-value="" map-options="" outlined="" class="q-mb-md" placeholder="radar.feedback.type_placeholder"></q-select>
