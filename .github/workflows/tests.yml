@@ -39,6 +39,7 @@ jobs:
           node-version: '24'
           cache: 'npm'
       - run: npm ci --ignore-scripts
+      - run: npx quasar prepare
       - run: npx vitest run --coverage
       - uses: actions/upload-artifact@v4
         with:

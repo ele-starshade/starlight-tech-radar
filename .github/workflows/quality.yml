@@ -19,6 +19,7 @@ jobs:
           node-version: '24'
           cache: 'npm'
       - run: npm ci --ignore-scripts
+      - run: npx quasar prepare
       - run: npm run lint
 
   type-check:
@@ -30,6 +31,7 @@ jobs:
           node-version: '24'
           cache: 'npm'
       - run: npm ci --ignore-scripts
+      - run: npx quasar prepare
       - run: npm run type-check
 
   npm-audit:
