@@ -109,16 +109,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, defineAsyncComponent } from 'vue'
 import { mapState } from 'pinia'
 import { useRadarStore } from 'src/stores/radar'
-import RadarCanvas from 'src/components/RadarCanvas.vue'
 import { appConfig } from 'src/config'
 import RadarBlipFeedbackDialog from 'src/components/radar/feedback/RadarBlipFeedbackDialog.vue'
 import { type Blip, type Quadrant } from 'src/models/radar'
 import RadarBlipCard from 'src/components/radar/RadarBlipCard.vue'
 import { useAccessibilityStore } from 'src/stores/accessibility'
 import RadarBlipsNone from 'src/components/radar/RadarBlipsNone.vue'
+
+const RadarCanvas = defineAsyncComponent(() => import('src/components/RadarCanvas.vue'))
 
 export default defineComponent({
   name: 'IndexPage',
@@ -132,7 +133,7 @@ export default defineComponent({
 
   data () {
     return {
-      viewMode: 'radar',
+      viewMode: this.$q.screen.lt.md ? 'list' : 'radar',
       showFeedbackDialog: false,
       feedbackBlip: null as Blip | null,
       tab: 'Techniques' as Quadrant,
@@ -178,8 +179,7 @@ export default defineComponent({
         } else {
           this.viewMode = 'radar'
         }
-      },
-      immediate: true
+      }
     }
   },
 

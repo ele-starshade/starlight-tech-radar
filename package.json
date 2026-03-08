@@ -17,6 +17,8 @@
     "test:e2e": "playwright test",
     "test:e2e:ci": "playwright test --reporter=list",
     "test:e2e:ui": "playwright test --ui",
+    "test:performance": "CHROME_PATH=$(node -e \"console.log(require('@playwright/test').chromium.executablePath())\") lighthouse http://127.0.0.1:3000 --output=json --output-path=./lighthouse-report-prod.json --chrome-flags=\"--headless --no-sandbox\"",
+    "test:performance:summary": "node -e \"const r = require('./lighthouse-report-prod.json'); console.log({ FCP: r.audits['first-contentful-paint'].displayValue, LCP: r.audits['largest-contentful-paint'].displayValue, TBT: r.audits['total-blocking-time'].displayValue, CLS: r.audits['cumulative-layout-shift'].displayValue, Score: r.categories.performance.score })\"",
     "type-check": "vue-tsc --noEmit",
     "test:all": "npm run type-check && npm run test:unit && npm run test:e2e",
     "test:audit": "npm audit --omit=dev",
@@ -24,12 +26,13 @@
     "wiremock:down": "docker compose down",
     "dev": "quasar dev -m ssr",
     "build": "quasar build -m ssr",
+    "serve:prod": "node dist/ssr/index.js",
+    "serve:prod:stop": "pkill -f 'node dist/ssr/index.js' || true && rm -rf *Local\\lighthouse.*",
     "postinstall": "quasar prepare && npx playwright install",
     "prepare": "husky"
   },
   "dependencies": {
     "@blueoak/list": "^15.0.0",
-    "@fontsource/opendyslexic": "^5.2.5",
     "@quasar/extras": "^1.16.4",
     "axios": "^1.2.1",
     "pinia": "^3.0.1",
@@ -43,6 +46,8 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.11.1",
     "@eslint/js": "^9.14.0",
+    "@fontsource/opendyslexic": "^5.2.5",
+    "@fontsource/roboto": "^5.2.10",
     "@intlify/unplugin-vue-i18n": "^11.0.7",
     "@pinia/testing": "^1.0.3",
     "@playwright/test": "^1.58.2",

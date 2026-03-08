@@ -15,6 +15,7 @@ export const useRadarStore = defineStore('radar', {
       const hasParams = params && Object.keys(params).length > 0
 
       if (this.radarData && !this.error && !hasParams) return
+      if (this.loading) return
 
       this.loading = true
       this.error = null

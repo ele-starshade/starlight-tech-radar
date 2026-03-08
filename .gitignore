@@ -39,3 +39,7 @@ yarn-error.log*
 # Coverage output
 /coverage
 /.nyc_output
+
+# Lighthouse
+lighthouse-report-prod.json
+*AppData\\Local\\lighthouse.*/

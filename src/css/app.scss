@@ -1,10 +1,10 @@
-@import "@fontsource/opendyslexic/index.css";
+@import "@fontsource/roboto/latin-400.css";
 
 .open-dyslexic {
   font-family: 'OpenDyslexic', sans-serif !important;
 
   // Apply to all children EXCEPT icons which need their own font-family
-  *:not(.q-icon):not(.material-icons):not(.notranslate):not([class*="fa-"]) {
+  *:not(.q-icon):not(.material-icons):not(.notranslate) {
     font-family: 'OpenDyslexic', sans-serif !important;
   }
 }

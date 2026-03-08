@@ -35,6 +35,10 @@ watch(() => accessibilityStore.isDarkMode, (val) => {
 })
 
 watch(() => accessibilityStore.isDyslexicEnabled, (val) => {
+  if (val) {
+    import('@fontsource/opendyslexic/latin.css').catch(() => { /* ignore */ })
+  }
+
   document.body.classList.toggle('open-dyslexic', val)
   applyFontSize()
 })
@@ -46,5 +50,12 @@ watch(() => accessibilityStore.fontSizeStep, () => {
 onMounted(() => {
   document.body.classList.toggle('open-dyslexic', accessibilityStore.isDyslexicEnabled)
   applyFontSize()
+
+  // Load secondary fonts after initial paint to improve LCP
+  import('@fontsource/roboto/latin-700.css').catch(() => { /* ignore */ })
+
+  if (accessibilityStore.isDyslexicEnabled) {
+    import('@fontsource/opendyslexic/latin.css').catch(() => { /* ignore */ })
+  }
 })
 </script>
