@@ -84,7 +84,7 @@ jobs:
           retention-days: 30
       - name: Deploy Badges
         if: github.ref == 'refs/heads/main'
-        uses: peaceiris/actions-gh-pages@4f9d88b12831fd2447a9ee7622d848d72965df4d
+        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./badges
