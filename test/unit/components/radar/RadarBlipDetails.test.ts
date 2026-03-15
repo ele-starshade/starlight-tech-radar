@@ -1,25 +1,26 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect } from 'vitest'
 import { mountComponent } from 'test/utils/test-setup'
 import RadarBlipDetails from 'src/components/radar/RadarBlipDetails.vue'
 import RadarBlipDetail from 'src/components/radar/RadarBlipDetail.vue'
 
-vi.mock('src/config', () => ({
-  appConfig: {
-    isFeedbackEnabled: true
-  }
-}))
-
 describe('RadarBlipDetails.vue', () => {
   const blip = { name: 'Test Blip', ring: 'Adopt', quadrant: 'Tools', isNew: false, description: 'Test', repoUrl: '', guidanceLink: '' }
   const node = { isCluster: false, id: '1', name: 'Test Blip', ring: 'Adopt', quadrant: 'Tools', isNew: false, description: 'Test', repoUrl: '', guidanceLink: '', x: 100, y: 100, blips: [blip] }
+
+  const defaultProvide = {
+    appConfig: {
+      isFeedbackEnabled: true
+    }
+  }
 
   it('matches snapshot', () => {
     const wrapper = mountComponent(RadarBlipDetails, {
       props: {
         modelValue: true,
         node
-      }
+      },
+      global: { provide: defaultProvide }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -31,7 +32,8 @@ describe('RadarBlipDetails.vue', () => {
       props: {
         modelValue: true,
         node: clusterNode
-      }
+      },
+      global: { provide: defaultProvide }
     })
 
     expect(wrapper.text()).toContain('2 items in radar.quadrants.tools - radar.rings.adopt')
@@ -42,7 +44,8 @@ describe('RadarBlipDetails.vue', () => {
       props: {
         modelValue: true,
         node
-      }
+      },
+      global: { provide: defaultProvide }
     })
 
     const vm = wrapper.vm as any
@@ -56,7 +59,8 @@ describe('RadarBlipDetails.vue', () => {
       props: {
         modelValue: true,
         node
-      }
+      },
+      global: { provide: defaultProvide }
     })
 
     const detail = wrapper.findComponent(RadarBlipDetail)
@@ -74,7 +78,8 @@ describe('RadarBlipDetails.vue', () => {
       props: {
         modelValue: true,
         node
-      }
+      },
+      global: { provide: defaultProvide }
     })
 
     const vm = wrapper.vm as any
@@ -86,7 +91,7 @@ describe('RadarBlipDetails.vue', () => {
   it('handles dialog v-model updates', async () => {
     const wrapper = mountComponent(RadarBlipDetails, {
       props: { modelValue: true, node },
-      global: { stubs: { 'q-dialog': true, RadarBlipFeedbackDialog: true } }
+      global: { stubs: { 'q-dialog': true, RadarBlipFeedbackDialog: true }, provide: defaultProvide }
     })
 
     const dialog = wrapper.findComponent({ name: 'QDialog' })

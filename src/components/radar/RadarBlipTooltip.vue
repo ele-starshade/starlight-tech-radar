@@ -27,29 +27,12 @@
   </q-tooltip>
 </template>
 
-<script lang="ts">
-import { defineComponent, type PropType } from 'vue'
+<script setup lang="ts">
 import type { DisplayNode } from 'src/utils/radar-visualization'
-import { getQuadrantTranslationKey } from 'src/models/radar'
+import { getQuadrantTranslationKey } from 'src/utils/radar-helpers'
 
-export default defineComponent({
-  name: 'RadarBlipTooltip',
-
-  props: {
-    node: {
-      type: Object as PropType<DisplayNode>,
-      required: true
-    },
-    index: {
-      type: Number,
-      required: true
-    }
-  },
-
-  methods: {
-    getQuadrantTranslationKey (quadrant: string) {
-      return getQuadrantTranslationKey(quadrant)
-    }
-  }
-})
+defineProps<{
+  node: DisplayNode
+  index: number
+}>()
 </script>

@@ -6,7 +6,8 @@
     :aria-label="node.isCluster ? `Cluster: ${node.name}` : `Blip ${index + 1}: ${node.name}`"
     :aria-describedby="`tooltip-${index}`"
     @click="$emit('click', node)"
-    @keydown="onKeydown"
+    @keyup.enter="$emit('click', node)"
+    @keyup.space.prevent="$emit('click', node)"
     :style="{ '--node-x': `${node.x}px`, '--node-y': `${node.y}px` }"
   >
     <template v-if="node.isCluster">
@@ -48,90 +49,65 @@
   </g>
 </template>
 
-<script lang="ts">
-import { defineComponent, type PropType } from 'vue'
+<script setup lang="ts">
+import { computed } from 'vue'
 import { colors } from 'quasar'
 import type { DisplayNode } from 'src/utils/radar-visualization'
 
-export default defineComponent({
-  name: 'RadarBlip',
+const props = defineProps<{
+  node: DisplayNode
+  index: number
+}>()
 
-  props: {
-    node: {
-      type: Object as PropType<DisplayNode>,
-      required: true
-    },
-    index: {
-      type: Number,
-      required: true
-    }
-  },
+defineEmits<{
+  (e: 'click', node: DisplayNode): void
+}>()
 
-  emits: ['click'],
+const anchorId = computed(() => `blip-anchor-${props.index}`)
 
-  methods: {
-    onKeydown (event: KeyboardEvent) {
-      if (event.key === 'Enter' || event.key === ' ') {
-        if (event.key === ' ') event.preventDefault()
-        this.$emit('click', this.node)
-      }
-    }
-  },
+const baseColorHex = computed(() => {
+  let colorName: string
 
-  computed: {
-    anchorId (): string {
-      return `blip-anchor-${this.index}`
-    },
-
-    baseColorHex (): string {
-      let colorName: string
-
-      if (this.node.isNew) {
-        colorName = 'positive'
-      } else {
-        switch (this.node.quadrant) {
-          case 'Techniques': colorName = 'secondary'; break
-          case 'Platforms': colorName = 'accent'; break
-          case 'Tools': colorName = 'info'; break
-          case 'Languages & Frameworks': colorName = 'warning'; break
-          default: colorName = 'secondary'; break
-        }
-      }
-
-      return colors.getPaletteColor(colorName)
-    },
-
-    blipColor (): string {
-      const hex = this.baseColorHex
-
-      if (this.node.isNew) return hex
-
-      // Start normal on outside, get darker towards the center.
-      // Negative percent darkens the color in Quasar's colors.lighten
-      let darkenPercent = 0
-
-      switch (this.node.ring) {
-        case 'Hold': return hex
-        case 'Assess': darkenPercent = -12; break
-        case 'Trial': darkenPercent = -24; break
-        case 'Adopt': darkenPercent = -36; break
-      }
-
-      return colors.lighten(hex, darkenPercent)
-    },
-
-    textColor (): string {
-      const hex = this.blipColor
-
-      // Dynamic contrast check: if background is dark, use white; otherwise dark navy
-      // Using 140 as a threshold for brightness (0-255) ensures good WCAG contrast
-      if (hex && colors.brightness(hex) < 140) {
-        return '#FFFFFF'
-      }
-
-      return '#0B1121'
+  if (props.node.isNew) {
+    colorName = 'positive'
+  } else {
+    switch (props.node.quadrant) {
+      case 'Techniques': colorName = 'secondary'; break
+      case 'Platforms': colorName = 'accent'; break
+      case 'Tools': colorName = 'info'; break
+      case 'Languages & Frameworks': colorName = 'warning'; break
+      default: colorName = 'secondary'; break
     }
   }
+
+  return colors.getPaletteColor(colorName)
+})
+
+const blipColor = computed(() => {
+  const hex = baseColorHex.value
+
+  if (props.node.isNew) return hex
+
+  let darkenPercent = 0
+
+  switch (props.node.ring) {
+    case 'Hold': return hex
+    case 'Assess': darkenPercent = -12; break
+    case 'Trial': darkenPercent = -24; break
+    case 'Adopt': darkenPercent = -36; break
+  }
+
+  return colors.lighten(hex, darkenPercent)
+})
+
+const textColor = computed(() => {
+  const hex = blipColor.value
+
+  if (hex && colors.brightness(hex) < 140) {
+    return '#FFFFFF'
+  }
+
+  return '#0B1121'
 })
 </script>
 

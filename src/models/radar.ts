@@ -44,14 +44,3 @@ export type Ring = z.infer<typeof RingEnum>
 export type Blip = z.infer<typeof BlipSchema>
 export type RadarConfiguration = z.infer<typeof RadarConfigurationSchema>
 export type LicenseMetadata = z.infer<typeof LicenseMetadataSchema>
-
-export const getQuadrantTranslationKey = (quadrant: string) => {
-  const mapping: Record<string, string> = {
-    Techniques: 'radar.quadrants.techniques',
-    Platforms: 'radar.quadrants.platforms',
-    Tools: 'radar.quadrants.tools',
-    'Languages & Frameworks': 'radar.quadrants.languages'
-  }
-
-  return mapping[quadrant] || quadrant
-}

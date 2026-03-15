@@ -4,11 +4,14 @@
 
 <script setup lang="ts">
 import { useQuasar } from 'quasar'
-import { watch, onMounted } from 'vue'
+import { watch, onMounted, provide } from 'vue'
 import { useAccessibilityStore } from 'src/stores/accessibility'
+import { appConfig } from 'src/config'
 
 const $q = useQuasar()
 const accessibilityStore = useAccessibilityStore()
+
+provide('appConfig', appConfig)
 
 // Execute on both server and client to sync the HTML body classes
 // with the user preferences determined by the boot file!

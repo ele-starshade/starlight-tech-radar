@@ -1,8 +1,23 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/unbound-method */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { mountComponent } from 'test/utils/test-setup'
 import RadarBlipFeedbackDialog from 'src/components/radar/feedback/RadarBlipFeedbackDialog.vue'
 import { defineComponent, nextTick } from 'vue'
+import { api } from 'src/boot/axios'
+import { useQuasar } from 'quasar'
+
+vi.mock('src/boot/axios', () => ({
+  api: { post: vi.fn() }
+}))
+
+vi.mock('quasar', async (importOriginal) => {
+  const actual: any = await importOriginal()
+
+  return {
+    ...actual,
+    useQuasar: vi.fn()
+  }
+})
 
 const QBtnStub = defineComponent({
   name: 'QBtn',
@@ -19,6 +34,9 @@ describe('RadarBlipFeedbackDialog.vue', () => {
 
   beforeEach(() => {
     vi.clearAllMocks()
+    vi.mocked(useQuasar).mockReturnValue({
+      notify: vi.fn()
+    } as any)
   })
 
   it('matches snapshot', () => {
@@ -61,17 +79,13 @@ describe('RadarBlipFeedbackDialog.vue', () => {
   })
 
   it('sends feedback successfully', async () => {
-    const postSpy = vi.fn().mockResolvedValue({})
     const notifySpy = vi.fn()
 
+    vi.mocked(useQuasar).mockReturnValue({ notify: notifySpy } as any)
+    vi.mocked(api.post).mockResolvedValue({})
+
     const wrapper = mountComponent(RadarBlipFeedbackDialog, {
-      props: { modelValue: true, blip },
-      global: {
-        mocks: {
-          $api: { post: postSpy },
-          $q: { notify: notifySpy }
-        }
-      }
+      props: { modelValue: true, blip }
     })
 
     const vm = wrapper.vm as any
@@ -81,7 +95,7 @@ describe('RadarBlipFeedbackDialog.vue', () => {
 
     await vm.sendFeedback()
 
-    expect(postSpy).toHaveBeenCalledWith('/api/feedback', {
+    expect(api.post).toHaveBeenCalledWith('/api/feedback', {
       blipName: 'Test Blip',
       feedbackType: 'Positive',
       comment: 'Great!'
@@ -91,19 +105,15 @@ describe('RadarBlipFeedbackDialog.vue', () => {
   })
 
   it('handles feedback error', async () => {
-    const postSpy = vi.fn().mockRejectedValue(new Error('Network Error'))
     const notifySpy = vi.fn()
+
+    vi.mocked(useQuasar).mockReturnValue({ notify: notifySpy } as any)
+    vi.mocked(api.post).mockRejectedValue(new Error('Network Error'))
 
     vi.spyOn(console, 'error').mockImplementation(() => {})
 
     const wrapper = mountComponent(RadarBlipFeedbackDialog, {
-      props: { modelValue: true, blip },
-      global: {
-        mocks: {
-          $api: { post: postSpy },
-          $q: { notify: notifySpy }
-        }
-      }
+      props: { modelValue: true, blip }
     })
 
     const vm = wrapper.vm as any
@@ -118,16 +128,14 @@ describe('RadarBlipFeedbackDialog.vue', () => {
   })
 
   it('does nothing if required fields are missing', async () => {
-    const postSpy = vi.fn()
     const wrapper = mountComponent(RadarBlipFeedbackDialog, {
-      props: { modelValue: true, blip: null },
-      global: { mocks: { $api: { post: postSpy } } }
+      props: { modelValue: true, blip: null }
     })
 
     const vm = wrapper.vm as any
 
     await vm.sendFeedback()
-    expect(postSpy).not.toHaveBeenCalled()
+    expect(api.post).not.toHaveBeenCalled()
   })
 
   it('emits update:modelValue when show computed is set', () => {

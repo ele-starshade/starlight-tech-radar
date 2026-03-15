@@ -44,64 +44,38 @@
   />
 </template>
 
-<script lang="ts">
-import { defineComponent, type PropType } from 'vue'
+<script setup lang="ts">
+import { ref, computed, inject } from 'vue'
 import type { Blip } from 'src/models/radar'
 import type { DisplayNode } from 'src/utils/radar-visualization'
-import { getQuadrantTranslationKey } from 'src/models/radar'
-import { appConfig } from 'src/config'
+import { getQuadrantTranslationKey } from 'src/utils/radar-helpers'
+import type { AppConfig } from 'src/config'
 import RadarBlipFeedbackDialog from './feedback/RadarBlipFeedbackDialog.vue'
 import RadarBlipDetail from './RadarBlipDetail.vue'
 
-export default defineComponent({
-  name: 'RadarBlipDetails',
+const props = defineProps<{
+  modelValue: boolean
+  node: DisplayNode | null
+}>()
 
-  components: {
-    RadarBlipFeedbackDialog,
-    RadarBlipDetail
-  },
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: boolean): void
+}>()
 
-  props: {
-    modelValue: {
-      type: Boolean,
-      required: true
-    },
-    node: {
-      type: Object as unknown as PropType<DisplayNode>,
-      default: null
-    }
-  },
+const showFeedbackDialog = ref(false)
+const feedbackBlip = ref<Blip | null>(null)
 
-  emits: ['update:modelValue'],
-
-  data () {
-    return {
-      showFeedbackDialog: false,
-      feedbackBlip: null as Blip | null
-    }
-  },
-
-  computed: {
-    show: {
-      get (): boolean {
-        return this.modelValue
-      },
-      set (value: boolean) {
-        this.$emit('update:modelValue', value)
-      }
-    },
-    isFeedbackEnabled (): boolean {
-      return appConfig.isFeedbackEnabled
-    }
-  },
-
-  methods: {
-    getQuadrantTranslationKey,
-    openFeedback (blip: Blip | undefined) {
-      if (!blip) return
-      this.feedbackBlip = blip
-      this.showFeedbackDialog = true
-    }
-  }
+const show = computed({
+  get: () => props.modelValue,
+  set: (value) => emit('update:modelValue', value)
 })
+
+const appConfig = inject<AppConfig>('appConfig')
+const isFeedbackEnabled = computed(() => appConfig?.isFeedbackEnabled ?? false)
+
+const openFeedback = (blip: Blip | undefined) => {
+  if (!blip) return
+  feedbackBlip.value = blip
+  showFeedbackDialog.value = true
+}
 </script>

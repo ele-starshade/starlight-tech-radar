@@ -109,15 +109,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, defineAsyncComponent } from 'vue'
+import { defineComponent, defineAsyncComponent, inject } from 'vue'
 import { mapState } from 'pinia'
 import { useRadarStore } from 'src/stores/radar'
-import { appConfig } from 'src/config'
+import type { AppConfig } from 'src/config'
 import RadarBlipFeedbackDialog from 'src/components/radar/feedback/RadarBlipFeedbackDialog.vue'
 import { type Blip, type Quadrant } from 'src/models/radar'
 import RadarBlipCard from 'src/components/radar/RadarBlipCard.vue'
 import { useAccessibilityStore } from 'src/stores/accessibility'
 import RadarBlipsNone from 'src/components/radar/RadarBlipsNone.vue'
+import { getQuadrantTranslationKey, getRatingColor } from 'src/utils/radar-helpers'
 
 const RadarCanvas = defineAsyncComponent(() => import('src/components/RadarCanvas.vue'))
 
@@ -129,6 +130,12 @@ export default defineComponent({
     RadarBlipFeedbackDialog,
     RadarBlipCard,
     RadarBlipsNone
+  },
+
+  setup () {
+    const appConfig = inject<AppConfig>('appConfig')
+
+    return { appConfig }
   },
 
   data () {
@@ -147,7 +154,7 @@ export default defineComponent({
     ...mapState(useRadarStore, ['radarData', 'loading', 'error']),
     ...mapState(useAccessibilityStore, ['isDarkMode']),
     isFeedbackEnabled (): boolean {
-      return appConfig.isFeedbackEnabled
+      return this.appConfig?.isFeedbackEnabled ?? false
     },
     techniqueBlips () {
       const blips = this.radarData?.blips.filter(blip => blip.quadrant === 'Techniques')
@@ -194,25 +201,8 @@ export default defineComponent({
   },
 
   methods: {
-    getQuadrantTranslationKey (quadrant: string) {
-      const mapping: Record<string, string> = {
-        Techniques: 'radar.quadrants.techniques',
-        Platforms: 'radar.quadrants.platforms',
-        Tools: 'radar.quadrants.tools',
-        'Languages & Frameworks': 'radar.quadrants.languages'
-      }
-
-      return mapping[quadrant] || quadrant
-    },
-
-    getRatingColor (rating: string | undefined) {
-      if (rating === 'Gold') return 'amber-9'
-      if (rating === 'Silver') return 'grey-6'
-      if (rating === 'Bronze') return 'deep-orange-9'
-      if (rating === 'Approved') return 'positive'
-
-      return 'grey-5'
-    },
+    getQuadrantTranslationKey,
+    getRatingColor,
 
     openFeedback (blip: Blip | undefined) {
       if (!blip) return

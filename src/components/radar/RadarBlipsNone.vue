@@ -18,20 +18,17 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
+import type { Blip } from 'src/models/radar'
 
-export default defineComponent({
-  name: 'RadarBlipsNone',
+defineProps<{
+  blips: Blip[]
+  ringFilterSelected?: string | null
+  searchQuery?: string
+  newOnly?: boolean
+}>()
 
-  props: {
-    blips: {
-      type: Array,
-      required: true
-    },
-    ringFilterSelected: [String, null],
-    searchQuery: String,
-    newOnly: Boolean
-  }
-})
+defineEmits<{
+  (e: 'clearFilters'): void
+}>()
 </script>

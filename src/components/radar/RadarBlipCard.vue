@@ -2,7 +2,7 @@
   <q-card
     flat
     bordered
-    :style="Math.floor(index / 2) % 2 !== 0 ? 'background-color: rgba(255, 255, 255, 0.05)' : ''"
+    :style="isAltRow ? 'background-color: rgba(255, 255, 255, 0.05)' : ''"
   >
     <q-card-section>
       <div class="row items-center no-wrap">
@@ -70,50 +70,22 @@
   </q-card>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-import { appConfig } from 'src/config'
+<script setup lang="ts">
+import { computed, inject } from 'vue'
+import type { Blip } from 'src/models/radar'
+import type { AppConfig } from 'src/config'
+import { getQuadrantTranslationKey, getRatingColor } from 'src/utils/radar-helpers'
 
-export default defineComponent({
-  name: 'RadarBlipCard',
+const props = defineProps<{
+  blip: Blip
+  index: number
+}>()
 
-  props: {
-    blip: {
-      type: Object,
-      required: true
-    },
-    index: {
-      type: Number,
-      required: true
-    }
-  },
+defineEmits<{
+  (e: 'openFeedback'): void
+}>()
 
-  computed: {
-    isFeedbackEnabled (): boolean {
-      return appConfig.isFeedbackEnabled
-    }
-  },
-
-  methods: {
-    getQuadrantTranslationKey (quadrant: string) {
-      const mapping: Record<string, string> = {
-        Techniques: 'radar.quadrants.techniques',
-        Platforms: 'radar.quadrants.platforms',
-        Tools: 'radar.quadrants.tools',
-        'Languages & Frameworks': 'radar.quadrants.languages'
-      }
-
-      return mapping[quadrant] || quadrant
-    },
-
-    getRatingColor (rating: string | undefined) {
-      if (rating === 'Gold') return 'amber-9'
-      if (rating === 'Silver') return 'grey-6'
-      if (rating === 'Bronze') return 'deep-orange-9'
-      if (rating === 'Approved') return 'positive'
-
-      return 'grey-5'
-    }
-  }
-})
+const appConfig = inject<AppConfig>('appConfig')
+const isFeedbackEnabled = computed(() => appConfig?.isFeedbackEnabled ?? false)
+const isAltRow = computed(() => Math.floor(props.index / 2) % 2 !== 0)
 </script>

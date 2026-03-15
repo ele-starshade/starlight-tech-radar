@@ -12,9 +12,9 @@
 
       <q-toolbar-title class="text-weight-bold">
         <q-avatar role="img" :aria-label="$t('app.logo_alt')" size="40px">
-          <img :src="appConfig.logo" alt="" width="40" height="40" fetchpriority="high">
+          <img :src="appConfig?.logo" alt="" width="40" height="40" fetchpriority="high">
         </q-avatar>
-        {{ appConfig.title }}
+        {{ appConfig?.title }}
       </q-toolbar-title>
 
       <q-space />
@@ -22,23 +22,17 @@
   </q-header>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-import { appConfig } from 'src/config'
+<script setup lang="ts">
+import { inject } from 'vue'
+import type { AppConfig } from 'src/config'
 
-export default defineComponent({
-  name: 'MainHeader',
-  props: {
-    isDarkMode: {
-      type: Boolean,
-      required: true
-    }
-  },
-  emits: ['toggle-drawer'],
-  setup () {
-    return {
-      appConfig
-    }
-  }
-})
+defineProps<{
+  isDarkMode: boolean
+}>()
+
+defineEmits<{
+  (e: 'toggle-drawer'): void
+}>()
+
+const appConfig = inject<AppConfig>('appConfig')
 </script>

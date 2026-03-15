@@ -29,6 +29,27 @@ const i18n = createI18n({
   messages: { 'en-US': {} }
 })
 
+const mockAppConfig = {
+  title: 'Starlight Tech Radar',
+  logo: '/icons/starlight-logo.png',
+  githubToken: '',
+  githubApiBaseUrl: 'https://api.github.com',
+  gitlabToken: '',
+  gitlabApiBaseUrl: 'https://gitlab.com',
+  teamsWebhook: '',
+  slackWebhook: '',
+  isFeedbackEnabled: false,
+  locales: [
+    { value: 'en-US', label: 'English' }
+  ],
+  defaultLocale: 'en-US',
+  accessibility: {
+    defaultDarkMode: true,
+    defaultFontSizeStep: 1,
+    defaultDyslexic: false
+  }
+}
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function mountComponent (component: any, options: any = {}) {
   const plugins = [...(options.global?.plugins || []), i18n]
@@ -70,6 +91,7 @@ export function mountComponent (component: any, options: any = {}) {
           platform: { has: { webStorage: false } },
           localStorage: { getItem: vi.fn(), setItem: vi.fn() },
         },
+        appConfig: mockAppConfig,
         ...options.global?.provide
       },
       stubs: {

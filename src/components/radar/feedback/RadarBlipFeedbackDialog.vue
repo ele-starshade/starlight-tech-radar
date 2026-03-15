@@ -47,84 +47,69 @@
   </q-dialog>
 </template>
 
-<script lang="ts">
-import { defineComponent, type PropType } from 'vue'
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+import { useQuasar } from 'quasar'
+import { useI18n } from 'vue-i18n'
 import type { Blip } from 'src/models/radar'
+import { api } from 'src/boot/axios'
 
-export default defineComponent({
-  name: 'RadarBlipFeedbackDialog',
+const props = defineProps<{
+  modelValue: boolean
+  blip: Blip | null
+}>()
 
-  props: {
-    modelValue: {
-      type: Boolean,
-      required: true
-    },
-    blip: {
-      type: Object as PropType<Blip | null>,
-      default: null
-    }
-  },
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: boolean): void
+}>()
 
-  emits: ['update:modelValue'],
+const $q = useQuasar()
+const { t } = useI18n()
 
-  data () {
-    return {
-      feedbackType: null as string | null,
-      feedbackComment: '',
-      sending: false
-    }
-  },
+const feedbackType = ref<string | null>(null)
+const feedbackComment = ref('')
+const sending = ref(false)
 
-  computed: {
-    show: {
-      get (): boolean {
-        return this.modelValue
-      },
-      set (value: boolean) {
-        this.$emit('update:modelValue', value)
-      }
-    },
-    feedbackOptions () {
-      return [
-        { label: this.$t('radar.feedback.types.positive'), value: 'Positive' },
-        { label: this.$t('radar.feedback.types.negative'), value: 'Negative' },
-        { label: this.$t('radar.feedback.types.suggestion'), value: 'Suggestion' },
-        { label: this.$t('radar.feedback.types.question'), value: 'Question' }
-      ]
-    }
-  },
-
-  methods: {
-    async sendFeedback () {
-      if (!this.blip || !this.feedbackType || !this.feedbackComment) return
-
-      this.sending = true
-
-      try {
-        await this.$api.post('/api/feedback', {
-          blipName: this.blip.name,
-          feedbackType: this.feedbackType,
-          comment: this.feedbackComment
-        })
-
-        this.$q.notify({
-          type: 'positive',
-          message: this.$t('radar.feedback.success')
-        })
-
-        this.show = false
-        this.feedbackType = null
-        this.feedbackComment = ''
-      } catch (error) {
-        console.error('Error sending feedback:', error)
-        this.$q.notify({
-          type: 'negative',
-          message: this.$t('radar.feedback.error')
-        })
-      } finally {
-        this.sending = false
-      }
-    }
-  }
+const show = computed({
+  get: () => props.modelValue,
+  set: (value) => emit('update:modelValue', value)
 })
+
+const feedbackOptions = computed(() => [
+  { label: t('radar.feedback.types.positive'), value: 'Positive' },
+  { label: t('radar.feedback.types.negative'), value: 'Negative' },
+  { label: t('radar.feedback.types.suggestion'), value: 'Suggestion' },
+  { label: t('radar.feedback.types.question'), value: 'Question' }
+])
+
+const sendFeedback = async () => {
+  if (!props.blip || !feedbackType.value || !feedbackComment.value) return
+
+  sending.value = true
+
+  try {
+    await api.post('/api/feedback', {
+      blipName: props.blip.name,
+      feedbackType: feedbackType.value,
+      comment: feedbackComment.value
+    })
+
+    $q.notify({
+      type: 'positive',
+      message: t('radar.feedback.success')
+    })
+
+    show.value = false
+    feedbackType.value = null
+    feedbackComment.value = ''
+  } catch (error) {
+    console.error('Error sending feedback:', error)
+    $q.notify({
+      type: 'negative',
+      message: t('radar.feedback.error')
+    })
+  } finally {
+    sending.value = false
+  }
+}
 </script>

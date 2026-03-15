@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect } from 'vitest'
 import { mountComponent } from 'test/utils/test-setup'
 import RadarBlipCard from 'src/components/radar/RadarBlipCard.vue'
 import { defineComponent } from 'vue'
@@ -9,12 +9,6 @@ const QBtnStub = defineComponent({
   props: ['label'],
   template: '<button><slot />{{ label }}</button>'
 })
-
-vi.mock('src/config', () => ({
-  appConfig: {
-    isFeedbackEnabled: true
-  }
-}))
 
 describe('RadarBlipCard.vue', () => {
   const blip = {
@@ -29,9 +23,16 @@ describe('RadarBlipCard.vue', () => {
     repoUrl: 'https://repo.com'
   }
 
+  const defaultProvide = {
+    appConfig: {
+      isFeedbackEnabled: true
+    }
+  }
+
   it('matches snapshot', () => {
     const wrapper = mountComponent(RadarBlipCard, {
-      props: { blip, index: 0 }
+      props: { blip, index: 0 },
+      global: { provide: defaultProvide }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -47,7 +48,7 @@ describe('RadarBlipCard.vue', () => {
     }
     const wrapper = mountComponent(RadarBlipCard, {
       props: { blip: minimalBlip, index: 0 },
-      global: { stubs: { 'q-btn': QBtnStub } }
+      global: { stubs: { 'q-btn': QBtnStub }, provide: defaultProvide }
     })
 
     // Ensure the optional buttons/chips are not rendered
@@ -57,7 +58,8 @@ describe('RadarBlipCard.vue', () => {
 
   it('renders stable chip when isNew is false', () => {
     const wrapper = mountComponent(RadarBlipCard, {
-      props: { blip: { ...blip, isNew: false }, index: 0 }
+      props: { blip: { ...blip, isNew: false }, index: 0 },
+      global: { provide: defaultProvide }
     })
 
     expect(wrapper.text()).toContain('radar.blips.stable')
@@ -65,10 +67,12 @@ describe('RadarBlipCard.vue', () => {
 
   it('renders different background color based on index', () => {
     const wrapper1 = mountComponent(RadarBlipCard, {
-      props: { blip, index: 0 }
+      props: { blip, index: 0 },
+      global: { provide: defaultProvide }
     })
     const wrapper2 = mountComponent(RadarBlipCard, {
-      props: { blip, index: 2 } // Math.floor(2/2) % 2 !== 0 is true (1%2=1)
+      props: { blip, index: 2 }, // Math.floor(2/2) % 2 !== 0 is true (1%2=1)
+      global: { provide: defaultProvide }
     })
 
     expect(wrapper1.attributes('style')).not.toContain('background-color')
@@ -79,7 +83,8 @@ describe('RadarBlipCard.vue', () => {
     const wrapper = mountComponent(RadarBlipCard, {
       props: { blip, index: 0 },
       global: {
-        stubs: { 'q-btn': QBtnStub }
+        stubs: { 'q-btn': QBtnStub },
+        provide: defaultProvide
       }
     })
 
@@ -91,7 +96,8 @@ describe('RadarBlipCard.vue', () => {
 
   it('returns correct translation key for quadrants', () => {
     const wrapper = mountComponent(RadarBlipCard, {
-      props: { blip, index: 0 }
+      props: { blip, index: 0 },
+      global: { provide: defaultProvide }
     })
     const vm = wrapper.vm as any
 
@@ -104,7 +110,8 @@ describe('RadarBlipCard.vue', () => {
 
   it('returns correct rating color', () => {
     const wrapper = mountComponent(RadarBlipCard, {
-      props: { blip, index: 0 }
+      props: { blip, index: 0 },
+      global: { provide: defaultProvide }
     })
     const vm = wrapper.vm as any
 

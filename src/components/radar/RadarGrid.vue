@@ -66,68 +66,53 @@
   </g>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
+import { computed } from 'vue'
 import type { Quadrant, Ring } from 'src/models/radar'
-import { getQuadrantTranslationKey } from 'src/models/radar'
-import { RADAR_RADIUS, RING_RADII, QUADRANT_ANGLES } from 'src/utils/radar-visualization'
+import { getQuadrantTranslationKey } from 'src/utils/radar-helpers'
+import { RADAR_RADIUS as RADAR_RADIUS_CONST, RING_RADII, QUADRANT_ANGLES } from 'src/utils/radar-visualization'
 
-export default defineComponent({
-  name: 'RadarGrid',
+const RADAR_RADIUS = computed(() => RADAR_RADIUS_CONST)
 
-  computed: {
-    RADAR_RADIUS (): number {
-      return RADAR_RADIUS
-    },
+const rings = computed(() => {
+  const names: Ring[] = ['Adopt', 'Trial', 'Assess', 'Hold']
 
-    rings () {
-      const names: Ring[] = ['Adopt', 'Trial', 'Assess', 'Hold']
+  return names.map(name => ({
+    name,
+    ...RING_RADII[name]
+  }))
+})
 
-      return names.map(name => ({
-        name,
-        ...RING_RADII[name]
-      }))
-    },
+const quadrantLabels = computed(() => {
+  const labels: Quadrant[] = ['Techniques', 'Tools', 'Platforms', 'Languages & Frameworks']
+  const size = RADAR_RADIUS_CONST * 2
 
-    quadrantLabels () {
-      const labels: Quadrant[] = ['Techniques', 'Tools', 'Platforms', 'Languages & Frameworks']
-      const size = RADAR_RADIUS * 2
+  return labels.map(name => {
+    const angles = QUADRANT_ANGLES[name]
+    const midAngle = ((angles?.start || 0) + (angles?.end || 0)) / 2
+    const rad = (midAngle * Math.PI) / 180
+    const dist = RADAR_RADIUS_CONST - 20
 
-      return labels.map(name => {
-        const angles = QUADRANT_ANGLES[name]
-        const midAngle = ((angles?.start || 0) + (angles?.end || 0)) / 2
-        const rad = (midAngle * Math.PI) / 180
-        const dist = RADAR_RADIUS - 20
+    let x = RADAR_RADIUS_CONST + dist * Math.cos(rad)
+    let y = RADAR_RADIUS_CONST - dist * Math.sin(rad)
+    let anchor: string
 
-        let x = RADAR_RADIUS + dist * Math.cos(rad)
-        let y = RADAR_RADIUS - dist * Math.sin(rad)
-        let anchor: string
-
-        // Adjust positioning to stay within the square canvas
-        if (x < RADAR_RADIUS) {
-          x = 0
-          anchor = 'start'
-        } else {
-          x = size
-          anchor = 'end'
-        }
-
-        if (y < RADAR_RADIUS) {
-          y = -10
-        } else {
-          y = size + 20
-        }
-
-        return { name, x, y, anchor }
-      })
+    if (x < RADAR_RADIUS_CONST) {
+      x = 0
+      anchor = 'start'
+    } else {
+      x = size
+      anchor = 'end'
     }
-  },
 
-  methods: {
-    getQuadrantTranslationKey (quadrant: string) {
-      return getQuadrantTranslationKey(quadrant)
+    if (y < RADAR_RADIUS_CONST) {
+      y = -10
+    } else {
+      y = size + 20
     }
-  }
+
+    return { name, x, y, anchor }
+  })
 })
 </script>
 

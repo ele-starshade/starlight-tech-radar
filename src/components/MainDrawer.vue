@@ -46,21 +46,14 @@
   </q-drawer>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
+defineProps<{
+  modelValue: boolean
+  isDarkMode: boolean
+}>()
 
-export default defineComponent({
-  name: 'MainDrawer',
-  props: {
-    modelValue: {
-      type: Boolean,
-      required: true
-    },
-    isDarkMode: {
-      type: Boolean,
-      required: true
-    }
-  },
-  emits: ['update:modelValue', 'toggle-drawer']
-})
+defineEmits<{
+  (e: 'update:modelValue', value: boolean): void
+  (e: 'toggle-drawer'): void
+}>()
 </script>

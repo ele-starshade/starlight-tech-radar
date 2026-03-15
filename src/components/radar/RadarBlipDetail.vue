@@ -64,66 +64,32 @@
   </q-card-actions>
 </template>
 
-<script lang="ts">
-import { getQuadrantTranslationKey } from 'src/models/radar'
-import { defineComponent } from 'vue'
+<script setup lang="ts">
+import { getQuadrantTranslationKey, getRatingColor } from 'src/utils/radar-helpers'
 
-export default defineComponent({
-  name: 'RadarBlipDetail',
-
-  props: {
-    subtitle: {
-      type: String,
-      default: ''
-    },
-    isNew: {
-      type: Boolean,
-      required: true
-    },
-    licenseId: {
-      type: String,
-      default: ''
-    },
-    licenseRating: {
-      type: String,
-      default: ''
-    },
-    description: {
-      type: String,
-      required: true
-    },
-    quadrant: {
-      type: String,
-      default: '',
-    },
-    ring: {
-      type: String,
-      default: ''
-    },
-    guidanceLink: {
-      type: String,
-      default: ''
-    },
-    repoUrl: {
-      type: String,
-      default: ''
-    },
-    isFeedbackEnabled: {
-      type: Boolean,
-      default: false
-    }
-  },
-
-  methods: {
-    getQuadrantTranslationKey,
-    getRatingColor (rating: string | undefined) {
-      if (rating === 'Gold') return 'amber-9'
-      if (rating === 'Silver') return 'grey-6'
-      if (rating === 'Bronze') return 'deep-orange-9'
-      if (rating === 'Approved') return 'positive'
-
-      return 'grey-5'
-    },
-  }
+withDefaults(defineProps<{
+  subtitle?: string
+  isNew: boolean
+  licenseId?: string
+  licenseRating?: string
+  description: string
+  quadrant?: string
+  ring?: string
+  guidanceLink?: string
+  repoUrl?: string
+  isFeedbackEnabled?: boolean
+}>(), {
+  subtitle: '',
+  licenseId: '',
+  licenseRating: '',
+  quadrant: '',
+  ring: '',
+  guidanceLink: '',
+  repoUrl: '',
+  isFeedbackEnabled: false
 })
+
+defineEmits<{
+  (e: 'openFeedback'): void
+}>()
 </script>

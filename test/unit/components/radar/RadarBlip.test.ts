@@ -75,7 +75,7 @@ describe('RadarBlip.vue', () => {
       props: { node, index: 0 }
     })
 
-    await wrapper.trigger('keydown', { key: 'Enter' })
+    await wrapper.trigger('keyup', { key: 'Enter' })
     expect(wrapper.emitted('click')).toBeTruthy()
   })
 
@@ -86,7 +86,7 @@ describe('RadarBlip.vue', () => {
 
     const event = { key: ' ', preventDefault: vi.fn() }
 
-    await wrapper.trigger('keydown', event)
+    await wrapper.trigger('keyup', event)
 
     expect(wrapper.emitted('click')).toBeTruthy()
     expect(event.preventDefault).toHaveBeenCalled()
